@@ -1,9 +1,5 @@
 #!/usr/bin/env python
 
-import sys
-import os
-
-sys.path += [os.path.dirname(__file__) + "/contrib/flask-wtf"]
 from flask_wtf import Form, TextField, PasswordField, validators
 
 class LoginForm(Form):
