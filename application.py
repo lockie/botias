@@ -1,7 +1,7 @@
 #!/usr/bin/env python
 
 import hashlib
-from flask import Flask, render_template, request, flash, redirect, url_for
+from flask import Flask, render_template, request, flash, redirect, url_for, session
 from flask.ext.sqlalchemy import SQLAlchemy
 from flask.ext.login import LoginManager, login_user, logout_user, login_required
 from loginform import LoginForm
@@ -56,7 +56,10 @@ def load_user(user_id):
 
 @app.route('/')
 def index():
-	return 'This is main page okay<br />You may <a href="/submit">submit</a> ur data.'
+	return render_template('main.html',
+		title='Super averaging application',
+		content="""This is unique service for <abbr style="cursor: help;" title="averagin ur data since 2012!">calculating average</abbr>!
+You may <a href="/submit">submit</a> ur data to expirience fury unleashed.""")
 
 @app.route('/submit')
 @login_required
@@ -75,7 +78,7 @@ def submit_data():
 		message = 'TIMEOUT'
 	socket.close()
 	context.term()
-	return 'Hello, %s!!1' % message
+	return render_template('main.html', title='Results', content='Hello, %s!!1' % message)
 
 
 
@@ -92,6 +95,7 @@ def login():
 			# sha224(password + salt)
 			password=hashlib.sha224(password + app.secret_key).hexdigest()).first()
 		if user and login_user(user, remember=True):
+			session['logged_in'] = True
 			flash('Logged OK')
 			return redirect(next_url or url_for('index'))
 		else:
@@ -103,6 +107,7 @@ def login():
 @login_required
 def logout():
 	logout_user()
+	session.pop('logged_in', None)
 	flash('You have logged out')
 	return redirect(request.args.get('next') or url_for('index'))
 
