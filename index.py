@@ -8,5 +8,6 @@ from application import app
 
 if __name__ == '__main__':
 	from flup.server.fcgi import WSGIServer
-	WSGIServer(app).run()
+	from werkzeug.contrib.fixers import LighttpdCGIRootFix
+	WSGIServer(LighttpdCGIRootFix(app)).run()
 
