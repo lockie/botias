@@ -109,6 +109,10 @@ def submit():
 
 @app.route('/login', methods=['GET', 'POST'])
 def login():
+	if current_user.is_authenticated():
+		flash('Already authenticated')
+		return redirect(request.referrer or url_for('index'))
+
 	# TODO : https
 	form = LoginForm()
 	username = ''
