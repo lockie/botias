@@ -1,0 +1,19 @@
+{% extends "layout.html" %}
+{% block body %}
+	<script type=text/javascript>
+		$(document).ready(function() {
+			$.ajax({
+				type: "GET",
+				url: "/_process",
+				dataType: 'JSON',
+				success: function(data) {
+					$('#result').html(data.result);
+				}
+			});
+			return false;
+		});
+	</script>
+
+	<div id=result><img src="/static/loader.gif" /> Processing data...</div>
+	<!-- TODO : more fancy progressbar -->
+{% endblock %}
