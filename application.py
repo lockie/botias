@@ -7,7 +7,7 @@ from flask import Flask, render_template, request, flash, redirect, url_for, ses
 from flask.ext.sqlalchemy import SQLAlchemy
 from flask.ext.login import LoginManager, login_user, logout_user, login_required, current_user
 from loginform import LoginForm
-import zmq
+from rpcclient import RpcClient
 
 
 # some application parameters
@@ -26,6 +26,7 @@ db = SQLAlchemy(app)
 login_manager = LoginManager()
 login_manager.setup_app(app)
 login_manager.login_view = 'login'
+rpc = RpcClient('server')
 
 
 # define User object
@@ -73,44 +74,29 @@ def allowed_file(filename):
 
 @app.route('/_process')
 @login_required
-def process(): # to be called from AJAX
+def process(): # to be called from AJAX; TODO : long polling maybe?
 	file_path = session.pop('current_file', '')
 	if not file_path:
 #		flash('No file submitted')
 #		return redirect(url_for('submit'))
 		return jsonify(result='Error: no file submitted!')
 
-	avg = 0
+	data = []
 	try:
 		import xlrd
 		workbook = xlrd.open_workbook(file_path)
 		for sheet in workbook.sheets():
 			for rown in range(sheet.nrows):
 				row = sheet.row_values(rown)
-				avg += float(row[1]) / sheet.nrows
+				data.append(row[1])
 	except Exception as e:
 		return jsonify(result='Error: %s' % str(e))
 	finally:
-		os.remove(file_path)
-	return jsonify(result='kay! avg=%f' % avg)
+		if os.path.exists(file_path) and os.path.isfile(file_path):
+			os.remove(file_path)
 
-	# TODO : pika
-	context = zmq.Context()
-	socket = context.socket(zmq.REQ)
-	socket.setsockopt(zmq.LINGER, 0)
-	socket.connect('tcp://server:5555')
-	socket.send('Hello')
-	# use poll for timeout
-	poller = zmq.Poller()
-	poller.register(socket, zmq.POLLIN)
-	if poller.poll(5*1000): # 5s timeout in milliseconds
-		message = socket.recv()
-	else:
-		message = 'TIMEOUT'
-	socket.close()
-	context.term()
-	return render_template('main.html', title='Results', content='Hello, %s!!1' % message)
-
+	resp = rpc.call(current_user.username, data)
+	return jsonify(result=resp)
 
 @app.route('/result')
 @login_required
