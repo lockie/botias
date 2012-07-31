@@ -75,28 +75,32 @@ def allowed_file(filename):
 @app.route('/_process')
 @login_required
 def process(): # to be called from AJAX; TODO : long polling maybe?
-	file_path = session.pop('current_file', '')
-	if not file_path:
-#		flash('No file submitted')
-#		return redirect(url_for('submit'))
-		return jsonify(result='Error: no file submitted!')
-
-	data = []
 	try:
-		import xlrd
-		workbook = xlrd.open_workbook(file_path)
-		for sheet in workbook.sheets():
-			for rown in range(sheet.nrows):
-				row = sheet.row_values(rown)
-				data.append(row[1])
-	except Exception as e:
-		return jsonify(result='Error: %s' % str(e))
-	finally:
-		if os.path.exists(file_path) and os.path.isfile(file_path):
-			os.remove(file_path)
+		file_path = session.pop('current_file', '')
+		if not file_path:
+	#		flash('No file submitted')
+	#		return redirect(url_for('submit'))
+			return jsonify(result=
+				'Error: no file submitted! <a href="/submit">Submit</a> one.')
 
-	resp = rpc.call(current_user.username, data)
-	return jsonify(result=resp)
+		data = []
+		try:
+			import xlrd
+			workbook = xlrd.open_workbook(file_path)
+			for sheet in workbook.sheets():
+				for rown in range(sheet.nrows):
+					row = sheet.row_values(rown)
+					data.append(row[1])
+		except Exception as e:
+			return jsonify(result='Error: %s. Try fixing your file.' % str(e))
+		finally:
+			if os.path.exists(file_path) and os.path.isfile(file_path):
+				os.remove(file_path)
+
+		resp = rpc.call(current_user.username, data)
+		return jsonify(result=resp)
+	except Exception as e:
+		return jsonify(result='Error: %s. Contact administration.' % str(e))
 
 @app.route('/result')
 @login_required
