@@ -14,7 +14,7 @@ class RpcClient(object):
 		result = self.channel.queue_declare(exclusive=True,
 			durable=True) # dont loose messages when RabbitMQ restarts or otherwise dies
 		self.callback_queue = result.method.queue
-		self.channel.basic_consume(self.on_response, no_ack=True,
+		self.channel.basic_consume(self.on_response,
 			queue=self.callback_queue)
 		self.responses = { }
 		self.timeout = timeout
