@@ -6,6 +6,7 @@ from werkzeug import secure_filename
 from flask import Flask, render_template, request, flash, redirect, url_for, session, jsonify
 from flask.ext.sqlalchemy import SQLAlchemy
 from flask.ext.login import LoginManager, login_user, logout_user, login_required, current_user
+import bson
 from loginform import LoginForm
 from rpcclient import RpcClient
 
@@ -83,21 +84,21 @@ def process(): # to be called from AJAX; TODO : long polling maybe?
 			return jsonify(result=
 				'Error: no file submitted! <a href="/submit">Submit</a> one.')
 
-		data = []
+		data = {}
 		try:
 			import xlrd
 			workbook = xlrd.open_workbook(file_path)
 			for sheet in workbook.sheets():
 				for rown in range(sheet.nrows):
 					row = sheet.row_values(rown)
-					data.append(row[1])
+					data[row[0]] = row[1]
 		except Exception as e:
 			return jsonify(result='Error: %s. Try fixing your file.' % str(e))
 		finally:
 			if os.path.exists(file_path) and os.path.isfile(file_path):
 				os.remove(file_path)
 
-		resp = rpc.call(current_user.username, data)
+		resp = rpc.call(current_user.username, bson.dumps(data))
 		return jsonify(result=resp)
 	except Exception as e:
 		return jsonify(result='Error: %s. Contact administration.' % str(e))

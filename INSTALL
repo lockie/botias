@@ -1,1 +1,1 @@
-pip install Flask-Login Flask-WTF flask-sqlalchemy xlrd
+pip install Flask-Login Flask-WTF flask-sqlalchemy xlrd bson
