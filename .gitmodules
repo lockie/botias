@@ -1,0 +1,3 @@
+[submodule "static/noty"]
+	path = static/noty
+	url = git://github.com/needim/noty.git

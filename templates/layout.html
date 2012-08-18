@@ -1,18 +1,56 @@
-<!doctype html>
-<title>Averagate!</title>
-<link rel=stylesheet type=text/css href="{{ url_for('static', filename='style.css') }}">
-<script src="//ajax.googleapis.com/ajax/libs/jquery/1.7.2/jquery.js"></script>
-<div class=page>
-  <a href="/"><h1>Averagate!</h1></a>
-  <div class=metanav>
-  {% if not session.logged_in %}
-    <a href="{{ url_for('login') }}">log in</a>
-  {% else %}
-    <a href="{{ url_for('logout') }}">log out</a>
-  {% endif %}
-  </div>
-  {% for message in get_flashed_messages() %}
-    <div class=flash>{{ message }}</div>
-  {% endfor %}
-  {% block body %}{% endblock %}
-</div>
+{% extends "bootstrap_responsive.html" %}
+{% import "bootstrap_wtf.html" as wtf %}
+
+{% block head %}
+    {{ super() }}
+    <script src="//ajax.googleapis.com/ajax/libs/jquery/1.7.2/jquery.js"></script>
+    <script type="text/javascript" src="static/noty/js/noty/jquery.noty.js"></script>
+    <script type="text/javascript" src="static/noty/js/noty/layouts/top.js"></script>
+    <script type="text/javascript" src="static/noty/js/noty/layouts/topCenter.js"></script>
+    <script type="text/javascript" src="static/noty/js/noty/themes/default.js"></script>
+{% endblock %}
+{% block style %}
+	{{ super() }}
+	<link rel=stylesheet type=text/css href="{{ url_for('static', filename='style.css') }}">
+{% endblock %}
+{% block title %} {{ title }} - Averagate! {% endblock %}
+
+{% block body %}
+{{ super() }}
+
+<script type="text/javascript">
+{% for category, message in get_flashed_messages(with_categories=true) %}
+  noty({layout: 'topCenter', type: '{{ category }}', text: '{{ message }}', closeWith: ['click', 'button']});
+{% endfor %}
+</script>
+
+<div class="navbar navbar-fixed-top">
+  <div class="navbar-inner">
+    <div class="container">
+      <a class="btn btn-navbar" data-toggle="collapse" data-target=".nav-collapse">
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+      </a>
+      <a class="brand" href="/">Averagate!</a>
+      <div class="nav-collapse">
+        <ul class="nav">
+          <li class="active"><a href="/">Home</a></li>
+          <li><a href="/submit">Submit</a></li>
+          <li>
+          {% if not session.logged_in %}
+            <a href="{{ url_for('login') }}">Log in</a>
+          {% else %}
+            <a href="{{ url_for('logout') }}">Log out</a>
+          {% endif %}
+          </li>
+        </ul>
+      </div><!--/.nav-collapse -->
+    </div><!--./container-->
+  </div><!--./navbar-inner-->
+</div><!--./navbar-->
+
+<footer>
+  <p>&copy; Axiom Logic 2012</p>
+</footer>
+{% endblock %}

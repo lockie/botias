@@ -6,6 +6,7 @@ from werkzeug import secure_filename
 from flask import Flask, render_template, request, flash, redirect, url_for, session, jsonify
 from flask.ext.sqlalchemy import SQLAlchemy
 from flask.ext.login import LoginManager, login_user, logout_user, login_required, current_user
+from flask.ext.bootstrap import Bootstrap
 import bson
 from loginform import LoginForm
 from rpcclient import RpcClient
@@ -19,10 +20,12 @@ SQLALCHEMY_DATABASE_URI = 'sqlite:////var/www/localhost/htdocs/db/users.db'
 ALLOWED_EXTENSIONS = set(['txt', 'csv', 'xls', 'xlsx'])
 MAX_CONTENT_LENGTH = 64 * 1024 * 1024 # 64M
 UPLOAD_FOLDER = '/tmp'
+BOOTSTRAP_JQUERY_VERSION = None
 
 # construct application
 app = Flask(__name__)
 app.config.from_object(__name__)
+Bootstrap(app)
 db = SQLAlchemy(app)
 login_manager = LoginManager()
 login_manager.setup_app(app)
@@ -65,8 +68,8 @@ def load_user(user_id):
 def index():
 	return render_template('main.html',
 		title='Super averaging application',
-		content="""This is unique service for <abbr style="cursor: help;" title="averagin ur data since 2012!">calculating average</abbr>!
-You may <a href="/submit">submit</a> ur data to expirience fury unleashed.""")
+		content="""<div class="hero-unit">This is unique service for <abbr style="cursor: help;" title="averagin ur data since 2012!">calculating average</abbr>!
+To expirience fury unleashed, you may<br /><br /><a href="/submit" class="btn btn-primary">Submit ur data now!</a></div>""")
 
 
 def allowed_file(filename):
@@ -118,15 +121,17 @@ def submit():
 			path = os.path.join(app.config['UPLOAD_FOLDER'], fn)
 			session['current_file'] = path
 			request.files['data'].save(path)
-			flash('submit OK')
+			flash('Submit OK', 'success')
 			return redirect(url_for('result'))
-	return render_template('submit.html')
+		else:
+			flash('Files of this type are not allowed to upload', 'error')
+	return render_template('submit.html', title='Submit data')
 
 
 @app.route('/login', methods=['GET', 'POST'])
 def login():
 	if current_user.is_authenticated():
-		flash('Already authenticated')
+		flash('Already authenticated', 'warning')
 		return redirect(request.referrer or url_for('index'))
 
 	# TODO : https
@@ -141,11 +146,11 @@ def login():
 			password=hashlib.sha224(password + app.secret_key).hexdigest()).first()
 		if user and login_user(user, remember=True):
 			session['logged_in'] = True
-			flash('Logged OK')
+			flash('Logged OK', 'success')
 			return redirect(next_url or url_for('index'))
 		else:
-			flash('Authentication failed')
-	return render_template('login.html',
+			flash('Authentication failed', 'error')
+	return render_template('login.html', title='Login',
 		form=form, next=next_url, username=username)
 
 @app.route('/logout')
@@ -153,9 +158,13 @@ def login():
 def logout():
 	logout_user()
 	session.pop('logged_in', None)
-	flash('You have logged out')
+	flash('You have logged out', 'information')
 	return redirect(request.args.get('next') or url_for('index'))
 
+@login_manager.unauthorized_handler
+def unauthorized():
+	flash('Please authorize to access this page', 'warning')
+	return redirect(url_for('login', next=request.url))
 
 if __name__ == '__main__':
 	app.run()

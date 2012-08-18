@@ -1,4 +1,5 @@
 {% extends "layout.html" %}
+{% block title %} Results - Averagate! {% endblock %}
 {% block body %}
 	<script type=text/javascript>
 		$(document).ready(function() {
@@ -7,13 +8,16 @@
 				url: "/_process",
 				dataType: 'JSON',
 				success: function(data) {
-					$('#result').html(data.result);
+					$('#result').html("<p class='lead'>" +
+					data.result +
+					"</p><a href='/submit' class='btn btn-primary'>Submit moar!</a>");
 				}
 			});
 			return false;
 		});
 	</script>
 
-	<div id=result><img src="/static/loader.gif" /> Processing data...</div>
+	<div id="result" class="container"><img src="/static/loader.gif" /> Processing data...</div>
 	<!-- TODO : more fancy progressbar -->
+{{ super() }}
 {% endblock %}

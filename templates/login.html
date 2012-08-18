@@ -1,15 +1,21 @@
 {% extends "layout.html" %}
 {% block body %}
+<div class="container"><div class="login-form">
   <h2>Login</h2>
-  {% if error %}<p class=error><strong>Error:</strong> {{ error }}{% endif %}
-  <form action="{{ url_for('login', next=next) }}" method=post>
-    <dl>
-      <dt>Username:
-      <dd><input type=text name=username value="{{username}}">
-      <dt>Password:
-      <dd><input type=password name=password>
-      <dd><input type=submit value=Login>
-    </dl>
-    {{ form.csrf_token }}
+  <form action="{{ url_for('login', next=next) }}" method="post">
+    <fieldset>
+      <div class="clearfix">
+        <input name="username" type="text" placeholder="Username" value="{{username}}">
+      </div>
+      <div class="clearfix">
+        <input name="password" type="password" placeholder="Password">
+      </div>
+      <div class="form-actions">
+        <button type="submit" class="btn btn-primary">Login</button>
+      </div>
+      {{ form.hidden_tag() }}
+    </fieldset>
   </form>
+</div></div>
+{{ super() }}
 {% endblock %}
