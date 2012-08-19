@@ -1,6 +1,7 @@
 #!/usr/bin/env python
 
 import os
+import time
 import hashlib
 from werkzeug import secure_filename
 from flask import Flask, render_template, request, flash, redirect, url_for, session, jsonify
@@ -117,7 +118,7 @@ def submit():
 	if request.method == 'POST' and 'data' in request.files:
 		filename = request.files['data'].filename
 		if(allowed_file(filename)):
-			fn = str(current_user.get_id()) + '_' + secure_filename(filename)
+			fn = str(current_user.get_id()) + '_' + str(time.time()) + '_' + secure_filename(filename)
 			path = os.path.join(app.config['UPLOAD_FOLDER'], fn)
 			session['current_file'] = path
 			request.files['data'].save(path)
