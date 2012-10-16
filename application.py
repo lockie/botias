@@ -9,6 +9,7 @@ from flask import Flask, render_template, request, flash, redirect, url_for, ses
 from flask.ext.sqlalchemy import SQLAlchemy
 from flask.ext.login import LoginManager, login_user, logout_user, login_required, current_user
 from flask.ext.bootstrap import Bootstrap
+from flask.ext.babel import Babel, gettext
 import bson
 from loginform import LoginForm
 from rpcclient import RpcClient
@@ -27,6 +28,7 @@ BOOTSTRAP_JQUERY_VERSION = None
 # construct application
 app = Flask(__name__)
 app.config.from_object(__name__)
+babel = Babel(app)
 Bootstrap(app)
 db = SQLAlchemy(app)
 login_manager = LoginManager()
@@ -34,6 +36,21 @@ login_manager.setup_app(app)
 login_manager.login_view = 'login'
 rpc = RpcClient('server')
 
+
+# l10n
+@babel.localeselector
+def get_locale():
+	# if a user is logged in, use the locale from the user settings
+	if current_user is not None and not current_user.is_anonymous:
+		return current_user.locale
+	# otherwise try to guess the language from the user accept
+	# header the browser transmits. The best match wins.
+	return request.accept_languages.best_match(['ru', 'uk', 'en'])
+
+@babel.timezoneselector
+def get_timezone():
+	if current_user is not None and not current_user.is_anonymous:
+		return current_user.timezone
 
 # define User object
 
@@ -46,6 +63,7 @@ class User(db.Model):
 		self.id = id
 		self.username = username
 		self.password = password
+		self.locale = "ru"
 
 	def is_active(self):
 		return True
@@ -87,7 +105,7 @@ def process(): # to be called from AJAX; TODO : long polling maybe?
 	#		flash('No file submitted')
 	#		return redirect(url_for('submit'))
 			return jsonify(result=
-				'Error: no file submitted! <a href="/submit">Submit</a> one.')
+				gettext('Error: no file submitted! <a href="/submit">Submit</a> one.'))
 
 		data = {}
 		try:
@@ -98,7 +116,7 @@ def process(): # to be called from AJAX; TODO : long polling maybe?
 					row = sheet.row_values(rown)
 					data[row[0]] = row[1]
 		except Exception as e:
-			return jsonify(result='Error: %s. Try fixing your file.' % str(e))
+			return jsonify(result=gettext('Error: %(error)s. Try fixing your file.', error=str(e)))# % { 'error': str(e)})
 		finally:
 			if os.path.exists(file_path) and os.path.isfile(file_path):
 				os.remove(file_path)
@@ -107,7 +125,8 @@ def process(): # to be called from AJAX; TODO : long polling maybe?
 		return jsonify(result=resp)
 	except Exception, e:
 		import sys
-		return jsonify(result='Error: %s. Contact administration.' % str(sys.exc_info()[0].__name__))
+		e = str(sys.exc_info()[0].__name__)
+		return jsonify(result=gettext('Error: %(error)s. Contact administration.', error=e))# % { 'error': e})
 
 @app.route('/result')
 @login_required
@@ -127,14 +146,14 @@ def submit():
 			flash('Submit OK', 'success')
 			return redirect(url_for('result'))
 		else:
-			flash('Files of this type are not allowed to upload', 'error')
+			flash(gettext('Files of this type are not allowed to upload'), 'error')
 	return render_template('submit.html', title='Submit data')
 
 
 @app.route('/login', methods=['GET', 'POST'])
 def login():
 	if current_user.is_authenticated():
-		flash('Already authenticated', 'warning')
+		flash(gettext('Already authenticated'), 'warning')
 		return redirect(request.referrer or url_for('index'))
 
 	# TODO : https
@@ -152,7 +171,7 @@ def login():
 			flash('Logged OK', 'success')
 			return redirect(next_url or url_for('index'))
 		else:
-			flash('Authentication failed', 'error')
+			flash(gettext('Authentication failed. Check login and password.'), 'error')
 	return render_template('login.html', title='Login',
 		form=form, next=next_url, username=username)
 
@@ -161,12 +180,12 @@ def login():
 def logout():
 	logout_user()
 	session.pop('logged_in', None)
-	flash('You have logged out', 'information')
+	flash(gettext('You have logged out'), 'information')
 	return redirect(request.args.get('next') or url_for('index'))
 
 @login_manager.unauthorized_handler
 def unauthorized():
-	flash('Please authorize to access this page', 'warning')
+	flash(gettext('Please authorize to access this page'), 'warning')
 	return redirect(url_for('login', next=request.url))
 
 if __name__ == '__main__':

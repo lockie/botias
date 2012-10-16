@@ -1,1 +1,3 @@
+# from ebuilds: dev-python/flask-babel dev-python/flask
+# from pip:
 pip install Flask-Login Flask-WTF flask-sqlalchemy xlrd bson Flask-Bootstrap
