@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version:  git\n"
 "Report-Msgid-Bugs-To: awkravchuk@gmail.com\n"
-"POT-Creation-Date: 2012-10-16 19:24+0400\n"
+"POT-Creation-Date: 2012-10-16 21:36+0400\n"
 "PO-Revision-Date: 2012-10-16 18:49+0400\n"
 "Last-Translator: Andrew Kravchuk <awkravchuk@gmail.com>\n"
 "Language-Team: ru <LL@li.org>\n"
@@ -18,37 +18,57 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "Generated-By: Babel 0.9.6\n"
 
-#: application.py:109
+#: application.py:108
 msgid "Error: no file submitted! <a href=\"/submit\">Submit</a> one."
 msgstr "Ошибка: нет файла. <a href=\"/submit\">Загрузите</a> файл."
 
-#: application.py:120
+#: application.py:119
 #, python-format
 msgid "Error: %(error)s. Try fixing your file."
 msgstr "Ошибка: %(error)s. Попробуйте другой файл."
 
-#: application.py:130
+#: application.py:129
 #, python-format
 msgid "Error: %(error)s. Contact administration."
 msgstr "Ошибка: %(error)s. Свяжитесь с администрацией."
 
-#: application.py:150
+#: application.py:149
 msgid "Files of this type are not allowed to upload"
 msgstr "Файлы предоставленного типа не разрешены для загрузки"
 
-#: application.py:157
+#: application.py:156
 msgid "Already authenticated"
 msgstr "Вы уже вошли"
 
-#: application.py:175
+#: application.py:174
 msgid "Authentication failed. Check login and password."
 msgstr "Не удалось войти. Проверьте логин и пароль."
 
-#: application.py:184
+#: application.py:175 templates/login.html:4 templates/login.html:14
+msgid "Login"
+msgstr "Вход"
+
+#: application.py:183
 msgid "You have logged out"
 msgstr "Вы вышли"
 
-#: application.py:189
+#: application.py:188
 msgid "Please authorize to access this page"
-msgstr "Пожалуйста, авторизуйтесь для доступа к данной странице"
+msgstr "Пожалуйста, авторизуйтесь для доступа к запрошенной странице"
+
+#: templates/layout.html:42
+msgid "Log in"
+msgstr "Вход"
+
+#: templates/layout.html:44
+msgid "Log out"
+msgstr "Выход"
+
+#: templates/login.html:8
+msgid "Username"
+msgstr "Логин"
+
+#: templates/login.html:11
+msgid "Password"
+msgstr "Пароль"
 

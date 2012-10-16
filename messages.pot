@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PROJECT VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2012-10-16 19:28+0400\n"
+"POT-Creation-Date: 2012-10-16 21:36+0400\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -17,37 +17,57 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "Generated-By: Babel 0.9.6\n"
 
-#: application.py:109
+#: application.py:108
 msgid "Error: no file submitted! <a href=\"/submit\">Submit</a> one."
 msgstr ""
 
-#: application.py:120
+#: application.py:119
 #, python-format
 msgid "Error: %(error)s. Try fixing your file."
 msgstr ""
 
-#: application.py:130
+#: application.py:129
 #, python-format
 msgid "Error: %(error)s. Contact administration."
 msgstr ""
 
-#: application.py:150
+#: application.py:149
 msgid "Files of this type are not allowed to upload"
 msgstr ""
 
-#: application.py:157
+#: application.py:156
 msgid "Already authenticated"
 msgstr ""
 
-#: application.py:175
+#: application.py:174
 msgid "Authentication failed. Check login and password."
 msgstr ""
 
-#: application.py:184
+#: application.py:175 templates/login.html:4 templates/login.html:14
+msgid "Login"
+msgstr ""
+
+#: application.py:183
 msgid "You have logged out"
 msgstr ""
 
-#: application.py:189
+#: application.py:188
 msgid "Please authorize to access this page"
+msgstr ""
+
+#: templates/layout.html:42
+msgid "Log in"
+msgstr ""
+
+#: templates/layout.html:44
+msgid "Log out"
+msgstr ""
+
+#: templates/login.html:8
+msgid "Username"
+msgstr ""
+
+#: templates/login.html:11
+msgid "Password"
 msgstr ""
 

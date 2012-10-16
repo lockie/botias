@@ -39,9 +39,9 @@
           <li><a href="/submit">Submit</a></li>
           <li>
           {% if not session.logged_in %}
-            <a href="{{ url_for('login') }}">Log in</a>
+            <a href="{{ url_for('login') }}">{{ _('Log in') }}</a>
           {% else %}
-            <a href="{{ url_for('logout') }}">Log out</a>
+            <a href="{{ url_for('logout') }}">{{ _('Log out') }}</a>
           {% endif %}
           </li>
         </ul>

@@ -172,7 +172,7 @@ def login():
 			return redirect(next_url or url_for('index'))
 		else:
 			flash(gettext('Authentication failed. Check login and password.'), 'error')
-	return render_template('login.html', title='Login',
+	return render_template('login.html', title=gettext('Login'),
 		form=form, next=next_url, username=username)
 
 @app.route('/logout')

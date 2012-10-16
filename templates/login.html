@@ -1,17 +1,17 @@
 {% extends "layout.html" %}
 {% block body %}
 <div class="container"><div class="login-form">
-  <h2>Login</h2>
+  <h2>{{ _('Login') }}</h2>
   <form action="{{ url_for('login', next=next) }}" method="post">
     <fieldset>
       <div class="clearfix">
-        <input name="username" type="text" placeholder="Username" value="{{username}}">
+        <input name="username" type="text" placeholder="{{ _('Username') }}" value="{{username}}">
       </div>
       <div class="clearfix">
-        <input name="password" type="password" placeholder="Password">
+        <input name="password" type="password" placeholder="{{ _('Password') }}">
       </div>
       <div class="form-actions">
-        <button type="submit" class="btn btn-primary">Login</button>
+        <button type="submit" class="btn btn-primary">{{ _('Login') }}</button>
       </div>
       {{ form.hidden_tag() }}
     </fieldset>
