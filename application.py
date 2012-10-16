@@ -105,8 +105,9 @@ def process(): # to be called from AJAX; TODO : long polling maybe?
 
 		resp = rpc.call(current_user.username, bson.dumps(data))
 		return jsonify(result=resp)
-	except Exception as e:
-		return jsonify(result='Error: %s. Contact administration.' % str(e))
+	except Exception, e:
+		import sys
+		return jsonify(result='Error: %s. Contact administration.' % str(sys.exc_info()[0].__name__))
 
 @app.route('/result')
 @login_required
