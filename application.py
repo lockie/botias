@@ -188,6 +188,27 @@ def unauthorized():
 	flash(gettext('Please authorize to access this page'), 'warning')
 	return redirect(url_for('login', next=request.url))
 
+
+# static pages
+@app.route('/tos')
+def tos():
+	return render_template('tos.html', title=gettext('Terms of service'))
+
+@app.route('/about')
+def about():
+	return render_template('about.html', title=gettext('About service'))
+
+@app.route('/docs')
+def docs():
+	# TODO : get document desciption & other info from DB,
+	# allow admins to upload/edit them.
+	return render_template('docs.html', title=gettext('Documentation'))
+
+@app.route('/faq')
+def faq():
+	return render_template('faq.html', title=gettext('Frequently asked questions'))
+
+
 if __name__ == '__main__':
 	app.run()
 

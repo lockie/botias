@@ -1,0 +1,14 @@
+{% extends "layout.html" %}
+{% block body %}
+
+<div class="container">
+	<h2>{{ _('Terms of service') }}</h2>
+
+	{% include 'terms-of-service.htm' %}
+
+	{{ lipsum(10, min=70) }}
+</div>
+
+{{ super() }}
+{% endblock %}
+

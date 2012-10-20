@@ -1,0 +1,14 @@
+{% extends "layout.html" %}
+{% block body %}
+
+<div class="container">
+	<h2>{{ _('Frequently asked questions') }}</h2>
+
+	{% include 'frequently-asked-questions.htm' %}
+
+	{{ lipsum(10, min=70) }}
+</div>
+
+{{ super() }}
+{% endblock %}
+

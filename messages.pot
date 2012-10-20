@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PROJECT VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2012-10-16 21:36+0400\n"
+"POT-Creation-Date: 2012-10-20 21:45+0400\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -53,6 +53,23 @@ msgstr ""
 
 #: application.py:188
 msgid "Please authorize to access this page"
+msgstr ""
+
+#: application.py:195 templates/about.html:13 templates/layout.html:56
+#: templates/tos.html:5
+msgid "Terms of service"
+msgstr ""
+
+#: application.py:199 templates/about.html:5 templates/layout.html:38
+msgid "About service"
+msgstr ""
+
+#: application.py:205 templates/about.html:11 templates/docs.html:5
+msgid "Documentation"
+msgstr ""
+
+#: application.py:209 templates/about.html:9 templates/faq.html:5
+msgid "Frequently asked questions"
 msgstr ""
 
 #: templates/layout.html:42

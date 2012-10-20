@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version:  git\n"
 "Report-Msgid-Bugs-To: awkravchuk@gmail.com\n"
-"POT-Creation-Date: 2012-10-16 21:36+0400\n"
+"POT-Creation-Date: 2012-10-20 21:45+0400\n"
 "PO-Revision-Date: 2012-10-16 18:49+0400\n"
 "Last-Translator: Andrew Kravchuk <awkravchuk@gmail.com>\n"
 "Language-Team: ru <LL@li.org>\n"
@@ -55,6 +55,23 @@ msgstr "Вы вышли"
 #: application.py:188
 msgid "Please authorize to access this page"
 msgstr "Пожалуйста, авторизуйтесь для доступа к запрошенной странице"
+
+#: application.py:195 templates/about.html:13 templates/layout.html:56
+#: templates/tos.html:5
+msgid "Terms of service"
+msgstr "Условия использования"
+
+#: application.py:199 templates/about.html:5 templates/layout.html:38
+msgid "About service"
+msgstr "О сервисе"
+
+#: application.py:205 templates/about.html:11 templates/docs.html:5
+msgid "Documentation"
+msgstr "Документы"
+
+#: application.py:209 templates/about.html:9 templates/faq.html:5
+msgid "Frequently asked questions"
+msgstr "Вопросы и ответы"
 
 #: templates/layout.html:42
 msgid "Log in"

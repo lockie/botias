@@ -35,7 +35,7 @@
       <a class="brand" href="/">Averagate!</a>
       <div class="nav-collapse">
         <ul class="nav">
-          <li class="active"><a href="/">Home</a></li>
+          <li class="active"><a href="/about">{{ _('About service') }}</a></li>
           <li><a href="/submit">Submit</a></li>
           <li>
           {% if not session.logged_in %}
@@ -51,6 +51,10 @@
 </div><!--./navbar-->
 
 <footer>
+  {% set curr_url = url_for(request.endpoint, **request.view_args) %}
+  {% if curr_url != '/tos' and curr_url != '/about' %}
+  <p><a href="/tos">{{ _('Terms of service') }}</a></p>
+  {% endif %}
   <p>&copy; Axiom Logic 2012</p>
 </footer>
 {% endblock %}
