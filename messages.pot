@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PROJECT VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2012-10-20 21:45+0400\n"
+"POT-Creation-Date: 2012-10-22 19:17+0400\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -17,67 +17,83 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "Generated-By: Babel 0.9.6\n"
 
-#: application.py:108
+#: application.py:107
 msgid "Error: no file submitted! <a href=\"/submit\">Submit</a> one."
 msgstr ""
 
-#: application.py:119
+#: application.py:118
 #, python-format
 msgid "Error: %(error)s. Try fixing your file."
 msgstr ""
 
-#: application.py:129
+#: application.py:128
 #, python-format
 msgid "Error: %(error)s. Contact administration."
 msgstr ""
 
-#: application.py:149
+#: application.py:148
 msgid "Files of this type are not allowed to upload"
 msgstr ""
 
-#: application.py:156
+#: application.py:155
 msgid "Already authenticated"
 msgstr ""
 
-#: application.py:174
+#: application.py:173
 msgid "Authentication failed. Check login and password."
 msgstr ""
 
-#: application.py:175 templates/login.html:4 templates/login.html:14
+#: application.py:174 templates/login.html:4 templates/login.html:14
 msgid "Login"
 msgstr ""
 
-#: application.py:183
+#: application.py:182
 msgid "You have logged out"
 msgstr ""
 
-#: application.py:188
+#: application.py:187
 msgid "Please authorize to access this page"
 msgstr ""
 
-#: application.py:195 templates/about.html:13 templates/layout.html:56
+#: application.py:194 templates/layout.html:54 templates/layout.html:87
 #: templates/tos.html:5
 msgid "Terms of service"
 msgstr ""
 
-#: application.py:199 templates/about.html:5 templates/layout.html:38
+#: application.py:198 templates/about.html:5 templates/layout.html:50
 msgid "About service"
 msgstr ""
 
-#: application.py:205 templates/about.html:11 templates/docs.html:5
+#: application.py:204 templates/docs.html:5 templates/layout.html:53
 msgid "Documentation"
 msgstr ""
 
-#: application.py:209 templates/about.html:9 templates/faq.html:5
+#: application.py:208 templates/faq.html:5 templates/layout.html:52
 msgid "Frequently asked questions"
 msgstr ""
 
-#: templates/layout.html:42
+#: templates/layout.html:65
+msgid "My office"
+msgstr ""
+
+#: templates/layout.html:66
+msgid "Preferences"
+msgstr ""
+
+#: templates/layout.html:68
+msgid "Log out"
+msgstr ""
+
+#: templates/layout.html:72
+msgid "Please authorize"
+msgstr ""
+
+#: templates/layout.html:74
 msgid "Log in"
 msgstr ""
 
-#: templates/layout.html:44
-msgid "Log out"
+#: templates/layout.html:75
+msgid "Register"
 msgstr ""
 
 #: templates/login.html:8

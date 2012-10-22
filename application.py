@@ -86,11 +86,10 @@ def load_user(user_id):
 
 @app.route('/')
 def index():
-	return render_template('main.html',
-		title='Super averaging application',
-		content="""<div class="hero-unit">This is unique service for <abbr style="cursor: help;" title="averagin ur data since 2012!">calculating average</abbr>!
-To expirience fury unleashed, you may<br /><br /><a href="/submit" class="btn btn-primary">Submit ur data now!</a></div>""")
-
+	if current_user.is_authenticated():
+		return redirect(url_for('office'))
+	else:
+		return redirect(url_for('about'))
 
 def allowed_file(filename):
 	return '.' in filename and \
