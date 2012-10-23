@@ -18,6 +18,9 @@
 		.caret {
 			border-top-color: white !important;
 		}
+		.help-block {
+			color: #aaaaaa;
+		}
 	</style>
 
     <script src="//ajax.googleapis.com/ajax/libs/jquery/1.7.2/jquery.js"></script>
@@ -83,7 +86,7 @@
 </div><!--./navbar-->
 
 <footer>
-  {% if curr_url != '/tos' and curr_url != '/about' %}
+  {% if curr_url != '/tos' %}
   <p><a href="/tos">{{ _('Terms of service') }}</a></p>
   {% endif %}
   <p>&copy; Axiom Logic 2012</p>

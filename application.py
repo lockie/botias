@@ -2,6 +2,8 @@
 
 import os
 import time
+import string
+from random import choice
 import hashlib
 import uuid
 from werkzeug import secure_filename
@@ -12,6 +14,7 @@ from flask.ext.bootstrap import Bootstrap
 from flask.ext.babel import Babel, gettext
 import bson
 from loginform import LoginForm
+from registerform import RegisterForm
 from rpcclient import RpcClient
 
 
@@ -56,12 +59,23 @@ def get_timezone():
 
 class User(db.Model):
 	id = db.Column(db.Integer, primary_key=True)
-	username = db.Column(db.String(80), unique=True)
-	password = db.Column(db.String(80))
+	name = db.Column(db.String(25))
+	surname = db.Column(db.String(35))
+	individual = db.Column(db.Boolean())
+	code = db.Column(db.String(10))
+	purpose = db.Column(db.SmallInteger())
+	beneficiary = db.Column(db.Integer())
+	email = db.Column(db.String(80), unique=True)
+	password = db.Column(db.String(20))
 
-	def __init__(self, id, username, password):
-		self.id = id
-		self.username = username
+	def __init__(self, name, surname, individual, code, purpose, beneficiary, email, password):
+		self.name = name
+		self.surname = surname
+		self.individual = (individual == u'y')
+		self.code = code
+		self.purpose = purpose
+		self.beneficiary = int(beneficiary)
+		self.email = email
 		self.password = password
 		self.locale = "ru"
 
@@ -120,7 +134,7 @@ def process(): # to be called from AJAX; TODO : long polling maybe?
 			if os.path.exists(file_path) and os.path.isfile(file_path):
 				os.remove(file_path)
 
-		resp = rpc.call(current_user.username, bson.dumps(data))
+		resp = rpc.call(current_user.email, bson.dumps(data))
 		return jsonify(result=resp)
 	except Exception, e:
 		import sys
@@ -149,6 +163,37 @@ def submit():
 	return render_template('submit.html', title='Submit data')
 
 
+@app.route('/register', methods=['GET', 'POST'])
+# TODO : only when anonymous
+def register():
+	form = RegisterForm()
+	if form.validate_on_submit():
+		name = request.form['name']
+		surname = request.form['surname']
+		individual = request.form['individual']
+		code = request.form['code']
+		# TODO : check code length
+		purpose = ['edu', 'aud', 'lst', 'ipo'].index(request.form['purpose'])
+		beneficiary = request.form['beneficiary']
+		email = request.form['email']
+		# TODO : check email uniqueness
+		password = ''.join([choice(string.letters + string.digits) for i in range(8)])
+		user = User(name,
+			surname,
+			individual,
+			code,
+			purpose,
+			beneficiary,
+			email,
+			hashlib.sha224(password + app.secret_key).hexdigest()
+		)
+		# TODO : send email
+		db.session.add(user)
+		db.session.commit()
+		return password
+#		return render_template('registered.html', title=gettext('Registration successeful'), name=name, email=email)
+	return render_template('register.html', title=gettext('Register'), form=form)
+
 @app.route('/login', methods=['GET', 'POST'])
 def login():
 	if current_user.is_authenticated():
@@ -157,12 +202,12 @@ def login():
 
 	# TODO : https
 	form = LoginForm()
-	username = ''
+	email = ''
 	next_url = request.args.get('next')
 	if form.validate_on_submit():
-		username = request.form['username']
+		email = request.form['email']
 		password = request.form['password']
-		user = User.query.filter_by(username=username,
+		user = User.query.filter_by(email=email,
 			# sha224(password + salt)
 			password=hashlib.sha224(password + app.secret_key).hexdigest()).first()
 		if user and login_user(user, remember=True):
@@ -172,7 +217,7 @@ def login():
 		else:
 			flash(gettext('Authentication failed. Check login and password.'), 'error')
 	return render_template('login.html', title=gettext('Login'),
-		form=form, next=next_url, username=username)
+		form=form, next=next_url, email=email)
 
 @app.route('/logout')
 @login_required

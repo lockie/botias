@@ -31,9 +31,9 @@ class RpcClient(object):
 				return 'Connection to server timed out. Try again later.'
 		return self.responses.pop(corr_id)
 
-	def call(self, username, data):
+	def call(self, user, data):
 		# generate unique correlation id for each request
-		corr_id = username + '-' + str(uuid.uuid4())
+		corr_id = user + '-' + str(uuid.uuid4())
 		self.channel.basic_publish(
 			exchange='',
 			routing_key='rpc_queue',
