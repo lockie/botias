@@ -232,6 +232,17 @@ def unauthorized():
 	flash(gettext('Please authorize to access this page'), 'warning')
 	return redirect(url_for('login', next=request.url))
 
+@app.route('/office')
+@login_required
+def office():
+	return render_template('office.html', title=gettext('My office'),
+		# TODO : non-fake, actual data
+		files=[{'name': '1.xls'}, {'name': '2.xls'}, {'name': '3.xls'}])
+
+@app.route('/prefs')
+@login_required
+def preferences():
+	return render_template('preferences.html', title=gettext('Preferences'))
 
 # static pages
 @app.route('/tos')
