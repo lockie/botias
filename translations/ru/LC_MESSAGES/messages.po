@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version:  git\n"
 "Report-Msgid-Bugs-To: awkravchuk@gmail.com\n"
-"POT-Creation-Date: 2012-10-22 19:17+0400\n"
+"POT-Creation-Date: 2012-10-24 16:49+0400\n"
 "PO-Revision-Date: 2012-10-16 18:49+0400\n"
 "Last-Translator: Andrew Kravchuk <awkravchuk@gmail.com>\n"
 "Language-Team: ru <LL@li.org>\n"
@@ -18,90 +18,174 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "Generated-By: Babel 0.9.6\n"
 
-#: application.py:107
+#: application.py:121
 msgid "Error: no file submitted! <a href=\"/submit\">Submit</a> one."
 msgstr "Ошибка: нет файла. <a href=\"/submit\">Загрузите</a> файл."
 
-#: application.py:118
+#: application.py:132
 #, python-format
 msgid "Error: %(error)s. Try fixing your file."
 msgstr "Ошибка: %(error)s. Попробуйте другой файл."
 
-#: application.py:128
+#: application.py:142
 #, python-format
 msgid "Error: %(error)s. Contact administration."
 msgstr "Ошибка: %(error)s. Свяжитесь с администрацией."
 
-#: application.py:148
+#: application.py:162
 msgid "Files of this type are not allowed to upload"
 msgstr "Файлы предоставленного типа не разрешены для загрузки"
 
-#: application.py:155
+#: application.py:195 templates/layout.html:78 templates/register.html:18
+msgid "Register"
+msgstr "Регистрация"
+
+#: application.py:200
 msgid "Already authenticated"
 msgstr "Вы уже вошли"
 
-#: application.py:173
+#: application.py:218
 msgid "Authentication failed. Check login and password."
 msgstr "Не удалось войти. Проверьте логин и пароль."
 
-#: application.py:174 templates/login.html:4 templates/login.html:14
+#: application.py:219 templates/login.html:4 templates/login.html:15
 msgid "Login"
 msgstr "Вход"
 
-#: application.py:182
+#: application.py:227
 msgid "You have logged out"
 msgstr "Вы вышли"
 
-#: application.py:187
+#: application.py:232
 msgid "Please authorize to access this page"
 msgstr "Пожалуйста, авторизуйтесь для доступа к запрошенной странице"
 
-#: application.py:194 templates/layout.html:54 templates/layout.html:87
+#: application.py:239 templates/layout.html:57 templates/layout.html:90
 #: templates/tos.html:5
 msgid "Terms of service"
 msgstr "Условия использования"
 
-#: application.py:198 templates/about.html:5 templates/layout.html:50
+#: application.py:243 templates/about.html:5 templates/layout.html:53
 msgid "About service"
 msgstr "О сервисе"
 
-#: application.py:204 templates/docs.html:5 templates/layout.html:53
+#: application.py:249 templates/docs.html:5 templates/layout.html:56
 msgid "Documentation"
 msgstr "Документы"
 
-#: application.py:208 templates/faq.html:5 templates/layout.html:52
+#: application.py:253 templates/faq.html:5 templates/layout.html:55
 msgid "Frequently asked questions"
 msgstr "Вопросы и ответы"
 
-#: templates/layout.html:65
+#: registerform.py:8
+msgid "Name"
+msgstr "Имя"
+
+#: registerform.py:9 registerform.py:13 registerform.py:19 registerform.py:29
+#: registerform.py:32
+msgid "This field is required."
+msgstr "Это поле обязательно для заполнения."
+
+#: registerform.py:10 registerform.py:14 registerform.py:20 registerform.py:33
+msgid "Wrong length."
+msgstr "Некорректная длина."
+
+#: registerform.py:12
+msgid "Surname"
+msgstr "Фамилия"
+
+#: registerform.py:16
+msgid "Individual"
+msgstr "Физическое лицо"
+
+#: registerform.py:17
+msgid "Are you individual or corporate user"
+msgstr ""
+"Поставьте флажок, если вы - физическое лицо. Если вы действуете от имени "
+"юридического лица, оставьте флажок неотмеченным."
+
+#: registerform.py:22
+msgid "Purpose of calculation"
+msgstr "Цель расчётов"
+
+#: registerform.py:23
+msgid "educational purposes"
+msgstr "учебные цели"
+
+#: registerform.py:24
+msgid "annual audit"
+msgstr "для ежегодного аудита"
+
+#: registerform.py:25
+msgid "introduction of the issuer in exchange listing"
+msgstr "для введения эмитента в листинг биржи"
+
+#: registerform.py:26
+msgid "IPO entry"
+msgstr "для выхода на IPO"
+
+#: registerform.py:28
+msgid "Approx. beneficiary count"
+msgstr "Примерное количество бенефициаров "
+
+#: registerform.py:31 templates/login.html:8
+msgid "E-mail"
+msgstr "Адрес e-mail"
+
+#: registerform.py:34
+msgid "Invalid email address."
+msgstr "Некорректный адрес e-mail."
+
+#: registerform.py:35
+msgid "We will send you your password to this email."
+msgstr "На этот адрес будет отправлен ваш пароль для входа."
+
+#: templates/layout.html:68
 msgid "My office"
 msgstr "Мой кабинет"
 
-#: templates/layout.html:66
+#: templates/layout.html:69
 msgid "Preferences"
 msgstr "Настройки"
 
-#: templates/layout.html:68
+#: templates/layout.html:71
 msgid "Log out"
 msgstr "Выход"
 
-#: templates/layout.html:72
+#: templates/layout.html:75
 msgid "Please authorize"
 msgstr "Пожалуйста, представьтесь системе"
 
-#: templates/layout.html:74
+#: templates/layout.html:77
 msgid "Log in"
 msgstr "Вход"
 
-#: templates/layout.html:75
-msgid "Register"
-msgstr "Регистрация"
-
-#: templates/login.html:8
-msgid "Username"
-msgstr "Логин"
-
-#: templates/login.html:11
+#: templates/login.html:12
 msgid "Password"
 msgstr "Пароль"
+
+#: templates/register.html:8
+msgid "Individual code"
+msgstr "ИНН"
+
+#: templates/register.html:10
+msgid "Corporate code"
+msgstr "ОКПО (ЕГРПОУ)"
+
+#: templates/register.html:29
+msgid "Register!"
+msgstr "Регистрация"
+
+#: templates/registered.html:5
+msgid "Registration successeful"
+msgstr "Регистрация произведена успешно"
+
+#: templates/registered.html:8
+#, python-format
+msgid ""
+"Thank you, %(name)s! We've sent you an email to %(email)s with your "
+"password. If you dont get it, check 'spam' folder."
+msgstr ""
+"Спасибо, %(name)s! Мы выслали письмо по адресу %(email)s с вашим паролем."
+" Если вы его не получили, проверьте папку 'спам'."
 
