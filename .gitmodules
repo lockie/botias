@@ -1,3 +1,6 @@
 [submodule "static/noty"]
 	path = static/noty
 	url = git://github.com/needim/noty.git
+[submodule "static/jquery-handsontable"]
+	path = static/jquery-handsontable
+	url = git://github.com/warpech/jquery-handsontable.git

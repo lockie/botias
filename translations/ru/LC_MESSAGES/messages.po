@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version:  git\n"
 "Report-Msgid-Bugs-To: awkravchuk@gmail.com\n"
-"POT-Creation-Date: 2012-10-24 21:40+0400\n"
+"POT-Creation-Date: 2012-10-27 16:06+0400\n"
 "PO-Revision-Date: 2012-10-16 18:49+0400\n"
 "Last-Translator: Andrew Kravchuk <awkravchuk@gmail.com>\n"
 "Language-Team: ru <LL@li.org>\n"
@@ -18,89 +18,98 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "Generated-By: Babel 0.9.6\n"
 
-#: application.py:121
+#: application.py:122
 msgid "Error: no file submitted! <a href=\"/submit\">Submit</a> one."
 msgstr "Ошибка: нет файла. <a href=\"/submit\">Загрузите</a> файл."
 
-#: application.py:132
+#: application.py:133
 #, python-format
 msgid "Error: %(error)s. Try fixing your file."
 msgstr "Ошибка: %(error)s. Попробуйте другой файл."
 
-#: application.py:142
+#: application.py:143
 #, python-format
 msgid "Error: %(error)s. Contact administration."
 msgstr "Ошибка: %(error)s. Свяжитесь с администрацией."
 
-#: application.py:162
+#: application.py:163
 msgid "Files of this type are not allowed to upload"
 msgstr "Файлы предоставленного типа не разрешены для загрузки"
 
-#: application.py:195 templates/layout.html:78 templates/register.html:18
+#: application.py:196 templates/layout.html:78 templates/register.html:18
 msgid "Register"
 msgstr "Регистрация"
 
-#: application.py:200
+#: application.py:201
 msgid "Already authenticated"
 msgstr "Вы уже вошли"
 
-#: application.py:218
+#: application.py:219
 msgid "Authentication failed. Check login and password."
 msgstr "Не удалось войти. Проверьте логин и пароль."
 
-#: application.py:219 templates/login.html:4 templates/login.html:14
+#: application.py:220 templates/login.html:4 templates/login.html:14
 msgid "Login"
 msgstr "Вход"
 
-#: application.py:227
+#: application.py:228
 msgid "You have logged out"
 msgstr "Вы вышли"
 
-#: application.py:232
+#: application.py:233
 msgid "Please authorize to access this page"
 msgstr "Пожалуйста, авторизуйтесь для доступа к запрошенной странице"
 
-#: application.py:238 templates/layout.html:68 templates/office.html:5
+#: application.py:239 templates/layout.html:68 templates/office.html:5
 msgid "My office"
 msgstr "Мой кабинет"
 
-#: application.py:245 templates/layout.html:69 templates/preferences.html:5
+#: application.py:259 templates/layout.html:69 templates/preferences.html:16
 msgid "Preferences"
 msgstr "Настройки"
 
-#: application.py:250 templates/layout.html:57 templates/layout.html:90
+#: application.py:265 templates/layout.html:57 templates/layout.html:90
 #: templates/tos.html:5
 msgid "Terms of service"
 msgstr "Условия использования"
 
-#: application.py:254 templates/about.html:5 templates/layout.html:53
+#: application.py:269 templates/about.html:5 templates/layout.html:53
 msgid "About service"
 msgstr "О сервисе"
 
-#: application.py:260 templates/docs.html:5 templates/layout.html:56
+#: application.py:275 templates/docs.html:5 templates/layout.html:56
 msgid "Documentation"
 msgstr "Документы"
 
-#: application.py:264 templates/faq.html:5 templates/layout.html:55
+#: application.py:279 templates/faq.html:5 templates/layout.html:55
 msgid "Frequently asked questions"
 msgstr "Вопросы и ответы"
 
-#: registerform.py:8
+#: preferencesform.py:8 registerform.py:8
 msgid "Name"
 msgstr "Имя"
 
-#: registerform.py:9 registerform.py:13 registerform.py:19 registerform.py:29
-#: registerform.py:32
-msgid "This field is required."
-msgstr "Это поле обязательно для заполнения."
-
-#: registerform.py:10 registerform.py:14 registerform.py:20 registerform.py:33
+#: preferencesform.py:10 preferencesform.py:14 registerform.py:10
+#: registerform.py:14 registerform.py:20 registerform.py:33
 msgid "Wrong length."
 msgstr "Некорректная длина."
 
-#: registerform.py:12
+#: preferencesform.py:12 registerform.py:12
 msgid "Surname"
 msgstr "Фамилия"
+
+#: preferencesform.py:13 registerform.py:9 registerform.py:13
+#: registerform.py:19 registerform.py:29 registerform.py:32
+msgid "This field is required."
+msgstr "Это поле обязательно для заполнения."
+
+#: preferencesform.py:24
+msgid "Annual income growth rate"
+msgstr "Ежегодный рост заработка"
+
+#: preferencesform.py:26
+msgid "Annual pension indexation rate"
+msgstr "Ежегодная индексация пенсий"
 
 #: registerform.py:16
 msgid "Individual"
@@ -188,6 +197,27 @@ msgstr "Скачать"
 #: templates/office.html:22
 msgid "Calculate"
 msgstr "Расчёт"
+
+#: templates/preferences.html:19
+msgid "Profile parameters"
+msgstr "Параметры профиля"
+
+#: templates/preferences.html:20
+msgid "Calculation parameters"
+msgstr "Параметры расчёта"
+
+#: templates/preferences.html:21
+msgid "Actuarial assumptions"
+msgstr "Актуарные предположения"
+
+#: templates/preferences.html:31 templates/preferences.html:43
+#: templates/preferences.html:55
+msgid "Save changes"
+msgstr "Сохранить изменения"
+
+#: templates/preferences.html:50
+msgid "Discount rates"
+msgstr "Ставки дисконтирования"
 
 #: templates/register.html:8
 msgid "Individual code"

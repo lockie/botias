@@ -1,10 +1,81 @@
 {% extends "layout.html" %}
+{% from "bootstrap_wtf.html" import horizontal_field, form_errors %}
+
+{% block head %}
+	{{ super() }}
+	<script type="text/javascript" src="/static/jquery-handsontable/jquery.handsontable.js"></script>
+	<script type="text/javascript" src="/static/jquery-handsontable/lib/jQuery-contextMenu/jquery.contextMenu.js"></script>
+	<script type="text/javascript" src="/static/jquery-handsontable/lib/jQuery-contextMenu/jquery.ui.position.js"></script>
+	<link rel="stylesheet" media="screen" href="/static/jquery-handsontable/lib/jQuery-contextMenu/jquery.contextMenu.css">
+	<link rel="stylesheet" media="screen" href="/static/jquery-handsontable/jquery.handsontable.css">
+{% endblock %}
+
 {% block body %}
 
 <div class="container">
 	<h2>{{ _('Preferences') }}</h2>
 
+	<ul class="nav nav-tabs" id="tabs">
+		<li><a href="#profile" data-toggle="tab">{{ _('Profile parameters') }}</a></li>
+		<li><a href="#calc" data-toggle="tab">{{ _('Calculation parameters') }}</a></li>
+		<li><a href="#actuarial" data-toggle="tab">{{ _('Actuarial assumptions') }}</a></li>
+	</ul>
+
+	<div class="tab-content">
+		<div id="profile" class="tab-pane active">
+			<form class="form-horizontal" action="{{ url_for('preferences', act='profile') }}" method="post">
+				<fieldset>
+					{{ horizontal_field(profile_form.name) }}
+					{{ horizontal_field(profile_form.surname) }}
+					<div class="form-actions">
+						<button type="submit" class="btn btn-primary">{{ _('Save changes') }}</button>
+					</div>
+					{{ profile_form.hidden_tag() }}
+				</fieldset>
+			</form>
+		</div>
+		<div id="calc" class="tab-pane">
+			<form class="form-horizontal" action="{{ url_for('preferences', act='calc') }}" method="post">
+				<fieldset>
+					{{ horizontal_field(calc_form.income) }}
+					{{ horizontal_field(calc_form.pension) }}
+					<div class="form-actions">
+						<button type="submit" class="btn btn-primary">{{ _('Save changes') }}</button>
+					</div>
+					{{ calc_form.hidden_tag() }}
+				</fieldset>
+			</form>
+		</div>
+		<div id="actuarial" class="tab-pane">
+			<h3>{{ _('Discount rates') }}</h3>
+			<form class="form-horizontal" action="{{ url_for('preferences', act='actuarial') }}" method="post">
+				<fieldset>
+					<div id="discount_rates"></div>
+					<div class="form-actions">
+						<button type="submit" class="btn btn-primary">{{ _('Save changes') }}</button>
+					</div>
+					{{ actuarial_form.hidden_tag() }}
+				</fieldset>
+			</form>
+
+		</div>
+	</div>
 </div>
+
+<script type="text/javascript">
+$(function () {
+	$('#tabs a:first').tab('show');
+});
+$(function () {
+	var data = {{ actuarial_form.discount_rates|safe }};
+	$("#discount_rates").handsontable({
+		data: data,
+		startRows: {{ actuarial_form.discount_rates|length }},
+		startCols: {{ actuarial_form.discount_rates[0]|length }},
+		contextMenu: true
+	});
+});
+</script>
 
 {{ super() }}
 {% endblock %}

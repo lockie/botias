@@ -15,6 +15,7 @@ from flask.ext.babel import Babel, gettext
 import bson
 from loginform import LoginForm
 from registerform import RegisterForm
+from preferencesform import ProfileForm, CalcForm, ActuarialForm
 from rpcclient import RpcClient
 
 
@@ -239,10 +240,24 @@ def office():
 		# TODO : non-fake, actual data
 		files=[{'name': '1.xls'}, {'name': '2.xls'}, {'name': '3.xls'}])
 
-@app.route('/prefs')
+@app.route('/prefs', methods=['GET', 'POST'])
 @login_required
 def preferences():
-	return render_template('preferences.html', title=gettext('Preferences'))
+	action = request.args.get('act')
+	if action == 'profile':
+		return 'profile parameters, like, ya know, saved'
+	elif action == 'calc':
+		return 'calc parameters, like, ya know, saved'
+	elif action == 'actuarial':
+		return 'actuarial parameters, like, ya know, saved'
+
+	profile_form = ProfileForm()
+	calc_form = CalcForm()
+	actuarial_form = ActuarialForm()
+	# TODO : non-fake, actual data
+	actuarial_form.discount_rates = [ [2010, "15,00%"], [2011, "14,00%"], [2012, "13,00%"] ]
+	return render_template('preferences.html', title=gettext('Preferences'),
+		profile_form=profile_form, calc_form=calc_form, actuarial_form=actuarial_form)
 
 # static pages
 @app.route('/tos')
