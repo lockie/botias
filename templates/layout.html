@@ -21,6 +21,12 @@
 		.help-block {
 			color: #aaaaaa;
 		}
+		.navbar .brand {
+			max-height: 40px;
+			overflow: visible;
+			padding-top: 0;
+			padding-bottom: 0;
+		}
 	</style>
 
     <script src="//ajax.googleapis.com/ajax/libs/jquery/1.7.2/jquery.js"></script>
@@ -47,7 +53,7 @@
 <div class="navbar navbar-fixed-top">
   <div class="navbar-inner">
     <div class="container">
-      <a class="brand" href="/"><img src="/static/logo.png" /></a>
+      <a class="brand" href="/"><img src="/static/logo.png"></img></a>
       <div class="nav-collapse">
         <ul class="nav">
           <li class="dropdown"><a href="/about">{{ _('About service') }}<b class="caret"></b></a>
