@@ -3,7 +3,7 @@
 import os
 import time
 import string
-from random import choice
+from random import seed, choice
 import hashlib
 import uuid
 from werkzeug import secure_filename
@@ -178,6 +178,7 @@ def register():
 		beneficiary = request.form['beneficiary']
 		email = request.form['email']
 		# TODO : check email uniqueness
+		seed(code)
 		password = ''.join([choice(string.letters + string.digits) for i in range(8)])
 		user = User(name,
 			surname,
