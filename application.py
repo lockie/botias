@@ -118,7 +118,7 @@ def process(): # to be called from AJAX; TODO : long polling maybe?
 		if not file_path:
 	#		flash('No file submitted')
 	#		return redirect(url_for('submit'))
-			return jsonify(result=
+			return jsonify(error=
 				gettext('Error: no file submitted! <a href="/submit">Submit</a> one.'))
 
 		data = {}
@@ -130,17 +130,20 @@ def process(): # to be called from AJAX; TODO : long polling maybe?
 					row = sheet.row_values(rown)
 					data[row[0]] = row[1]
 		except Exception as e:
-			return jsonify(result=gettext('Error: %(error)s. Try fixing your file.', error=str(e)))# % { 'error': str(e)})
-		finally:
-			if os.path.exists(file_path) and os.path.isfile(file_path):
-				os.remove(file_path)
+			return jsonify(error=gettext('Error: %(error)s. Try fixing your file.', error=str(e)))# % { 'error': str(e)})
+#		finally:
+#			if os.path.exists(file_path) and os.path.isfile(file_path):
+#				os.remove(file_path)
 
 		resp = rpc.call(current_user.email, bson.dumps(data))
-		return jsonify(result=resp)
+		r = bson.loads(resp)
+		result = dict(zip([str(x) for x in r.keys()], r.values()))
+		result['tX'] = [["-", "-", "-", "-"]] * 3
+		return jsonify(result=result)
 	except Exception, e:
 		import sys
 		e = str(sys.exc_info()[0].__name__)
-		return jsonify(result=gettext('Error: %(error)s. Contact administration.', error=e))# % { 'error': e})
+		return jsonify(error=gettext('Error: %(error)s. Contact administration.', error=e))# % { 'error': e})
 
 @app.route('/result')
 @login_required
