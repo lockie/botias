@@ -156,6 +156,14 @@ def submit():
 	if request.method == 'POST' and 'data' in request.files:
 		filename = request.files['data'].filename
 		if(allowed_file(filename)):
+			# remove previous file
+			try:
+				f = session['current_file'] 
+				if os.path.exists(f) and os.path.isfile(f):
+					os.remove(f)
+			except Exception:
+				pass
+
 			fn = str(current_user.get_id()) + '_' + str(time.time()) + '_' + str(uuid.uuid4()) + '_' + secure_filename(filename)
 			path = os.path.join(app.config['UPLOAD_FOLDER'], fn)
 			session['current_file'] = path
