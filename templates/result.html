@@ -42,6 +42,7 @@
 			$.ajax({
 				type: "GET",
 				url: "/_process",
+				data: "id={{ id }}",
 				dataType: 'JSON',
 				success: function(data) {
 					if ('error' in data)

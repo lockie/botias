@@ -13,6 +13,7 @@ from flask.ext.login import LoginManager, login_user, logout_user, login_require
 from flask.ext.bootstrap import Bootstrap
 from flask.ext.babel import Babel, gettext
 import bson
+import json
 from loginform import LoginForm
 from registerform import RegisterForm
 from preferencesform import ProfileForm, CalcForm, ActuarialForm
@@ -114,28 +115,23 @@ def allowed_file(filename):
 @login_required
 def process(): # to be called from AJAX; TODO : long polling maybe?
 	try:
-		file_path = session.pop('current_file', '')
-		if not file_path:
-	#		flash('No file submitted')
-	#		return redirect(url_for('submit'))
+		if 'id' not in request.args:
+			return jsonify(error=gettext('Error: no beneficiary id given'))
+		ident = request.args['id']
+		if not 'current_file' in session:
 			return jsonify(error=
 				gettext('Error: no file submitted! <a href="/office">Submit</a> one.'))
+		file_path = session['current_file']
 
 		data = {}
 		try:
-			import xlrd
-			workbook = xlrd.open_workbook(file_path)
-			for sheet in workbook.sheets():
-				for rown in range(sheet.nrows):
-					row = sheet.row_values(rown)
-					data[row[0]] = row[1]
+			from parse import parse
+			data = parse(file_path, int(ident))
 		except Exception as e:
 			return jsonify(error=gettext('Error: %(error)s. Try fixing your file.', error=str(e)))
-#		finally:
-#			if os.path.exists(file_path) and os.path.isfile(file_path):
-#				os.remove(file_path)
 
-		resp = rpc.call(current_user.email, bson.dumps(data))
+		# TODO : pass json (rewrite to use new pika which can into binary body)
+		resp = rpc.call(current_user.email, json.dumps(data))
 		r = bson.loads(resp)
 		result = dict(zip([str(x) for x in r.keys()], r.values()))
 		result['tX'] = [["-", "-", "-", "-"]] * 3
@@ -148,7 +144,10 @@ def process(): # to be called from AJAX; TODO : long polling maybe?
 @app.route('/result')
 @login_required
 def result():
-	return render_template('result.html')
+	if 'id' not in request.args:
+		flash(gettext('Error: no beneficiary id given'), 'error')
+		return redirect(request.referrer or url_for('office'))
+	return render_template('result.html', id=request.args['id'])
 
 @app.route('/submit', methods=['GET', 'POST'])
 @login_required
