@@ -4,3 +4,6 @@
 [submodule "static/jquery-handsontable"]
 	path = static/jquery-handsontable
 	url = git://github.com/warpech/jquery-handsontable.git
+[submodule "static/bootbox"]
+	path = static/bootbox
+	url = git://github.com/makeusabrew/bootbox.git

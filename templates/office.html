@@ -2,8 +2,7 @@
 
 {% block head %}
 	{{ super() }}
-
-
+	<script type="text/javascript" src="/static/bootbox/bootbox.min.js"></script>
 	<style type="text/css">
 		.close {
 			font-size: 20px;
@@ -27,6 +26,9 @@
 		}
 	</style>
 	<script type="text/javascript">
+		function isNumber(n) {
+			return !isNaN(parseFloat(n)) && isFinite(n);
+		};
 		$(document).ready(function(){
 			$("#link-submit").click(function() {
 				$("#upload-link").hide();
@@ -36,6 +38,23 @@
 				$("#upload-link").show();
 				$("#upload-form").hide();
 			});
+			$("#calculate-link").click(function(e) {
+				e.preventDefault();
+				bootbox.prompt("{{ _('Enter beneficiary id') }}", "Cancel", "OK",
+					function(r) {
+						if(r)
+						{
+							if(!isNumber(r))
+							{
+								bootbox.alert("{{ _('Incorrect beneficiary id') }}");
+							} else
+							{
+								// TODO : redirect to calculation
+							}
+						}
+					}, "1");
+			});
+
 		});
 	</script>
 {% endblock %}
@@ -72,7 +91,10 @@
 				<tr>
 					<td><img src="/static/xls.png" /></td>
 					<td style="vertical-align: middle;"><a href="#">{{ file.name }}</a></td>
-					<td><a href="#"><i class="icon-download-alt"></i>{{ _('Download') }}</a> <a href="#"><i class="icon-th-list"></i>{{ _('Calculate') }}</a></td>
+					<td>
+						<a id="download-link" class="link"><i class="icon-download-alt"></i>{{ _('Download') }}</a>
+						<a id="calculate-link" class="link"><i class="icon-th-list"></i>{{ _('Calculate') }}</a>
+					</td>
 				</tr>
 			{% endfor %}
 		</tbody>
