@@ -119,7 +119,7 @@ def process(): # to be called from AJAX; TODO : long polling maybe?
 	#		flash('No file submitted')
 	#		return redirect(url_for('submit'))
 			return jsonify(error=
-				gettext('Error: no file submitted! <a href="/submit">Submit</a> one.'))
+				gettext('Error: no file submitted! <a href="/office">Submit</a> one.'))
 
 		data = {}
 		try:
@@ -130,7 +130,7 @@ def process(): # to be called from AJAX; TODO : long polling maybe?
 					row = sheet.row_values(rown)
 					data[row[0]] = row[1]
 		except Exception as e:
-			return jsonify(error=gettext('Error: %(error)s. Try fixing your file.', error=str(e)))# % { 'error': str(e)})
+			return jsonify(error=gettext('Error: %(error)s. Try fixing your file.', error=str(e)))
 #		finally:
 #			if os.path.exists(file_path) and os.path.isfile(file_path):
 #				os.remove(file_path)
@@ -161,10 +161,9 @@ def submit():
 			session['current_file'] = path
 			request.files['data'].save(path)
 			flash('Submit OK', 'success')
-			return redirect(url_for('result'))
 		else:
 			flash(gettext('Files of this type are not allowed to upload'), 'error')
-	return render_template('submit.html', title='Submit data')
+	return redirect(url_for('office'))
 
 
 @app.route('/register', methods=['GET', 'POST'])

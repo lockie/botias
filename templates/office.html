@@ -1,10 +1,63 @@
 {% extends "layout.html" %}
+
+{% block head %}
+	{{ super() }}
+
+
+	<style type="text/css">
+		.close {
+			font-size: 20px;
+			font-weight: bold;
+			line-height: 18px;
+			color: #000000;
+			text-shadow: 0 1px 0 #ffffff;
+			opacity: 0.2;
+			filter: alpha(opacity=20);
+			text-decoration: none;
+		}
+		.close:hover {
+			color: #000000;
+			text-decoration: none;
+			opacity: 0.4;
+			filter: alpha(opacity=40);
+			cursor: pointer;
+		}
+		.link:hover {
+			cursor: pointer;
+		}
+	</style>
+	<script type="text/javascript">
+		$(document).ready(function(){
+			$("#link-submit").click(function() {
+				$("#upload-link").hide();
+				$("#upload-form").slideDown();
+			});
+			$("#link-close").click(function() {
+				$("#upload-link").show();
+				$("#upload-form").hide();
+			});
+		});
+	</script>
+{% endblock %}
+
 {% block body %}
 
 <div class="container">
 	<h2>{{ _('My office') }}</h2>
 
-	<p><a href="/submit"><i class="icon-upload"></i>{{ _('Upload new file') }}</a></p>
+	<div id="upload-link"><a id="link-submit" class="link"><i class="icon-upload"></i>{{ _('Upload new file') }}</a></div>
+	<div id="upload-form" style="display: none;">
+		<a class="close" id="link-close"><span title="{{ _("Close") }}">&times;</span></a>
+		<form class="form-horizontal" action="{{ url_for('submit') }}" method="post" enctype="multipart/form-data">
+				<fieldset>
+				<input type="file" name="data">
+				<div class="form-actions">
+					<button name="action_submit" type="submit" class="btn btn-primary">{{ _("Submit") }}</button>
+				</div>
+			</fieldset>
+		</form>
+	</div>
+
 
 	<table class="table table-striped" style="table-layout: fixed; vertical-align: middle;">
 		<thead>
