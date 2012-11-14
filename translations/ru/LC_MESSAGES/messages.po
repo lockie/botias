@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version:  git\n"
 "Report-Msgid-Bugs-To: awkravchuk@gmail.com\n"
-"POT-Creation-Date: 2012-10-27 16:06+0400\n"
+"POT-Creation-Date: 2012-11-14 23:12+0400\n"
 "PO-Revision-Date: 2012-10-16 18:49+0400\n"
 "Last-Translator: Andrew Kravchuk <awkravchuk@gmail.com>\n"
 "Language-Team: ru <LL@li.org>\n"
@@ -18,11 +18,16 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "Generated-By: Babel 0.9.6\n"
 
-#: application.py:122
-msgid "Error: no file submitted! <a href=\"/submit\">Submit</a> one."
+#: application.py:120 application.py:149
+msgid "Error: no beneficiary id given"
+msgstr "Ошибка: не указан № бенефициара"
+
+#: application.py:124
+#, fuzzy
+msgid "Error: no file submitted! <a href=\"/office\">Submit</a> one."
 msgstr "Ошибка: нет файла. <a href=\"/submit\">Загрузите</a> файл."
 
-#: application.py:133
+#: application.py:132
 #, python-format
 msgid "Error: %(error)s. Try fixing your file."
 msgstr "Ошибка: %(error)s. Попробуйте другой файл."
@@ -32,56 +37,56 @@ msgstr "Ошибка: %(error)s. Попробуйте другой файл."
 msgid "Error: %(error)s. Contact administration."
 msgstr "Ошибка: %(error)s. Свяжитесь с администрацией."
 
-#: application.py:163
+#: application.py:173
 msgid "Files of this type are not allowed to upload"
 msgstr "Файлы предоставленного типа не разрешены для загрузки"
 
-#: application.py:196 templates/layout.html:78 templates/register.html:18
+#: application.py:207 templates/layout.html:83 templates/register.html:18
 msgid "Register"
 msgstr "Регистрация"
 
-#: application.py:201
+#: application.py:212
 msgid "Already authenticated"
 msgstr "Вы уже вошли"
 
-#: application.py:219
+#: application.py:230
 msgid "Authentication failed. Check login and password."
 msgstr "Не удалось войти. Проверьте логин и пароль."
 
-#: application.py:220 templates/login.html:4 templates/login.html:14
+#: application.py:231 templates/login.html:4 templates/login.html:14
 msgid "Login"
 msgstr "Вход"
 
-#: application.py:228
+#: application.py:239
 msgid "You have logged out"
 msgstr "Вы вышли"
 
-#: application.py:233
+#: application.py:244
 msgid "Please authorize to access this page"
 msgstr "Пожалуйста, авторизуйтесь для доступа к запрошенной странице"
 
-#: application.py:239 templates/layout.html:68 templates/office.html:5
+#: application.py:253 templates/layout.html:73 templates/office.html:65
 msgid "My office"
 msgstr "Мой кабинет"
 
-#: application.py:259 templates/layout.html:69 templates/preferences.html:16
+#: application.py:271 templates/layout.html:74 templates/preferences.html:16
 msgid "Preferences"
 msgstr "Настройки"
 
-#: application.py:265 templates/layout.html:57 templates/layout.html:90
+#: application.py:277 templates/layout.html:63 templates/layout.html:95
 #: templates/tos.html:5
 msgid "Terms of service"
 msgstr "Условия использования"
 
-#: application.py:269 templates/about.html:5 templates/layout.html:53
+#: application.py:281 templates/about.html:5 templates/layout.html:59
 msgid "About service"
 msgstr "О сервисе"
 
-#: application.py:275 templates/docs.html:5 templates/layout.html:56
+#: application.py:287 templates/docs.html:5 templates/layout.html:62
 msgid "Documentation"
 msgstr "Документы"
 
-#: application.py:279 templates/faq.html:5 templates/layout.html:55
+#: application.py:291 templates/faq.html:5 templates/layout.html:61
 msgid "Frequently asked questions"
 msgstr "Вопросы и ответы"
 
@@ -157,20 +162,20 @@ msgstr "Некорректный адрес e-mail."
 msgid "We will send you your password to this email."
 msgstr "На этот адрес будет отправлен ваш пароль для входа."
 
-#: templates/layout.html:66
+#: templates/layout.html:71
 #, python-format
 msgid "Welcome, %(name)s"
 msgstr "Добро пожаловать, %(name)s"
 
-#: templates/layout.html:71
+#: templates/layout.html:76
 msgid "Log out"
 msgstr "Выход"
 
-#: templates/layout.html:75
+#: templates/layout.html:80
 msgid "Please authorize"
 msgstr "Пожалуйста, представьтесь системе"
 
-#: templates/layout.html:77
+#: templates/layout.html:82
 msgid "Log in"
 msgstr "Вход"
 
@@ -178,23 +183,39 @@ msgstr "Вход"
 msgid "Password"
 msgstr "Пароль"
 
-#: templates/office.html:7
+#: templates/office.html:43
+msgid "Enter beneficiary id"
+msgstr "Введите № бенефициара"
+
+#: templates/office.html:49
+msgid "Incorrect beneficiary id"
+msgstr "Некорректный № бенефициара"
+
+#: templates/office.html:67
 msgid "Upload new file"
 msgstr "Загрузить новый файл"
 
-#: templates/office.html:13
+#: templates/office.html:69
+msgid "Close"
+msgstr "Закрыть"
+
+#: templates/office.html:74
+msgid "Submit"
+msgstr "Отправить"
+
+#: templates/office.html:85
 msgid "File name"
 msgstr "Имя файла"
 
-#: templates/office.html:14
+#: templates/office.html:86
 msgid "Actions"
 msgstr "Действия"
 
-#: templates/office.html:22
+#: templates/office.html:95
 msgid "Download"
 msgstr "Скачать"
 
-#: templates/office.html:22
+#: templates/office.html:96
 msgid "Calculate"
 msgstr "Расчёт"
 
@@ -243,4 +264,12 @@ msgid ""
 msgstr ""
 "Спасибо, %(name)s! Мы выслали письмо по адресу %(email)s с вашим паролем."
 " Если вы его не получили, проверьте папку 'спам'."
+
+#: templates/result.html:52
+msgid "Try again"
+msgstr "Повторить попытку"
+
+#: templates/result.html:86
+msgid "Processing data..."
+msgstr "Обработка данных..."
 
