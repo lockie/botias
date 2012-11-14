@@ -1,6 +1,7 @@
 #!/usr/bin/env python
 
 import os
+import os.path
 import time
 import string
 from random import seed, choice
@@ -246,9 +247,10 @@ def unauthorized():
 @app.route('/office')
 @login_required
 def office():
-	return render_template('office.html', title=gettext('My office'),
-		# TODO : non-fake, actual data
-		files=[{'name': '1.xls'}, {'name': '2.xls'}, {'name': '3.xls'}])
+	files = []
+	if 'current_file' in session:
+		files = [{'name': os.path.basename(session['current_file']).split('_')[-1]}]
+	return render_template('office.html', title=gettext('My office'), files=files)
 
 @app.route('/prefs', methods=['GET', 'POST'])
 @login_required
