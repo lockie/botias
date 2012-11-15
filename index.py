@@ -1,4 +1,4 @@
-#!/usr/bin/python
+#!/usr/bin/env python
 
 from application import app
 
@@ -7,7 +7,10 @@ from application import app
 #	return ['Hello, world!']
 
 if __name__ == '__main__':
-	from flup.server.fcgi import WSGIServer
-	from werkzeug.contrib.fixers import LighttpdCGIRootFix
-	WSGIServer(LighttpdCGIRootFix(app)).run()
+	from tornado.wsgi import WSGIContainer
+	from tornado.httpserver import HTTPServer
+	from tornado.ioloop import IOLoop
+	http_server = HTTPServer(WSGIContainer(app))
+	http_server.listen(80)
+	IOLoop.instance().start()
 
