@@ -170,7 +170,7 @@ def submit():
 			path = os.path.join(app.config['UPLOAD_FOLDER'], fn)
 			session['current_file'] = path
 			request.files['data'].save(path)
-			flash('Submit OK', 'success')
+			flash(gettext('File uploaded successfully'), 'success')
 		else:
 			flash(gettext('Files of this type are not allowed to upload'), 'error')
 	return redirect(url_for('office'))

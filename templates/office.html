@@ -64,20 +64,6 @@
 <div class="container">
 	<h2>{{ _('My office') }}</h2>
 
-	<div id="upload-link"><a id="link-submit" class="link"><i class="icon-upload"></i>{{ _('Upload new file') }}</a></div>
-	<div id="upload-form" style="display: none;">
-		<a class="close" id="link-close"><span title="{{ _("Close") }}">&times;</span></a>
-		<form class="form-horizontal" action="{{ url_for('submit') }}" method="post" enctype="multipart/form-data">
-				<fieldset>
-				<input type="file" name="data">
-				<div class="form-actions">
-					<button name="action_submit" type="submit" class="btn btn-primary">{{ _("Submit") }}</button>
-				</div>
-			</fieldset>
-		</form>
-	</div>
-
-
 	<table class="table table-striped" style="table-layout: fixed; vertical-align: middle;">
 		<thead>
 			<tr>
@@ -99,6 +85,20 @@
 			{% endfor %}
 		</tbody>
 	</table>
+
+	<div id="upload-link"><a id="link-submit" class="link"><i class="icon-upload"></i>{{ _('Upload new file') }}</a></div>
+	<div id="upload-form" style="display: none;">
+		<a class="close" id="link-close"><span title="{{ _("Close") }}">&times;</span></a>
+		<form class="form-horizontal" action="{{ url_for('submit') }}" method="post" enctype="multipart/form-data">
+				<fieldset>
+				<input type="file" name="data">
+				<div class="form-actions">
+					<button name="action_submit" type="submit" class="btn btn-primary">{{ _("Submit") }}</button>
+				</div>
+			</fieldset>
+		</form>
+	</div>
+
 </div>
 
 {{ super() }}
