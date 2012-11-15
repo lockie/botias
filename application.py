@@ -129,10 +129,12 @@ def process(): # to be called from AJAX; TODO : long polling maybe?
 			from parse import parse
 			data = parse(file_path, int(ident))
 		except Exception as e:
-			return jsonify(error=gettext('Error: %(error)s. Try fixing your file.', error=str(e)))
+			return jsonify(error=gettext(u'Error: %(error)s. Try fixing your file.', error=unicode(e.message)))
 
 		# TODO : pass json (rewrite to use new pika which can into binary body)
 		resp = rpc.call(current_user.email, json.dumps(data))
+		if resp is None:
+			return jsonify(error=gettext('Connection to server timed out. Try again later.'))
 		r = bson.loads(resp)
 		result = dict(zip([str(x) for x in r.keys()], r.values()))
 		result['tX'] = [["-", "-", "-", "-"]] * 3

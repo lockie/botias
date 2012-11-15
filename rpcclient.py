@@ -28,7 +28,7 @@ class RpcClient(object):
 		while corr_id not in self.responses:
 			self.connection.process_data_events()
 			if time() - begin > self.timeout:
-				return 'Connection to server timed out. Try again later.'
+				return None
 		return self.responses.pop(corr_id)
 
 	def call(self, user, data):

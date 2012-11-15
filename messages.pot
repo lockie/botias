@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PROJECT VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2012-11-14 23:12+0400\n"
+"POT-Creation-Date: 2012-11-15 23:35+0400\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -17,7 +17,7 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "Generated-By: Babel 0.9.6\n"
 
-#: application.py:120 application.py:149
+#: application.py:120 application.py:151
 msgid "Error: no beneficiary id given"
 msgstr ""
 
@@ -30,62 +30,111 @@ msgstr ""
 msgid "Error: %(error)s. Try fixing your file."
 msgstr ""
 
-#: application.py:143
+#: application.py:137
+msgid "Connection to server timed out. Try again later."
+msgstr ""
+
+#: application.py:145
 #, python-format
 msgid "Error: %(error)s. Contact administration."
 msgstr ""
 
-#: application.py:173
+#: application.py:175
 msgid "Files of this type are not allowed to upload"
 msgstr ""
 
-#: application.py:207 templates/layout.html:83 templates/register.html:18
+#: application.py:209 templates/layout.html:83 templates/register.html:18
 msgid "Register"
 msgstr ""
 
-#: application.py:212
+#: application.py:214
 msgid "Already authenticated"
 msgstr ""
 
-#: application.py:230
+#: application.py:232
 msgid "Authentication failed. Check login and password."
 msgstr ""
 
-#: application.py:231 templates/login.html:4 templates/login.html:14
+#: application.py:233 templates/login.html:4 templates/login.html:14
 msgid "Login"
 msgstr ""
 
-#: application.py:239
+#: application.py:241
 msgid "You have logged out"
 msgstr ""
 
-#: application.py:244
+#: application.py:246
 msgid "Please authorize to access this page"
 msgstr ""
 
-#: application.py:253 templates/layout.html:73 templates/office.html:65
+#: application.py:255 templates/layout.html:73 templates/office.html:65
 msgid "My office"
 msgstr ""
 
-#: application.py:271 templates/layout.html:74 templates/preferences.html:16
+#: application.py:273 templates/layout.html:74 templates/preferences.html:16
 msgid "Preferences"
 msgstr ""
 
-#: application.py:277 templates/layout.html:63 templates/layout.html:95
+#: application.py:279 templates/layout.html:63 templates/layout.html:95
 #: templates/tos.html:5
 msgid "Terms of service"
 msgstr ""
 
-#: application.py:281 templates/about.html:5 templates/layout.html:59
+#: application.py:283 templates/about.html:5 templates/layout.html:59
 msgid "About service"
 msgstr ""
 
-#: application.py:287 templates/docs.html:5 templates/layout.html:62
+#: application.py:289 templates/docs.html:5 templates/layout.html:62
 msgid "Documentation"
 msgstr ""
 
-#: application.py:291 templates/faq.html:5 templates/layout.html:61
+#: application.py:293 templates/faq.html:5 templates/layout.html:61
 msgid "Frequently asked questions"
+msgstr ""
+
+#: parse.py:26
+#, python-format
+msgid "Invalid sheets count (%(count)d), must be 4"
+msgstr ""
+
+#: parse.py:33
+#, python-format
+msgid "Invalid year in sheet name: \"%(name)s\""
+msgstr ""
+
+#: parse.py:37
+#, python-format
+msgid "Invalid year: %(year)s"
+msgstr ""
+
+#: parse.py:48
+#, python-format
+msgid "No record with id %(id)d for year %(year)d"
+msgstr ""
+
+#: parse.py:57
+#, python-format
+msgid "Invalid gender: %(gender)s"
+msgstr ""
+
+#: parse.py:63
+#, python-format
+msgid "Invalid birth date: %(day)d.%(month)d.%(year)d"
+msgstr ""
+
+#: parse.py:70
+#, python-format
+msgid "Invalid salary: %(salary)s"
+msgstr ""
+
+#: parse.py:82 parse.py:84
+#, python-format
+msgid "Invalid overall experience: \"%(exp)s\""
+msgstr ""
+
+#: parse.py:95 parse.py:97
+#, python-format
+msgid "Invalid company experience: \"%(exp)s\""
 msgstr ""
 
 #: preferencesform.py:8 registerform.py:8
