@@ -1,32 +1,45 @@
 #!/usr/bin/env python
 
-import pika
-import uuid
+from pika import BasicProperties
 from time import time
+import uuid
 
 
 class RpcClient(object):
 	def __init__(self, host, timeout=5):
 		# TODO : handle RabbitMQ non-availability
-		self.connection = pika.BlockingConnection(pika.ConnectionParameters(
-			host=host))
-		self.channel = self.connection.channel()
-		result = self.channel.queue_declare(exclusive=True,
-			durable=True) # dont loose messages when RabbitMQ restarts or otherwise dies
-		self.callback_queue = result.method.queue
-		self.channel.basic_consume(self.on_response,
-			queue=self.callback_queue)
-		self.responses = { }
+		from pika import ConnectionParameters
+		from pika.adapters.tornado_connection import TornadoConnection
+		self.connection = TornadoConnection(
+			ConnectionParameters(host=host),
+			on_open_callback=self.on_connected,
+			stop_ioloop_on_close=False)
 		self.timeout = timeout
+		self.responses = {}
 
-	def on_response(self, ch, method, props, body):
-		self.responses[props.correlation_id] = body
+	def on_connected(self, connection):
+		self.channel = self.connection.channel(self.on_channel_open)
+
+	def on_channel_open(self, new_channel):
+		# recall when channel was created
+		from time import gmtime, strftime
+		self.callback_queue = 'rpc_queue' + strftime("%d%m%Y-%H.%M.%S", gmtime())
+		self.channel.queue_declare(queue=self.callback_queue,
+			callback=self.on_queue_declared,
+			durable=True, exclusive=True, auto_delete=True)
+
+	def on_queue_declared(self, frame):
+		self.channel.basic_consume(self.on_response, queue=self.callback_queue)
+
+	def on_response(self, channel, method, header, body):
+		print header.correlation_id, body
+		self.responses[header.correlation_id] = body
 
 	def wait_response(self, corr_id):
 		# wait till we get response with correct correlation id
 		begin = time()
 		while corr_id not in self.responses:
-			self.connection.process_data_events()
+			# TODO : have to return to IO loop here
 			if time() - begin > self.timeout:
 				return None
 		return self.responses.pop(corr_id)
@@ -37,12 +50,11 @@ class RpcClient(object):
 		self.channel.basic_publish(
 			exchange='',
 			routing_key='rpc_queue',
-			properties=pika.BasicProperties(
+			properties=BasicProperties(
 				reply_to=self.callback_queue,
 				correlation_id=corr_id,
 				delivery_mode=2,  # make message persistent
 			),
-			body=str(data)  # TODO : proper serialization
-		)
+			body=data)
 		return self.wait_response(corr_id)
 
