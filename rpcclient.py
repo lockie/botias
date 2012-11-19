@@ -2,7 +2,7 @@
 
 from pika import BasicProperties
 from time import time
-import uuid
+from flask.ext.babel import lazy_gettext as _
 
 
 class RpcClient(object):
@@ -16,6 +16,7 @@ class RpcClient(object):
 			stop_ioloop_on_close=False)
 		self.timeout = timeout
 		self.responses = {}
+		self.timeouts  = {}
 
 	def on_connected(self, connection):
 		self.channel = self.connection.channel(self.on_channel_open)
@@ -32,21 +33,17 @@ class RpcClient(object):
 		self.channel.basic_consume(self.on_response, queue=self.callback_queue)
 
 	def on_response(self, channel, method, header, body):
-		print header.correlation_id, body
-		self.responses[header.correlation_id] = body
-
-	def wait_response(self, corr_id):
-		# wait till we get response with correct correlation id
-		begin = time()
-		while corr_id not in self.responses:
-			# TODO : have to return to IO loop here
-			if time() - begin > self.timeout:
-				return None
-		return self.responses.pop(corr_id)
+		if header.correlation_id in self.timeouts:
+			self.responses[header.correlation_id] = body
+			self.timeouts.pop(header.correlation_id)
 
 	def call(self, user, data):
 		# generate unique correlation id for each request
-		corr_id = user + '-' + str(uuid.uuid4())
+		corr_id = user
+		if corr_id in self.timeouts:
+			return _('Server still processes your previous request. Try again a bit later.')
+		if corr_id in self.responses:
+			self.responses.pop(corr_id) # cleanup
 		self.channel.basic_publish(
 			exchange='',
 			routing_key='rpc_queue',
@@ -56,5 +53,18 @@ class RpcClient(object):
 				delivery_mode=2,  # make message persistent
 			),
 			body=data)
-		return self.wait_response(corr_id)
+		self.timeouts[corr_id] = time()
+
+	def result(self, user):
+		corr_id = user
+		if corr_id in self.responses:
+			return {'result': self.responses.pop(corr_id)}
+		if corr_id in self.timeouts:
+			if time() - self.timeouts[corr_id] > self.timeout:
+				self.timeouts.pop(corr_id)
+				return {'error': _('Connection to server timed out. Try again later.')}
+			else:
+				return None
+		else:
+			return {'error': _('No request has been sent to server. Try again.')}
 

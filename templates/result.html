@@ -37,21 +37,48 @@
 	</style>
 {% endblock %}
 {% block body %}
-	<script type=text/javascript>
-		$(document).ready(function() {
-			$.ajax({
-				type: "GET",
-				url: "/_process",
-				data: "id={{ id }}",
-				dataType: 'JSON',
-				success: function(data) {
-					if ('error' in data)
-					{
-						$('#processing').html("<p class='lead'>" +
-							data.error +
-							"</p><a href='/submit' class='btn btn-primary'>{{ _('Try again') }}</a>");
-					} else
-					{
+<script type=text/javascript>
+	function displayError(jqXHR, exception) {
+		$('#processing').hide();
+		var err = "";
+		if (jqXHR.status === -1) {
+			err = jqXHR.responseText;
+		} else if (jqXHR.status === 0) {
+			err = "{{ _('Connection error. Contact administration.') }}";
+		} else if (jqXHR.status == 404) {
+			err = "{{ _('Page not found. Contact administration') }}";
+		} else if (jqXHR.status == 500) {
+			err = "{{ _('Internal server error. Contact administration.') }}"
+		} else if (exception === 'parsererror') {
+			err = "{{ _('Incorrect server response. Contact administration.') }}"
+		} else if (exception === 'timeout') {
+			err = "{{ _('Response timed out. Contact administration.') }}";
+		} else if (exception === 'abort') {
+			err = "{{ _('AJAX request aborted.') }}";
+		} else {
+			err = "{{ _('Unknown error: ') }}" + jqXHR.responseText + "{{ _('Contact administration.') }}";
+		}
+		$("#error").prepend(err);
+		$('#error').show();
+	}
+	function queryResult(data) {
+		if('error' in data) {
+			displayError({responseText: data.error, status: -1}, "");
+			return;
+		}
+		$.ajax({
+			type: 'GET',
+			url: '/_process',
+			dataType: 'JSON',
+			timeout: 1000,
+			error: displayError,
+			success: function(data) {
+				if('error' in data) {
+					displayError({responseText: data.error, status: -1}, "");
+				} else {
+					if(data.result==null) {
+						setTimeout('queryResult({});', 1000);
+					} else {
 						$('#processing').hide();
 						$("#table1").handsontable('loadData', data.result.t1);
 						$("#table2").handsontable('loadData', data.result.t2);
@@ -78,13 +105,27 @@
 						$('#result').show();
 					}
 				}
-			});
-			return false;
+			}
 		});
+	}
+	$(document).ready(function() {
+		$.ajax({
+			type: 'POST',
+			url: '/_process',
+			data: 'id={{ id }}',
+			dataType: 'JSON',
+			error: displayError,
+			success: queryResult
+		});
+	});
 	</script>
 
 	<div id="processing" class="container"><img src="/static/loader.gif" />{{ _('Processing data...') }}</div>
 	<!-- TODO : more fancy progressbar -->
+
+	<div id="error" class="container lead" style="display:none;">
+		<br /><br /><a href='/office' class='btn btn-primary'>{{ _('Try again') }}</a>
+	</div>
 
 	<div id="result" class="container" style="display:none;">
 	<h2>Результаты расчётов</h2>

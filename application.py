@@ -112,37 +112,45 @@ def allowed_file(filename):
 	return '.' in filename and \
 		filename.rsplit('.', 1)[1] in ALLOWED_EXTENSIONS
 
-@app.route('/_process')
+@app.route('/_process', methods=['GET', 'POST'])
 @login_required
-def process(): # to be called from AJAX; TODO : long polling maybe?
+def process(): # to be called from AJAX
 	try:
-		if 'id' not in request.args:
-			return jsonify(error=gettext('Error: no beneficiary id given'))
-		ident = request.args['id']
-		if not 'current_file' in session:
-			return jsonify(error=
-				gettext('Error: no file submitted! <a href="/office">Submit</a> one.'))
-		file_path = session['current_file']
+		if request.method == 'POST':
+			if 'id' not in request.form:
+				return jsonify(error=gettext('Error: no beneficiary id given.'))
+			ident = request.form['id']
+			if not 'current_file' in session:
+				return jsonify(error=
+					gettext('Error: no file submitted! <a href="/office">Submit</a> one.'))
+			file_path = session['current_file']
 
-		data = {}
-		try:
-			from parse import parse
-			data = parse(file_path, int(ident))
-		except Exception as e:
-			return jsonify(error=gettext(u'Error: %(error)s. Try fixing your file.', error=unicode(e.message)))
+			data = {}
+			try:
+				from parse import parse
+				data = parse(file_path, int(ident))
+			except Exception as e:
+				return jsonify(error=gettext(u'Error: %(error)s. Try fixing your file.', error=unicode(e.message)))
 
-		# TODO : pass json (rewrite to use new pika which can into binary body)
-		resp = rpc.call(current_user.email, json.dumps(data))
-		if resp is None:
-			return jsonify(error=gettext('Connection to server timed out. Try again later.'))
-		r = bson.loads(resp)
-		result = dict(zip([str(x) for x in r.keys()], r.values()))
-		result['tX'] = [["-", "-", "-", "-"]] * 3
-		return jsonify(result=result)
+			resp = rpc.call(current_user.email, bson.dumps(data))
+			if resp is not None:
+				return jsonify(error=unicode(resp))
+			return jsonify(result=None)
+		elif request.method == 'GET':
+			resp = rpc.result(current_user.email)
+			if resp is None:
+				return jsonify(result=None)
+			if 'error' in resp:
+				return jsonify(error=unicode(resp['error']))
+			r = bson.loads(resp['result'])
+			result = dict(zip([str(x) for x in r.keys()], r.values()))
+			result['tX'] = [["-", "-", "-", "-"]] * 3
+			return jsonify(result=result)
 	except Exception, e:
 		import sys
 		e = str(sys.exc_info()[0].__name__)
-		return jsonify(error=gettext('Error: %(error)s. Contact administration.', error=e))# % { 'error': e})
+		return jsonify(error=gettext('Error: %(error)s. Contact administration.', error=e))
+
 
 @app.route('/result')
 @login_required
