@@ -12,6 +12,7 @@ if __name__ == '__main__':
 	from tornado.httpserver import HTTPServer
 	from tornado.ioloop import IOLoop
 	from tornado import autoreload
+	import logging
 
 	define("port",
 		default=80,
@@ -51,8 +52,10 @@ if __name__ == '__main__':
 		UPLOAD_FOLDER=options.upload,
 		MAX_CONTENT_LENGTH=options.maxsize
 	)
+	logging.info("Starting Tornado web server on port %s" % options.port)
 	http_server.listen(options.port)
 	if options.debug:
+		logging.info("Debug mode enabled")
 		autoreload.start()
 	IOLoop().instance().start()
 
