@@ -155,7 +155,7 @@ def parse(filename, id):
 			d.chernobyl = 0
 
 		data.append(d)
-	return {'id': id, 'data': data}
+	return {'count': 1, 'rows': [{'id': id, 'data': data}]}
 
 def main():
 	import sys
