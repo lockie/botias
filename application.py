@@ -19,6 +19,7 @@ from loginform import LoginForm
 from registerform import RegisterForm
 from preferencesform import ProfileForm, CalcForm, ActuarialForm
 from rpcclient import RpcClient
+from parse import parse_file
 
 
 # some application parameters
@@ -127,8 +128,7 @@ def process(): # to be called from AJAX
 
 			data = {}
 			try:
-				from parse import parse
-				data = parse(file_path, int(ident))
+				data = parse_file(file_path, int(ident))
 			except Exception as e:
 				return jsonify(error=gettext(u'Error: %(error)s. Try fixing your file.', error=unicode(e.message)))
 

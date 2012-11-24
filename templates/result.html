@@ -1,12 +1,12 @@
 {% extends "layout.html" %}
 
-{% macro table(id, row_headers) -%}
+{% macro table(id, row_headers, columns=4, extra_rows=1) -%}
 	<div id="{{ id }}"></div>
 	<script type="text/javascript">
 		$(function () {
 		$("#{{ id }}").handsontable({
-				startRows: {{ row_headers|length + 1 }},
-				startCols: 4,
+				startRows: {{ row_headers|length + extra_rows }},
+				startCols: {{ columns }},
 				cells: function (row, col, prop) {
 					var cellProperties = {};
 					cellProperties.readOnly = true;
@@ -19,6 +19,27 @@
 	<br />
 
 {%- endmacro %}
+
+{% macro vertical_table(id, col_headers) %}
+	<div id="{{ id }}"></div>
+	<script type="text/javascript">
+		$(function () {
+			$("#{{ id }}").handsontable({
+				startRows: 52,
+				startCols: {{ col_headers|length }},
+				cells: function (row, col, prop) {
+					var cellProperties = {};
+					cellProperties.readOnly = true;
+					return cellProperties;
+				},
+				colHeaders: {{ col_headers|tojson|safe }}
+				});
+			})
+		</script>
+		<br />
+
+{% endmacro %}
+
 
 {% block title %} Results - Averagate! {% endblock %}
 {% block head %}
@@ -80,29 +101,41 @@
 						setTimeout('queryResult({});', 1000);
 					} else {
 						$('#processing').hide();
-						$("#table1").handsontable('loadData', data.result.t1);
-						$("#table2").handsontable('loadData', data.result.t2);
-						$("#table3").handsontable('loadData', data.result.t3);
-						$("#table4").handsontable('loadData', data.result.t4);
-						$("#table5").handsontable('loadData', data.result.t5);
-						$("#table6").handsontable('loadData', data.result.t6);
-						$("#table7").handsontable('loadData', data.result.t7);
-						$("#table8").handsontable('loadData', data.result.t8);
-						$("#table9").handsontable('loadData', data.result.t9);
-						$("#tableA").handsontable('loadData', data.result.tA);
-						$("#tableB").handsontable('loadData', data.result.tB);
-						$("#tableC").handsontable('loadData', data.result.tC);
-						$("#tableD").handsontable('loadData', data.result.tD);
-						$("#tableE").handsontable('loadData', data.result.tE);
-						$("#tableF").handsontable('loadData', data.result.tF);
-						$("#tableS").handsontable('loadData', data.result.tS);
-						$("#tableU").handsontable('loadData', data.result.tU);
-						$("#tableV").handsontable('loadData', data.result.tV);
-						$("#tableW").handsontable('loadData', data.result.tW);
-						$("#tableX").handsontable('loadData', data.result.tX);
-						$("#tableY").handsontable('loadData', data.result.tY);
-						$("#tableZ").handsontable('loadData', data.result.tZ);
-						$('#result').show();
+						if({{ id }}===0) {
+							$("#table1").handsontable('loadData', data.result.t1);
+							$("#table2").handsontable('loadData', data.result.t2);
+							$("#table3").handsontable('loadData', data.result.t3);
+							$("#table4").handsontable('loadData', data.result.t4);
+							$("#table5").handsontable('loadData', data.result.t5);
+							$("#table6").handsontable('loadData', data.result.t6);
+							$("#table7").handsontable('loadData', data.result.t7);
+							$("#table8").handsontable('loadData', data.result.t8);
+							$("#table9").handsontable('loadData', data.result.t9);
+							$("#tableA").handsontable('loadData', data.result.tA);
+							$("#tableB").handsontable('loadData', data.result.tB);
+							$("#tableC").handsontable('loadData', data.result.tC);
+							$("#tableD").handsontable('loadData', data.result.tD);
+							$("#tableE").handsontable('loadData', data.result.tE);
+							$("#tableF").handsontable('loadData', data.result.tF);
+							$("#tableS").handsontable('loadData', data.result.tS);
+							$("#tableU").handsontable('loadData', data.result.tU);
+							$("#tableV").handsontable('loadData', data.result.tV);
+							$("#tableW").handsontable('loadData', data.result.tW);
+							$("#tableX").handsontable('loadData', data.result.tX);
+							$("#tableY").handsontable('loadData', data.result.tY);
+							$("#tableZ").handsontable('loadData', data.result.tZ);
+							$('#result').show();
+						} else {
+							// TODO : load actual data
+							$("#tab1").handsontable('loadData', []);
+							$("#tab21").handsontable('loadData', []);
+							$("#tab22").handsontable('loadData', []);
+							$("#tab23").handsontable('loadData', []);
+							$("#tab24").handsontable('loadData', []);
+							$("#tab25").handsontable('loadData', []);
+							$("#tab3").handsontable('loadData', []);
+							$('#report').show();
+						}
 					}
 				}
 			}
@@ -126,6 +159,90 @@
 	<div id="error" class="container lead" style="display:none;">
 		<br /><br /><a href='/office' class='btn btn-primary'>{{ _('Try again') }}</a>
 	</div>
+
+
+	<div id="report" class="container" style="display:none;">
+		<h2>План финансирования работника</h2>
+
+		<h3>Расчёт потока выплат при 100% КЗ</h3>
+
+		<div id="tab1"></div>
+		<script type="text/javascript">
+			$(function () {
+				$("#tab1").handsontable({
+					startRows: 11,
+					startCols: 6,
+					cells: function (row, col, prop) {
+						var cellProperties = {};
+						cellProperties.readOnly = true;
+						return cellProperties;
+					},
+					colHeaders: ["Год выплат", "Остаток на начало", "Вероятность выплат", "Резерв сумм выплат", "Стоимость процентов", "Остаток на конец"]
+				});
+			})
+		</script>
+		<br />
+
+		<h3>План финансирования обязательств для работника</h3>
+		<h4>Актуарные предположения</h4>
+		{{ vertical_table("tab21", [
+			"Год",
+			"Рост заработка",
+			"Вероятность дожития",
+			"Вероятность увольнения",
+			"Ставка дисконта"
+		]) }}
+
+		<h4>Предполагаемый размер прав</h4>
+		{{ vertical_table("tab22", [
+			"Год",
+			"На начало",
+			"Текущего года",
+			"Нарастающий итог по годам"
+		]) }}
+
+		<h4>Дисконтированная стоимость обязательств: текущие услуги</h4>
+		{{ vertical_table("tab23", [
+			"Год",
+			"Стоимость текущих услуг",
+			"Стоимость на начало",
+			"Стоимость процентов",
+			"Стоимость на конец"
+		]) }}
+
+		<h4>Дисконтированная стоимость обязательств: прошлые услуги</h4>
+		{{ vertical_table("tab24",[
+			"Год",
+			"Стоимость прошлых услуг",
+			"Стоимость на начало",
+			"Стоимость процентов",
+			"Стоимость на конец"
+		]) }}
+
+		<h4>Ставка взноса от годового ФОТ</h4>
+		{{ vertical_table("tab25", [
+			"Год",
+			"Ставка взноса от годового ФОТ"
+		]) }}
+
+		<h3>Предположения</h3>
+		{{ table("tab3", [
+			"Ежегодная индексация пенсии",
+			"Ставка дисконтирования",
+			"Ежегодный рост заработка",
+			"Сумма первой выплаты",
+			"Размер ежегодных прав",
+			"Стоимость прошлых услуг",
+			"Ежегодная амортизация прошлых услуг",
+			"Стоимость текущих услуг",
+			"Дисконтированная стоимость обязательств",
+			"Вероятность наступления прав",
+			"Размер пенсии в % от заработка (КЗ)",
+			"Итоговая стоимость обязательств:"
+		], 1, 0)}}
+
+	</div>
+
 
 	<div id="result" class="container" style="display:none;">
 	<h2>Результаты расчётов</h2>

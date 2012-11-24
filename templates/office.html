@@ -38,7 +38,7 @@
 				$("#upload-link").show();
 				$("#upload-form").hide();
 			});
-			$("#calculate-link").click(function(e) {
+			$("#calculate-single-link").click(function(e) {
 				e.preventDefault();
 				bootbox.prompt("{{ _('Enter employee id') }}", "Cancel", "OK",
 					function(r) {
@@ -53,8 +53,11 @@
 							}
 						}
 					}, "1");
+				});
+			$("#calculate-all-link").click(function(e) {
+				e.preventDefault();
+				location.replace("result?id=0")
 			});
-
 		});
 	</script>
 {% endblock %}
@@ -79,7 +82,8 @@
 					<td style="vertical-align: middle;"><a href="#">{{ file.name }}</a></td>
 					<td>
 						<a id="download-link" class="link"><i class="icon-download-alt"></i>{{ _('Download') }}</a>
-						<a id="calculate-link" class="link"><i class="icon-th-list"></i>{{ _('Calculate') }}</a>
+						<a id="calculate-single-link" class="link" title="{{ _('Calculate funding plan for single employee') }}"><i class="icon-user"></i>{{ _('Calculate employee') }}</a>
+						<a id="calculate-all-link" class="link" title="{{ _('Calculate overall funding plan') }}"><i class="icon-th-list"></i>{{ _('Calculate plan') }}</a>
 					</td>
 				</tr>
 			{% endfor %}

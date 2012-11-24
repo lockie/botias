@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PROJECT VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2012-11-24 18:57+0400\n"
+"POT-Creation-Date: 2012-11-24 20:55+0400\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -17,11 +17,11 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "Generated-By: Babel 0.9.6\n"
 
-#: application.py:121
+#: application.py:122
 msgid "Error: no employee id given."
 msgstr ""
 
-#: application.py:125
+#: application.py:126
 msgid "Error: no file submitted! <a href=\"/office\">Submit</a> one."
 msgstr ""
 
@@ -71,7 +71,7 @@ msgstr ""
 msgid "Please authorize to access this page"
 msgstr ""
 
-#: application.py:263 templates/layout.html:73 templates/office.html:65
+#: application.py:263 templates/layout.html:73 templates/office.html:68
 msgid "My office"
 msgstr ""
 
@@ -96,49 +96,49 @@ msgstr ""
 msgid "Frequently asked questions"
 msgstr ""
 
-#: parse.py:26
-#, python-format
-msgid "Invalid sheets count (%(count)d), must be 4"
-msgstr ""
-
-#: parse.py:33
+#: parse.py:30
 #, python-format
 msgid "Invalid year in sheet name: \"%(name)s\""
 msgstr ""
 
-#: parse.py:37
+#: parse.py:34
 #, python-format
 msgid "Invalid year: %(year)s"
 msgstr ""
 
-#: parse.py:48
+#: parse.py:45
 #, python-format
 msgid "No record with id %(id)d for year %(year)d"
 msgstr ""
 
-#: parse.py:57
+#: parse.py:54
 #, python-format
 msgid "Invalid gender: %(gender)s"
 msgstr ""
 
-#: parse.py:63
+#: parse.py:60
 #, python-format
 msgid "Invalid birth date: %(day)d.%(month)d.%(year)d"
 msgstr ""
 
-#: parse.py:70
+#: parse.py:67
 #, python-format
 msgid "Invalid salary: %(salary)s"
 msgstr ""
 
-#: parse.py:82 parse.py:84
+#: parse.py:79 parse.py:81
 #, python-format
 msgid "Invalid overall experience: \"%(exp)s\""
 msgstr ""
 
-#: parse.py:95 parse.py:97
+#: parse.py:92 parse.py:94
 #, python-format
 msgid "Invalid company experience: \"%(exp)s\""
+msgstr ""
+
+#: parse.py:160
+#, python-format
+msgid "Invalid sheets count (%(count)d), must be 4"
 msgstr ""
 
 #: preferencesform.py:8 registerform.py:8
@@ -252,31 +252,43 @@ msgstr ""
 msgid "Incorrect employee id"
 msgstr ""
 
-#: templates/office.html:71
+#: templates/office.html:74
 msgid "File name"
 msgstr ""
 
-#: templates/office.html:72
+#: templates/office.html:75
 msgid "Actions"
 msgstr ""
 
-#: templates/office.html:81
+#: templates/office.html:84
 msgid "Download"
 msgstr ""
 
-#: templates/office.html:82
-msgid "Calculate"
+#: templates/office.html:85
+msgid "Calculate funding plan for single employee"
 msgstr ""
 
-#: templates/office.html:89
+#: templates/office.html:85
+msgid "Calculate employee"
+msgstr ""
+
+#: templates/office.html:86
+msgid "Calculate overall funding plan"
+msgstr ""
+
+#: templates/office.html:86
+msgid "Calculate plan"
+msgstr ""
+
+#: templates/office.html:93
 msgid "Upload new file"
 msgstr ""
 
-#: templates/office.html:91
+#: templates/office.html:95
 msgid "Close"
 msgstr ""
 
-#: templates/office.html:96
+#: templates/office.html:100
 msgid "Submit"
 msgstr ""
 
@@ -324,43 +336,43 @@ msgid ""
 "password. If you dont get it, check 'spam' folder."
 msgstr ""
 
-#: templates/result.html:47
+#: templates/result.html:68
 msgid "Connection error. Contact administration."
 msgstr ""
 
-#: templates/result.html:49
+#: templates/result.html:70
 msgid "Page not found. Contact administration"
 msgstr ""
 
-#: templates/result.html:51
+#: templates/result.html:72
 msgid "Internal server error. Contact administration."
 msgstr ""
 
-#: templates/result.html:53
+#: templates/result.html:74
 msgid "Incorrect server response. Contact administration."
 msgstr ""
 
-#: templates/result.html:55
+#: templates/result.html:76
 msgid "Response timed out. Contact administration."
 msgstr ""
 
-#: templates/result.html:57
+#: templates/result.html:78
 msgid "AJAX request aborted."
 msgstr ""
 
-#: templates/result.html:59
+#: templates/result.html:80
 msgid "Unknown error: "
 msgstr ""
 
-#: templates/result.html:59
+#: templates/result.html:80
 msgid "Contact administration."
 msgstr ""
 
-#: templates/result.html:123
+#: templates/result.html:156
 msgid "Processing data..."
 msgstr ""
 
-#: templates/result.html:127
+#: templates/result.html:160
 msgid "Try again"
 msgstr ""
 

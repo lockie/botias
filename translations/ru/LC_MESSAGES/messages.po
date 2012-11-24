@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version:  git\n"
 "Report-Msgid-Bugs-To: awkravchuk@gmail.com\n"
-"POT-Creation-Date: 2012-11-24 18:57+0400\n"
+"POT-Creation-Date: 2012-11-24 20:55+0400\n"
 "PO-Revision-Date: 2012-10-16 18:49+0400\n"
 "Last-Translator: Andrew Kravchuk <awkravchuk@gmail.com>\n"
 "Language-Team: ru <LL@li.org>\n"
@@ -18,11 +18,11 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "Generated-By: Babel 0.9.6\n"
 
-#: application.py:121
+#: application.py:122
 msgid "Error: no employee id given."
 msgstr "Ошибка: не указан № работника"
 
-#: application.py:125
+#: application.py:126
 msgid "Error: no file submitted! <a href=\"/office\">Submit</a> one."
 msgstr "Ошибка: файл не отправлен. <a href=\"/submit\">Загрузите</a> файл."
 
@@ -72,7 +72,7 @@ msgstr "Вы вышли"
 msgid "Please authorize to access this page"
 msgstr "Пожалуйста, авторизуйтесь для доступа к запрошенной странице"
 
-#: application.py:263 templates/layout.html:73 templates/office.html:65
+#: application.py:263 templates/layout.html:73 templates/office.html:68
 msgid "My office"
 msgstr "Мой кабинет"
 
@@ -97,50 +97,50 @@ msgstr "Документы"
 msgid "Frequently asked questions"
 msgstr "Вопросы и ответы"
 
-#: parse.py:26
-#, python-format
-msgid "Invalid sheets count (%(count)d), must be 4"
-msgstr "Некорректное количество листов (%(count)d), требуется 4"
-
-#: parse.py:33
+#: parse.py:30
 #, python-format
 msgid "Invalid year in sheet name: \"%(name)s\""
 msgstr "Некорректный год в названии листа: \"%(name)s\""
 
-#: parse.py:37
+#: parse.py:34
 #, python-format
 msgid "Invalid year: %(year)s"
 msgstr "Некорректный год: %(year)s"
 
-#: parse.py:48
+#: parse.py:45
 #, python-format
 msgid "No record with id %(id)d for year %(year)d"
 msgstr "Не найдена запись для работника № %(id)d за год %(year)d"
 
-#: parse.py:57
+#: parse.py:54
 #, python-format
 msgid "Invalid gender: %(gender)s"
 msgstr "Некорректный пол: %(gender)s"
 
-#: parse.py:63
+#: parse.py:60
 #, python-format
 msgid "Invalid birth date: %(day)d.%(month)d.%(year)d"
 msgstr "Некорректная дата рождения: %(day)d.%(month)d.%(year)d"
 
-#: parse.py:70
+#: parse.py:67
 #, python-format
 msgid "Invalid salary: %(salary)s"
 msgstr "Некорректная заработная плата: %(salary)s"
 
-#: parse.py:82 parse.py:84
+#: parse.py:79 parse.py:81
 #, python-format
 msgid "Invalid overall experience: \"%(exp)s\""
 msgstr "Некорректный общий стаж: \"%(exp)s\""
 
-#: parse.py:95 parse.py:97
+#: parse.py:92 parse.py:94
 #, python-format
 msgid "Invalid company experience: \"%(exp)s\""
 msgstr "Некорректный стаж в компании: \"%(exp)s\""
+
+#: parse.py:160
+#, python-format
+msgid "Invalid sheets count (%(count)d), must be 4"
+msgstr "Некорректное количество листов (%(count)d), требуется 4"
 
 #: preferencesform.py:8 registerform.py:8
 msgid "Name"
@@ -251,37 +251,49 @@ msgstr "Пароль"
 
 #: templates/office.html:43
 msgid "Enter employee id"
-msgstr ""
+msgstr "Введите № работника"
 
 #: templates/office.html:49
 msgid "Incorrect employee id"
 msgstr "Некорректный № работника"
 
-#: templates/office.html:71
+#: templates/office.html:74
 msgid "File name"
 msgstr "Имя файла"
 
-#: templates/office.html:72
+#: templates/office.html:75
 msgid "Actions"
 msgstr "Действия"
 
-#: templates/office.html:81
+#: templates/office.html:84
 msgid "Download"
 msgstr "Скачать"
 
-#: templates/office.html:82
-msgid "Calculate"
-msgstr "Расчёт"
+#: templates/office.html:85
+msgid "Calculate funding plan for single employee"
+msgstr "Рассчитать план финансирования для одного работника"
 
-#: templates/office.html:89
+#: templates/office.html:85
+msgid "Calculate employee"
+msgstr "Рассчитать работника"
+
+#: templates/office.html:86
+msgid "Calculate overall funding plan"
+msgstr "Рассчитать общий план финансирования"
+
+#: templates/office.html:86
+msgid "Calculate plan"
+msgstr "Рассчитать план"
+
+#: templates/office.html:93
 msgid "Upload new file"
 msgstr "Загрузить новый файл"
 
-#: templates/office.html:91
+#: templates/office.html:95
 msgid "Close"
 msgstr "Закрыть"
 
-#: templates/office.html:96
+#: templates/office.html:100
 msgid "Submit"
 msgstr "Отправить"
 
@@ -331,43 +343,43 @@ msgstr ""
 "Спасибо, %(name)s! Мы выслали письмо по адресу %(email)s с вашим паролем."
 " Если вы его не получили, проверьте папку 'спам'."
 
-#: templates/result.html:47
+#: templates/result.html:68
 msgid "Connection error. Contact administration."
 msgstr "Ошибка соединения. Свяжитесь с администрацией."
 
-#: templates/result.html:49
+#: templates/result.html:70
 msgid "Page not found. Contact administration"
 msgstr "Страница не найдена. Свяжитесь с администрацией."
 
-#: templates/result.html:51
+#: templates/result.html:72
 msgid "Internal server error. Contact administration."
 msgstr "Внутренняя ошибка сервера. Свяжитесь с администрацией."
 
-#: templates/result.html:53
+#: templates/result.html:74
 msgid "Incorrect server response. Contact administration."
 msgstr "Сервер некорректно ответил на запрос. Свяжитесь с администрацией."
 
-#: templates/result.html:55
+#: templates/result.html:76
 msgid "Response timed out. Contact administration."
 msgstr "Превышен интервал ожидания для запроса. Свяжитесь с администрацией."
 
-#: templates/result.html:57
+#: templates/result.html:78
 msgid "AJAX request aborted."
 msgstr "AJAX-запрос отменён."
 
-#: templates/result.html:59
+#: templates/result.html:80
 msgid "Unknown error: "
 msgstr "Неизвестная ошибка: "
 
-#: templates/result.html:59
+#: templates/result.html:80
 msgid "Contact administration."
 msgstr "Свяжитесь с администрацией."
 
-#: templates/result.html:123
+#: templates/result.html:156
 msgid "Processing data..."
 msgstr "Обработка данных..."
 
-#: templates/result.html:127
+#: templates/result.html:160
 msgid "Try again"
 msgstr "Повторить попытку"
 

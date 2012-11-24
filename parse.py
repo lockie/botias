@@ -1,6 +1,7 @@
 #!/usr/bin/env python
 # vim: set fileencoding=utf-8 :
 
+import xlrd
 from flask.ext.babel import lazy_gettext as _
 
 
@@ -13,17 +14,12 @@ class Dict(dict):
 	__setattr__= dict.__setitem__
 	__delattr__= dict.__delitem__
 
-def parse(filename, id):
-	data = []
-
+def parse_employee(workbook, id):
 	# regexp for experience
 	import re
 	exp = re.compile(ur'(?P<years>\d+).*?[р|Р|л|Л|г|Г]{1}(.*?(?P<months>\d+).*?[м|М]{1})?(.*?(?P<days>\d+).*?[д|Д]{1})?')
 
-	import xlrd
-	workbook = xlrd.open_workbook(filename)
-	if workbook.nsheets != 4:
-		raise RuntimeError(_(u'Invalid sheets count (%(count)d), must be 4', count=workbook.nsheets))
+	data = []
 	for sheet in workbook.sheets():
 		d = Dict()
 
@@ -76,7 +72,7 @@ def parse(filename, id):
 			e = exp.search(row[4])
 			if e:
 				x = e.groupdict()
-				d.experience = dict(zip([str(v) for v in x.keys()], [int(v) for v in x.values()]))
+				d.experience = dict(zip([str(v) for v in x.keys()], [int(v or 0) for v in x.values()]))
 		if not 'experience' in d:
 			if type(row[4]) is unicode:
 				raise RuntimeError(_(u'Invalid overall experience: "%(exp)s"', exp=row[4]))
@@ -89,7 +85,7 @@ def parse(filename, id):
 			e = exp.search(row[5])
 			if e:
 				x = e.groupdict()
-				d.experience_company = dict(zip([str(v) for v in x.keys()], [int(v) for v in x.values()]))
+				d.experience_company = dict(zip([str(v) for v in x.keys()], [int(v or 0) for v in x.values()]))
 		if not 'experience_company' in d:
 			if type(row[5]) is unicode:
 				raise RuntimeError(_(u'Invalid company experience: "%(exp)s"', exp=row[5]))
@@ -155,7 +151,31 @@ def parse(filename, id):
 			d.chernobyl = 0
 
 		data.append(d)
-	return {'count': 1, 'rows': [{'id': id, 'data': data}]}
+	return data
+
+def parse_file(filename, id):
+	workbook = xlrd.open_workbook(filename)
+	if workbook.nsheets != 4:
+		raise RuntimeError(_(u'Invalid sheets count (%(count)d), must be 4', count=workbook.nsheets))
+
+	if id == 0:
+		# TODO : this is pathetic Shlemiel the painter's algorithm. Rewrite.
+		rows = []
+		ids = []
+		sheet1 = workbook.sheets()[0]
+		for i in range(sheet1.nrows):
+			r = sheet1.row_values(i)
+			if type(r[0]) is float:
+				ids.append(int(r[0]))
+		for id in ids:
+			try:
+				data = parse_employee(workbook, id)
+				rows.append({'id': id, 'data': data})
+			except Exception:
+				pass
+		return {'count': len(rows), 'rows': rows}
+	else:
+		return {'count': 1, 'rows': [{'id': id, 'data': parse_employee(workbook, id)}]}
 
 def main():
 	import sys
