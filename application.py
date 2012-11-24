@@ -23,13 +23,8 @@ from parse import parse_file
 
 
 # some application parameters
-DEBUG = True
-SECRET_KEY = 'rawr!'
 SESSION_PROTECTION = 'strong'
-SQLALCHEMY_DATABASE_URI = 'sqlite:////var/www/localhost/htdocs/db/users.db'
 ALLOWED_EXTENSIONS = set(['txt', 'csv', 'xls', 'xlsx'])
-MAX_CONTENT_LENGTH = 64 * 1024 * 1024 # 64M
-UPLOAD_FOLDER = '/tmp'
 BOOTSTRAP_JQUERY_VERSION = None
 
 # construct application
