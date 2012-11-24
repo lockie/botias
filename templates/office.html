@@ -40,13 +40,13 @@
 			});
 			$("#calculate-link").click(function(e) {
 				e.preventDefault();
-				bootbox.prompt("{{ _('Enter beneficiary id') }}", "Cancel", "OK",
+				bootbox.prompt("{{ _('Enter employee id') }}", "Cancel", "OK",
 					function(r) {
 						if(r)
 						{
 							if(!isNumber(r))
 							{
-								bootbox.alert("{{ _('Incorrect beneficiary id') }}");
+								bootbox.alert("{{ _('Incorrect employee id') }}");
 							} else
 							{
 								location.replace("result?id="+r);

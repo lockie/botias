@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PROJECT VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2012-11-16 00:50+0400\n"
+"POT-Creation-Date: 2012-11-24 18:57+0400\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -17,82 +17,82 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "Generated-By: Babel 0.9.6\n"
 
-#: application.py:120 application.py:151
-msgid "Error: no beneficiary id given"
+#: application.py:121
+msgid "Error: no employee id given."
 msgstr ""
 
-#: application.py:124
+#: application.py:125
 msgid "Error: no file submitted! <a href=\"/office\">Submit</a> one."
 msgstr ""
 
-#: application.py:132
+#: application.py:133
 #, python-format
 msgid "Error: %(error)s. Try fixing your file."
 msgstr ""
 
-#: application.py:137
-msgid "Connection to server timed out. Try again later."
-msgstr ""
-
-#: application.py:145
+#: application.py:152
 #, python-format
 msgid "Error: %(error)s. Contact administration."
 msgstr ""
 
-#: application.py:173
+#: application.py:159
+msgid "Error: no employee id given"
+msgstr ""
+
+#: application.py:181
 msgid "File uploaded successfully"
 msgstr ""
 
-#: application.py:175
+#: application.py:183
 msgid "Files of this type are not allowed to upload"
 msgstr ""
 
-#: application.py:209 templates/layout.html:83 templates/register.html:18
+#: application.py:217 templates/layout.html:83 templates/register.html:18
 msgid "Register"
 msgstr ""
 
-#: application.py:214
+#: application.py:222
 msgid "Already authenticated"
 msgstr ""
 
-#: application.py:232
+#: application.py:240
 msgid "Authentication failed. Check login and password."
 msgstr ""
 
-#: application.py:233 templates/login.html:4 templates/login.html:14
+#: application.py:241 templates/login.html:4 templates/login.html:14
 msgid "Login"
 msgstr ""
 
-#: application.py:241
+#: application.py:249
 msgid "You have logged out"
 msgstr ""
 
-#: application.py:246
+#: application.py:254
 msgid "Please authorize to access this page"
 msgstr ""
 
-#: application.py:255 templates/layout.html:73 templates/office.html:65
+#: application.py:263 templates/layout.html:73 templates/office.html:65
 msgid "My office"
 msgstr ""
 
-#: application.py:273 templates/layout.html:74 templates/preferences.html:16
+#: application.py:281 templates/layout.html:74 templates/preferences.html:16
 msgid "Preferences"
 msgstr ""
 
-#: application.py:279 templates/layout.html:63 templates/layout.html:95
+#: application.py:287 templates/layout.html:63 templates/layout.html:95
 #: templates/tos.html:5
 msgid "Terms of service"
 msgstr ""
 
-#: application.py:283 templates/about.html:5 templates/layout.html:59
+#: application.py:291 templates/about.html:5 templates/layout.html:59
 msgid "About service"
 msgstr ""
 
-#: application.py:289 templates/docs.html:5 templates/layout.html:62
+#: application.py:297 templates/docs.html:5 templates/layout.html:62
 msgid "Documentation"
 msgstr ""
 
-#: application.py:293 templates/faq.html:5 templates/layout.html:61
+#: application.py:301 templates/faq.html:5 templates/layout.html:61
 msgid "Frequently asked questions"
 msgstr ""
 
@@ -211,6 +211,18 @@ msgstr ""
 msgid "We will send you your password to this email."
 msgstr ""
 
+#: rpcclient.py:44
+msgid "Server still processes your previous request. Try again a bit later."
+msgstr ""
+
+#: rpcclient.py:65
+msgid "Connection to server timed out. Try again later."
+msgstr ""
+
+#: rpcclient.py:69
+msgid "No request has been sent to server. Try again."
+msgstr ""
+
 #: templates/layout.html:71
 #, python-format
 msgid "Welcome, %(name)s"
@@ -233,11 +245,11 @@ msgid "Password"
 msgstr ""
 
 #: templates/office.html:43
-msgid "Enter beneficiary id"
+msgid "Enter employee id"
 msgstr ""
 
 #: templates/office.html:49
-msgid "Incorrect beneficiary id"
+msgid "Incorrect employee id"
 msgstr ""
 
 #: templates/office.html:71
@@ -312,11 +324,43 @@ msgid ""
 "password. If you dont get it, check 'spam' folder."
 msgstr ""
 
-#: templates/result.html:52
-msgid "Try again"
+#: templates/result.html:47
+msgid "Connection error. Contact administration."
 msgstr ""
 
-#: templates/result.html:86
+#: templates/result.html:49
+msgid "Page not found. Contact administration"
+msgstr ""
+
+#: templates/result.html:51
+msgid "Internal server error. Contact administration."
+msgstr ""
+
+#: templates/result.html:53
+msgid "Incorrect server response. Contact administration."
+msgstr ""
+
+#: templates/result.html:55
+msgid "Response timed out. Contact administration."
+msgstr ""
+
+#: templates/result.html:57
+msgid "AJAX request aborted."
+msgstr ""
+
+#: templates/result.html:59
+msgid "Unknown error: "
+msgstr ""
+
+#: templates/result.html:59
+msgid "Contact administration."
+msgstr ""
+
+#: templates/result.html:123
 msgid "Processing data..."
+msgstr ""
+
+#: templates/result.html:127
+msgid "Try again"
 msgstr ""
 

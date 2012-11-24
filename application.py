@@ -118,7 +118,7 @@ def process(): # to be called from AJAX
 	try:
 		if request.method == 'POST':
 			if 'id' not in request.form:
-				return jsonify(error=gettext('Error: no beneficiary id given.'))
+				return jsonify(error=gettext('Error: no employee id given.'))
 			ident = request.form['id']
 			if not 'current_file' in session:
 				return jsonify(error=
@@ -156,7 +156,7 @@ def process(): # to be called from AJAX
 @login_required
 def result():
 	if 'id' not in request.args:
-		flash(gettext('Error: no beneficiary id given'), 'error')
+		flash(gettext('Error: no employee id given'), 'error')
 		return redirect(request.referrer or url_for('office'))
 	return render_template('result.html', id=request.args['id'])
 
