@@ -127,7 +127,9 @@ def process(): # to be called from AJAX
 			except Exception as e:
 				return jsonify(error=gettext(u'Error: %(error)s. Try fixing your file.', error=unicode(e.message)))
 
-			resp = rpc.call(current_user.email, bson.dumps(data))
+			# TODO : find bug in mongodb BSON parser (or write our own)
+			# & pass BSON instead of JSON
+			resp = rpc.call(current_user.email, json.dumps(data))
 			if resp is not None:
 				return jsonify(error=unicode(resp))
 			return jsonify(result=None)
