@@ -141,7 +141,8 @@ def process(): # to be called from AJAX
 				return jsonify(error=unicode(resp['error']))
 			r = bson.loads(resp['result'])
 			result = dict(zip([str(x) for x in r.keys()], r.values()))
-			result['tX'] = [["-", "-", "-", "-"]] * 3
+			if 'tab1' not in r:
+				result['tX'] = [["-", "-", "-", "-"]] * 3
 			return jsonify(result=result)
 	except Exception, e:
 		import sys

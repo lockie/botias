@@ -126,14 +126,13 @@
 							$("#tableZ").handsontable('loadData', data.result.tZ);
 							$('#result').show();
 						} else {
-							// TODO : load actual data
-							$("#tab1").handsontable('loadData', []);
-							$("#tab21").handsontable('loadData', []);
-							$("#tab22").handsontable('loadData', []);
-							$("#tab23").handsontable('loadData', []);
-							$("#tab24").handsontable('loadData', []);
-							$("#tab25").handsontable('loadData', []);
-							$("#tab3").handsontable('loadData', []);
+							$("#tab1").handsontable('loadData', data.result.tab1);
+							$("#tab21").handsontable('loadData', data.result.tab21);
+							$("#tab22").handsontable('loadData', data.result.tab22);
+							$("#tab23").handsontable('loadData', data.result.tab23);
+							$("#tab24").handsontable('loadData', data.result.tab24);
+							$("#tab25").handsontable('loadData', data.result.tab25);
+							$("#tab3").handsontable('loadData', data.result.tab3);
 							$('#report').show();
 						}
 					}
