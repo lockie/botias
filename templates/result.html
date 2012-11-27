@@ -1,6 +1,6 @@
 {% extends "layout.html" %}
 
-{% macro table(id, row_headers, columns=4, extra_rows=1) -%}
+{% macro table(id, row_headers, columns=4, extra_rows=0) -%}
 	<div id="{{ id }}"></div>
 	<script type="text/javascript">
 		$(function () {
@@ -102,28 +102,28 @@
 					} else {
 						$('#processing').hide();
 						if({{ id }}===0) {
-							$("#table1").handsontable('loadData', data.result.t1);
-							$("#table2").handsontable('loadData', data.result.t2);
-							$("#table3").handsontable('loadData', data.result.t3);
-							$("#table4").handsontable('loadData', data.result.t4);
-							$("#table5").handsontable('loadData', data.result.t5);
-							$("#table6").handsontable('loadData', data.result.t6);
-							$("#table7").handsontable('loadData', data.result.t7);
-							$("#table8").handsontable('loadData', data.result.t8);
-							$("#table9").handsontable('loadData', data.result.t9);
-							$("#tableA").handsontable('loadData', data.result.tA);
-							$("#tableB").handsontable('loadData', data.result.tB);
-							$("#tableC").handsontable('loadData', data.result.tC);
-							$("#tableD").handsontable('loadData', data.result.tD);
-							$("#tableE").handsontable('loadData', data.result.tE);
-							$("#tableF").handsontable('loadData', data.result.tF);
-							$("#tableS").handsontable('loadData', data.result.tS);
-							$("#tableU").handsontable('loadData', data.result.tU);
-							$("#tableV").handsontable('loadData', data.result.tV);
-							$("#tableW").handsontable('loadData', data.result.tW);
-							$("#tableX").handsontable('loadData', data.result.tX);
-							$("#tableY").handsontable('loadData', data.result.tY);
-							$("#tableZ").handsontable('loadData', data.result.tZ);
+							$("#table1").handsontable('loadData', [data.result.headers].concat(data.result.t1));
+							$("#table2").handsontable('loadData', [data.result.headers].concat(data.result.t2));
+							$("#table3").handsontable('loadData', [data.result.headers].concat(data.result.t3));
+							$("#table4").handsontable('loadData', [data.result.headers].concat(data.result.t4));
+							$("#table5").handsontable('loadData', [data.result.headers].concat(data.result.t5));
+							$("#table6").handsontable('loadData', [data.result.headers].concat(data.result.t6));
+							$("#table7").handsontable('loadData', [data.result.headers].concat(data.result.t7));
+							$("#table8").handsontable('loadData', [data.result.headers].concat(data.result.t8));
+							$("#table9").handsontable('loadData', [data.result.headers].concat(data.result.t9));
+							$("#tableA").handsontable('loadData', [data.result.headers].concat(data.result.tA));
+							$("#tableB").handsontable('loadData', [data.result.headers].concat(data.result.tB));
+							$("#tableC").handsontable('loadData', [data.result.headers].concat(data.result.tC));
+							$("#tableD").handsontable('loadData', [data.result.headers].concat(data.result.tD));
+							$("#tableE").handsontable('loadData', [data.result.headers].concat(data.result.tE));
+							$("#tableF").handsontable('loadData', [data.result.headers].concat(data.result.tF));
+							$("#tableS").handsontable('loadData', [data.result.headers].concat(data.result.tS));
+							$("#tableU").handsontable('loadData', [data.result.headers].concat(data.result.tU));
+							$("#tableV").handsontable('loadData', [data.result.headers].concat(data.result.tV));
+							$("#tableW").handsontable('loadData', [data.result.headers].concat(data.result.tW));
+							$("#tableX").handsontable('loadData', [data.result.headers].concat(data.result.tX));
+							$("#tableY").handsontable('loadData', [data.result.headers].concat(data.result.tY));
+							$("#tableZ").handsontable('loadData', [data.result.headers].concat(data.result.tZ));
 							$('#result').show();
 						} else {
 							$("#tab1").handsontable('loadData', data.result.tab1);
@@ -287,7 +287,7 @@
 			Основные допущения, использованные в актуарных оценках, приведены ниже.
 			<small>МСФО 19.120A(n) </small>
 		</blockquote>
-		{{ table("tableZ", [
+		{{ table("tableZ", ["",
 			"Ставка дисконтирования (средневзвешенная на отчетную дату)",
 			"Ожидаемая доходность активов плана (в среднем за год)",
 			"Ожидаемая ставка увеличения заработной платы (в среднем за год)",
@@ -302,7 +302,7 @@
 			Суммы, отраженные в прибылях и убытках по пенсионным планам с установленными выплатами, представлены следующим образом.
 			<small>МСФО 19.120A(g)</small>
 		</blockquote>
-		{{ table("tableY", [
+		{{ table("tableY", ["",
 			"Стоимость услуг отчетного года",
 			"Стоимость процентов",
 			"Ожидаемая доходность активов плана",
@@ -325,7 +325,7 @@
 		В консолидированном отчете о финансовом положении сумма обязательств по пенсионным планам с установленными выплатами представлена следующим образом.
 		<small>МСФО 19.120A(f)</small>
 	</blockquote>
-	{{ table("tableX", [
+	{{ table("tableX", ["",
 		"Приведенная стоимость фондированных обязательств<br />пенсионных планов с установленными выплатами",
 		"Справедливая стоимость активов планов",
 		""
@@ -334,7 +334,7 @@
 		Приведенная стоимость нефондированных обязательств пенсионных планов с установленными выплатами
 		<small>МСФО 19.120A(d)</small>
 	</blockquote>
-	{{ table("tableW", [
+	{{ table("tableW", ["",
 		"Дефицит",
 		"Непризнанные чистые актуарные прибыли (убытки)",
 		"Непризнанная стоимость услуг прошлых лет",
@@ -348,7 +348,7 @@
 		Изменения приведенной стоимости обязательств планов с установленными выплатами представлены ниже.
 		<small>МСФО 19.120A(c)</small>
 	</blockquote>
-	{{ table("tableV", [
+	{{ table("tableV", ["",
 		"Обязательства планов с установленными выплатами на начало года",
 		"Стоимость услуг отчетного года ",
 		"Стоимость процентов",
@@ -367,7 +367,7 @@
 		Изменения приведенной стоимости активов планов представлены следующим образом.
 		<small>МСФО 19.120A(e)</small>
 	</blockquote>
-	{{ table("tableU", [
+	{{ table("tableU", ["",
 		"Справедливая стоимость активов планов на начало года ",
 		"Ожидаемая доходность активов плана ",
 		"Актуарные прибыли/(убытки)",
@@ -391,7 +391,7 @@
 		"Справедливая стоимость активов плана, тыс.грн.",
 		"Справедливая стоимость активов плана, тыс.грн."
 	], -->
-	{{ table("tableT", [
+	{{ table("tableT", ["",
 		"",
 		"Долевые инструменты",
 		"Долговые инструменты",
@@ -415,7 +415,7 @@
 		Корректировки активов и обязательств плана на основе опыта прошлых лет включают следующее.
 		<small>МСФО 19.120A(p)</small>
 	</blockquote>
-	{{ table("tableS", [
+	{{ table("tableS", ["",
 		"Приведенная стоимость обязательств планов с установленными выплатами",
 		"Справедливая стоимость активов планов",
 		"Дефицит",
@@ -432,7 +432,7 @@
 	<!-- official --><br />
 
 	<h3>Раскрытие информации</h3>
-	{{ table("table1", [
+	{{ table("table1", ["",
 		"1. Дисконтированная стоимость обязательств на начало",
 		"2. Стоимость процентов",
 		"3. Стоимость текущих услуг",
@@ -444,7 +444,7 @@
 		"9. Актуарная (прибыль) убыток от обязательств",
 		"10. Дисконтированная стоимость обязательств на конец"
 	]) }}
-	{{ table("table2", [
+	{{ table("table2", ["",
 		"1. Справедливая стоимость активов пенсионного плана на начало",
 		"2. Ожидаемый доход на активы плана",
 		"3. Фактический доход от активов",
@@ -453,7 +453,7 @@
 		"6. Актуарная (прибыль) убыток от активов",
 		"7. Справедливая стоимость активов пенсионного плана на конец"
 	]) }}
-	{{ table("table3", [
+	{{ table("table3", ["",
 		"1. Непризнанная актуарная прибыль (убыток) на начало",
 		"2. Актуарная прибыль (убыток) от обязательств",
 		"3. Актуарная прибыль (убыток) от активов",
@@ -461,12 +461,12 @@
 		"5. Актуарная прибыль (убыток), которая будет признана за год",
 		"6. Непризнанная актуарная прибыль (убыток) на конец"
 	]) }}
-	{{ table("table4", [
+	{{ table("table4", ["",
 		"1. Стоимость прошлых услуг, не признанных в балансе на начало",
 		"2. Стоимость прошлых услуг, признаваемая в текущем периоде",
 		"3. Стоимость прошлых услуг, не признанных в балансе на конец"
 	]) }}
-	{{ table("table5", [
+	{{ table("table5", ["",
 		"1. Дисконтированная стоимость обязательств на конец",
 		"2. Справедливая стоимость активов пенсионного плана на конец",
 		"3. Большее из (1) и (2)",
@@ -479,7 +479,7 @@
 
 	<h3>Суммы, признаваемые в балансе</h3>
 	<em>Активы (обязательства), признаваемые в балансе</em>
-	{{ table("table6", [
+	{{ table("table6", ["",
 		"1. Дисконтированная стоимость обязательств на конец",
 		"2. Справедливая стоимость активов пенсионного плана на конец",
 		"3. Финансовый результат [(дефицит) / профицит], (2) - (1)",
@@ -489,7 +489,7 @@
 	]) }}
 
 	<em>Сумма в отчете о прибылях и убытках</em>
-	{{ table("table7", [
+	{{ table("table7", ["",
 		"1. Стоимость текущих услуг",
 		"2. Стоимость процентов",
 		"3. Ожидаемый доход на активы плана",
@@ -501,7 +501,7 @@
 	]) }}
 
 	<h3>Актуарные предположения</h3>
-	{{ table("table8", [
+	{{ table("table8", ["",
 		"Ставка дисконтирования (средневзвешенная на отчетную дату)  ",
 		"Ставка доходности активов плана (в среднем за год)",
 		"Ставка увеличения заработной платы (в среднем за год)",
@@ -513,7 +513,7 @@
 
 	<h3>Раскрытия, связанные с ожидаемыми расходами, которые будут признаны в следующем году</h3>
 	<!-- TODO : "Ожидаемая стоимость обязательств за год, начинающийся" - в заголовке -->
-	{{ table("table9", [
+	{{ table("table9", ["",
 		"Стоимость текущих услуг",
 		"Стоимость процентов",
 		"Ожидаемый доход на активы плана",
@@ -525,7 +525,7 @@
 	]) }}
 
 	<h3>Дополнительная информация</h3>
-	{{ table("tableA", [
+	{{ table("tableA", ["",
 		"Средняя заработная плата работников по Спискам, грн. в месяц",
 		"Изменения заработной платы, в % к предыдущему году",
 		"Общее количество работников (представленных в Анкете)",
@@ -537,7 +537,7 @@
 	]) }}
 
 	<em>Возрастное распределение работников по Спискам (представленных в Анкете):</em>
-	{{ table("tableB", [
+	{{ table("tableB", ["",
 		"До 25 лет включительно",
 		"Старше 25 лет – до 30 лет включительно",
 		"Старше 30 лет – до 35 лет включительно",
@@ -550,7 +550,7 @@
 	]) }}
 
 	<em>Численность работников по Спискам на конец года:</em>
-	{{ table("tableC", [
+	{{ table("tableC", ["",
 		"Работников по Списку №1 - мужчин",
 		"Работников по Списку №2 - мужчин",
 		"Работников по Списку №1 - женщин",
@@ -561,7 +561,7 @@
 
 	<h3>Прочие долгосрочные вознаграждения</h3>
 	<em>Вознаграждения к дате выхода на пенсию</em>
-	{{ table("tableD", [
+	{{ table("tableD", ["",
 		"Период дисконтирования (лет)",
 		"Количество всех предполагаемых выплат",
 		"Приведенная стоимость всех вознаграждений, тыс. грн.",
@@ -571,7 +571,7 @@
 	]) }}
 
 	<em>Вознаграждения к юбилеям</em>
-	{{ table("tableE", [
+	{{ table("tableE", ["",
 		"Период дисконтирования (лет)",
 		"Количество всех предполагаемых выплат",
 		"Приведенная стоимость всех вознаграждений, тыс. грн.",
@@ -581,7 +581,7 @@
 	]) }}
 
 	<em>Вознаграждения за выслугу лет</em>
-	{{ table("tableF", [
+	{{ table("tableF", ["",
 		"Период дисконтирования (лет)",
 		"Количество всех предполагаемых выплат",
 		"Приведенная стоимость всех вознаграждений, тыс. грн.",
