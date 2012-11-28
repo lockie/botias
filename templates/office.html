@@ -58,6 +58,17 @@
 				e.preventDefault();
 				location.replace("result?id=0")
 			});
+			$("#test-files").click(function(e) {
+				e.preventDefault();
+				if($("#test-files-table").is(":visible"))
+				{
+					$("#test-files-header").text("{{ _('Show text files') }}");
+				} else {
+					$("#test-files-header").text("{{ _('Hide text files') }}");
+				}
+				$("#test-files-table").toggle();
+			});
+			$('#test-files').trigger('click');
 		});
 	</script>
 {% endblock %}
@@ -66,24 +77,43 @@
 
 <div class="container">
 	<h2>{{ _('My office') }}</h2>
+	<br /><br />
 
-	<table class="table table-striped" style="table-layout: fixed; vertical-align: middle;">
+	<div class='hero-unit'>Наш сервис предоставляет Вам возможность произвести расчет обязательств по выплате льготных пенсий работникам, занятым на рабочих местах, определенных списком № 1 и списком № 2, и сформировать балансовый отчет, удовлетворяющий требованиям Международного стандарта финансовой отчетности МСФО-19 «Выплаты работникам».</div>
+
+	<a id="test-files" class="link"><h3 id="test-files-header"></h3></a>
+	<table id="test-files-table" class="table table-striped" style="table-layout: fixed; vertical-align: middle;">
 		<thead>
 			<tr>
 				<th style="width:50px;"></th> <!-- иконка -->
-				<th>{{ _('File name') }}</th> <!-- имя -->
-				<th>{{ _('Actions') }}</th> <!-- действия -->
+				<th>Имя</th> <!-- имя -->
+				<th>Действия</th> <!-- действия -->
+			</tr>
+		</thead>
+		<tbody>
+			<tr><td colspan=3><div><i class="icon-ban-circle"></i>{{ _('No files uploaded.') }}</div></td></tr>
+		</tbody>
+	</table>
+
+
+	<h3>{{ _('Uploaded files') }}</h3>
+	<table id="uploaded-files-table" class="table table-striped" style="table-layout: fixed; vertical-align: middle;">
+		<thead>
+			<tr>
+				<th style="width:50px;"></th> <!-- иконка -->
+				<th>Имя</th> <!-- имя -->
+				<th>Действия</th> <!-- действия -->
 			</tr>
 		</thead>
 		<tbody>
 			{% for file in files %}
 				<tr>
-					<td><img src="/static/xls.png" /></td>
+					<td style="width:50px;"><img src="/static/xls.png" /></td>
 					<td style="vertical-align: middle;"><a href="#">{{ file.name }}</a></td>
 					<td>
-						<a id="download-link" class="link"><i class="icon-download-alt"></i>{{ _('Download') }}</a>
-						<a id="calculate-single-link" class="link" title="{{ _('Calculate funding plan for single employee') }}"><i class="icon-user"></i>{{ _('Calculate employee') }}</a>
-						<a id="calculate-all-link" class="link" title="{{ _('Calculate overall funding plan') }}"><i class="icon-th-list"></i>{{ _('Calculate plan') }}</a>
+						<a id="download-link" class="link"><i class="icon-download-alt"></i>{{ _('Download') }}</a><br />
+						<a id="calculate-single-link" class="link" title="{{ _('Calculate funding plan for single employee') }}"><i class="icon-user"></i>{{ _('Calculate employee') }}</a><br />
+						<a id="calculate-all-link" class="link" title="{{ _('Calculate overall funding plan') }}"><i class="icon-th-list"></i>{{ _('Calculate plan') }}</a><br />
 					</td>
 				</tr>
 			{% endfor %}

@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PROJECT VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2012-11-28 17:59+0400\n"
+"POT-Creation-Date: 2012-11-28 20:16+0400\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -71,7 +71,7 @@ msgstr ""
 msgid "Please authorize to access this page"
 msgstr ""
 
-#: application.py:266 templates/layout.html:76 templates/office.html:68
+#: application.py:266 templates/layout.html:76 templates/office.html:79
 msgid "My office"
 msgstr ""
 
@@ -244,7 +244,7 @@ msgstr ""
 msgid "Version "
 msgstr ""
 
-#: templates/layout.html:107
+#: templates/layout.html:106
 msgid "Rainbow technologies LTD., 2012"
 msgstr ""
 
@@ -260,43 +260,51 @@ msgstr ""
 msgid "Incorrect employee id"
 msgstr ""
 
-#: templates/office.html:74
-msgid "File name"
+#: templates/office.html:65
+msgid "Show text files"
 msgstr ""
 
-#: templates/office.html:75
-msgid "Actions"
+#: templates/office.html:67
+msgid "Hide text files"
 msgstr ""
 
-#: templates/office.html:84
+#: templates/office.html:94
+msgid "No files uploaded."
+msgstr ""
+
+#: templates/office.html:99
+msgid "Uploaded files"
+msgstr ""
+
+#: templates/office.html:114
 msgid "Download"
 msgstr ""
 
-#: templates/office.html:85
+#: templates/office.html:115
 msgid "Calculate funding plan for single employee"
 msgstr ""
 
-#: templates/office.html:85
+#: templates/office.html:115
 msgid "Calculate employee"
 msgstr ""
 
-#: templates/office.html:86
+#: templates/office.html:116
 msgid "Calculate overall funding plan"
 msgstr ""
 
-#: templates/office.html:86
+#: templates/office.html:116
 msgid "Calculate plan"
 msgstr ""
 
-#: templates/office.html:93
+#: templates/office.html:123
 msgid "Upload new file"
 msgstr ""
 
-#: templates/office.html:95
+#: templates/office.html:125
 msgid "Close"
 msgstr ""
 
-#: templates/office.html:100
+#: templates/office.html:130
 msgid "Submit"
 msgstr ""
 
