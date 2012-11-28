@@ -27,6 +27,9 @@
 			padding-top: 0;
 			padding-bottom: 0;
 		}
+		.navbar-fixed-bottom {
+			margin-bottom: -10px; /* umad, bro */
+		}
 	</style>
 
     <script src="//ajax.googleapis.com/ajax/libs/jquery/1.7.2/jquery.js"></script>
@@ -90,10 +93,18 @@
   </div><!--./navbar-inner-->
 </div><!--./navbar-->
 
-<footer>
-  {% if curr_url != '/tos' %}
-  <p><a href="/tos">{{ _('Terms of service') }}</a></p>
-  {% endif %}
-  <p>&copy; {{ _('Rainbow technologies LTD., 2012') }}</p>
+<footer class="navbar navbar-fixed-bottom">
+	<div class="navbar-inner">
+		<div class="container">
+			<p>
+				{% if curr_url != '/tos' %}
+					<a href="/tos">{{ _('Terms of service') }}</a>
+				{% else %}
+					<br />
+				{% endif %}
+			</p>
+			<p>&copy; {{ _('Rainbow technologies LTD., 2012') }}</p>
+		</div>
+	</div>
 </footer>
 {% endblock %}
