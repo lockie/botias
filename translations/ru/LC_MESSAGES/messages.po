@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version:  git\n"
 "Report-Msgid-Bugs-To: awkravchuk@gmail.com\n"
-"POT-Creation-Date: 2012-11-24 20:55+0400\n"
+"POT-Creation-Date: 2012-11-28 17:59+0400\n"
 "PO-Revision-Date: 2012-10-16 18:49+0400\n"
 "Last-Translator: Andrew Kravchuk <awkravchuk@gmail.com>\n"
 "Language-Team: ru <LL@li.org>\n"
@@ -31,113 +31,113 @@ msgstr "Ошибка: файл не отправлен. <a href=\"/submit\">За
 msgid "Error: %(error)s. Try fixing your file."
 msgstr "Ошибка: %(error)s. Попробуйте другой файл."
 
-#: application.py:152
+#: application.py:155
 #, python-format
 msgid "Error: %(error)s. Contact administration."
 msgstr "Ошибка: %(error)s. Свяжитесь с администрацией."
 
-#: application.py:159
+#: application.py:162
 msgid "Error: no employee id given"
 msgstr "Ошибка: не указан № работника"
 
-#: application.py:181
+#: application.py:184
 msgid "File uploaded successfully"
 msgstr "Файл загружен на сервер"
 
-#: application.py:183
+#: application.py:186
 msgid "Files of this type are not allowed to upload"
 msgstr "Файлы предоставленного типа не разрешены для загрузки"
 
-#: application.py:217 templates/layout.html:83 templates/register.html:18
+#: application.py:220 templates/layout.html:86 templates/register.html:18
 msgid "Register"
 msgstr "Регистрация"
 
-#: application.py:222
+#: application.py:225
 msgid "Already authenticated"
 msgstr "Вы уже вошли"
 
-#: application.py:240
+#: application.py:243
 msgid "Authentication failed. Check login and password."
 msgstr "Не удалось войти. Проверьте логин и пароль."
 
-#: application.py:241 templates/login.html:4 templates/login.html:14
+#: application.py:244 templates/login.html:4 templates/login.html:14
 msgid "Login"
 msgstr "Вход"
 
-#: application.py:249
+#: application.py:252
 msgid "You have logged out"
 msgstr "Вы вышли"
 
-#: application.py:254
+#: application.py:257
 msgid "Please authorize to access this page"
 msgstr "Пожалуйста, авторизуйтесь для доступа к запрошенной странице"
 
-#: application.py:263 templates/layout.html:73 templates/office.html:68
+#: application.py:266 templates/layout.html:76 templates/office.html:68
 msgid "My office"
 msgstr "Мой кабинет"
 
-#: application.py:281 templates/layout.html:74 templates/preferences.html:16
+#: application.py:284 templates/layout.html:77 templates/preferences.html:16
 msgid "Preferences"
 msgstr "Настройки"
 
-#: application.py:287 templates/layout.html:63 templates/layout.html:95
+#: application.py:290 templates/layout.html:66 templates/layout.html:101
 #: templates/tos.html:5
 msgid "Terms of service"
 msgstr "Условия использования"
 
-#: application.py:291 templates/about.html:5 templates/layout.html:59
+#: application.py:294 templates/about.html:5 templates/layout.html:62
 msgid "About service"
 msgstr "О сервисе"
 
-#: application.py:297 templates/docs.html:5 templates/layout.html:62
+#: application.py:300 templates/docs.html:5 templates/layout.html:65
 msgid "Documentation"
 msgstr "Документы"
 
-#: application.py:301 templates/faq.html:5 templates/layout.html:61
+#: application.py:304 templates/faq.html:5 templates/layout.html:64
 msgid "Frequently asked questions"
 msgstr "Вопросы и ответы"
 
-#: parse.py:30
+#: parse.py:29
 #, python-format
 msgid "Invalid year in sheet name: \"%(name)s\""
 msgstr "Некорректный год в названии листа: \"%(name)s\""
 
-#: parse.py:34
+#: parse.py:33
 #, python-format
 msgid "Invalid year: %(year)s"
 msgstr "Некорректный год: %(year)s"
 
-#: parse.py:45
+#: parse.py:44
 #, python-format
 msgid "No record with id %(id)d for year %(year)d"
 msgstr "Не найдена запись для работника № %(id)d за год %(year)d"
 
-#: parse.py:54
+#: parse.py:53
 #, python-format
 msgid "Invalid gender: %(gender)s"
 msgstr "Некорректный пол: %(gender)s"
 
-#: parse.py:60
+#: parse.py:59
 #, python-format
 msgid "Invalid birth date: %(day)d.%(month)d.%(year)d"
 msgstr "Некорректная дата рождения: %(day)d.%(month)d.%(year)d"
 
-#: parse.py:67
+#: parse.py:66
 #, python-format
 msgid "Invalid salary: %(salary)s"
 msgstr "Некорректная заработная плата: %(salary)s"
 
-#: parse.py:79 parse.py:81
+#: parse.py:78 parse.py:80
 #, python-format
 msgid "Invalid overall experience: \"%(exp)s\""
 msgstr "Некорректный общий стаж: \"%(exp)s\""
 
-#: parse.py:92 parse.py:94
+#: parse.py:91 parse.py:93
 #, python-format
 msgid "Invalid company experience: \"%(exp)s\""
 msgstr "Некорректный стаж в компании: \"%(exp)s\""
 
-#: parse.py:160
+#: parse.py:159
 #, python-format
 msgid "Invalid sheets count (%(count)d), must be 4"
 msgstr "Некорректное количество листов (%(count)d), требуется 4"
@@ -228,22 +228,30 @@ msgstr "Превышен интервал ожидания для соедине
 msgid "No request has been sent to server. Try again."
 msgstr "Запрос серверу не был отправлен. Повторите попытку."
 
-#: templates/layout.html:71
+#: templates/layout.html:74
 #, python-format
 msgid "Welcome, %(name)s"
 msgstr "Добро пожаловать, %(name)s"
 
-#: templates/layout.html:76
+#: templates/layout.html:79
 msgid "Log out"
 msgstr "Выход"
 
-#: templates/layout.html:80
+#: templates/layout.html:83
 msgid "Please authorize"
 msgstr "Пожалуйста, представьтесь системе"
 
-#: templates/layout.html:82
+#: templates/layout.html:85
 msgid "Log in"
 msgstr "Вход"
+
+#: templates/layout.html:106
+msgid "Version "
+msgstr "Версия "
+
+#: templates/layout.html:107
+msgid "Rainbow technologies LTD., 2012"
+msgstr ""
 
 #: templates/login.html:11
 msgid "Password"
@@ -375,11 +383,11 @@ msgstr "Неизвестная ошибка: "
 msgid "Contact administration."
 msgstr "Свяжитесь с администрацией."
 
-#: templates/result.html:156
+#: templates/result.html:155
 msgid "Processing data..."
 msgstr "Обработка данных..."
 
-#: templates/result.html:160
+#: templates/result.html:159
 msgid "Try again"
 msgstr "Повторить попытку"
 

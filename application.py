@@ -20,6 +20,7 @@ from registerform import RegisterForm
 from preferencesform import ProfileForm, CalcForm, ActuarialForm
 from rpcclient import RpcClient
 from parse import parse_file
+from version import __version__
 
 
 # some application parameters
@@ -38,6 +39,10 @@ login_manager.setup_app(app)
 login_manager.login_view = 'login'
 rpc = RpcClient('server')
 
+# version
+@app.template_filter('version')
+def get_version(s):
+    return s + __version__
 
 # l10n
 @babel.localeselector
