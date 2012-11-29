@@ -20,7 +20,6 @@ from registerform import RegisterForm
 from preferencesform import ProfileForm, CalcForm, ActuarialForm
 from rpcclient import RpcClient
 from parse import parse_file
-from version import __version__
 
 
 # some application parameters
@@ -47,7 +46,8 @@ def init_app(**kwargs):
 # version
 @app.template_filter('version')
 def get_version(s):
-    return s + __version__
+	import pkg_resources
+	return s + pkg_resources.require("Botias")[0].version
 
 # l10n
 @babel.localeselector

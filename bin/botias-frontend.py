@@ -7,6 +7,7 @@ from botias import init_app
 #	return ['Hello, world!']
 
 if __name__ == '__main__':
+	import os.path
 	from tornado.options import parse_config_file, parse_command_line, options, define
 	from tornado.wsgi import WSGIContainer
 	from tornado.httpserver import HTTPServer
@@ -27,8 +28,8 @@ if __name__ == '__main__':
 		metavar="STRING",
 		type=str)
 	define("db",
-		default="sqlite:///db/users.db",
-		help="Database URI (SQLAlchemy format); defaults to sqlite:///db/users.db",
+		default="sqlite://",
+		help="Database URI (SQLAlchemy format)",
 		metavar="URI",
 		type=str)
 	define("upload",
@@ -41,7 +42,8 @@ if __name__ == '__main__':
 		help="Maximum allowed upload file size, bytes",
 		metavar="SIZE",
 		type=int)
-	parse_config_file("app.conf")
+	if os.path.exists("app.conf"):
+		parse_config_file("app.conf")
 	parse_command_line()
 
 	app = init_app(

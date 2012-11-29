@@ -1,3 +1,0 @@
-# from ebuilds: dev-python/flask-babel dev-python/flask www-servers/tornado
-# from pip:
-pip install pika==0.9.7 Flask-Login Flask-WTF flask-sqlalchemy xlrd bson Flask-Bootstrap

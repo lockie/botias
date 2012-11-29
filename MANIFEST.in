@@ -1,0 +1,13 @@
+include version.py
+include *.txt
+include RELEASE-VERSION
+recursive-include botias/templates *
+recursive-include botias/static *
+recursive-include botias/translations *.mo
+global-exclude .git*
+global-exclude README*
+prune botias/static/jquery-handsontable/demo
+prune botias/static/jquery-handsontable/test
+prune botias/static/bootbox/tests
+prune botias/static/noty/demo
+exclude botias/static/bootbox/build.xml
