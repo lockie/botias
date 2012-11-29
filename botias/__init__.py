@@ -33,11 +33,16 @@ app = Flask(__name__)
 app.config.from_object(__name__)
 babel = Babel(app)
 Bootstrap(app)
-db = SQLAlchemy(app)
+db = SQLAlchemy()
 login_manager = LoginManager()
 login_manager.setup_app(app)
 login_manager.login_view = 'login'
 rpc = RpcClient('server')
+
+def init_app(**kwargs):
+	app.config.update(kwargs)
+	db.init_app(app)
+	return app
 
 # version
 @app.template_filter('version')
@@ -302,8 +307,4 @@ def docs():
 @app.route('/faq')
 def faq():
 	return render_template('faq.html', title=gettext('Frequently asked questions'))
-
-
-if __name__ == '__main__':
-	app.run()
 

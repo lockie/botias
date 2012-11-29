@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PROJECT VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2012-11-28 20:16+0400\n"
+"POT-Creation-Date: 2012-11-29 05:12+0400\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -16,85 +16,6 @@ msgstr ""
 "Content-Type: text/plain; charset=utf-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Generated-By: Babel 0.9.6\n"
-
-#: application.py:122
-msgid "Error: no employee id given."
-msgstr ""
-
-#: application.py:126
-msgid "Error: no file submitted! <a href=\"/office\">Submit</a> one."
-msgstr ""
-
-#: application.py:133
-#, python-format
-msgid "Error: %(error)s. Try fixing your file."
-msgstr ""
-
-#: application.py:155
-#, python-format
-msgid "Error: %(error)s. Contact administration."
-msgstr ""
-
-#: application.py:162
-msgid "Error: no employee id given"
-msgstr ""
-
-#: application.py:184
-msgid "File uploaded successfully"
-msgstr ""
-
-#: application.py:186
-msgid "Files of this type are not allowed to upload"
-msgstr ""
-
-#: application.py:220 templates/layout.html:86 templates/register.html:18
-msgid "Register"
-msgstr ""
-
-#: application.py:225
-msgid "Already authenticated"
-msgstr ""
-
-#: application.py:243
-msgid "Authentication failed. Check login and password."
-msgstr ""
-
-#: application.py:244 templates/login.html:4 templates/login.html:14
-msgid "Login"
-msgstr ""
-
-#: application.py:252
-msgid "You have logged out"
-msgstr ""
-
-#: application.py:257
-msgid "Please authorize to access this page"
-msgstr ""
-
-#: application.py:266 templates/layout.html:76 templates/office.html:79
-msgid "My office"
-msgstr ""
-
-#: application.py:284 templates/layout.html:77 templates/preferences.html:16
-msgid "Preferences"
-msgstr ""
-
-#: application.py:290 templates/layout.html:66 templates/layout.html:101
-#: templates/tos.html:5
-msgid "Terms of service"
-msgstr ""
-
-#: application.py:294 templates/about.html:5 templates/layout.html:62
-msgid "About service"
-msgstr ""
-
-#: application.py:300 templates/docs.html:5 templates/layout.html:65
-msgid "Documentation"
-msgstr ""
-
-#: application.py:304 templates/faq.html:5 templates/layout.html:64
-msgid "Frequently asked questions"
-msgstr ""
 
 #: parse.py:29
 #, python-format
@@ -199,7 +120,7 @@ msgstr ""
 msgid "Approx. beneficiary count"
 msgstr ""
 
-#: registerform.py:31 templates/login.html:8
+#: registerform.py:31 botias/templates/login.html:8
 msgid "E-mail"
 msgstr ""
 
@@ -223,172 +144,258 @@ msgstr ""
 msgid "No request has been sent to server. Try again."
 msgstr ""
 
-#: templates/layout.html:74
+#: botias/__init__.py:128
+msgid "Error: no employee id given."
+msgstr ""
+
+#: botias/__init__.py:132
+msgid "Error: no file submitted! <a href=\"/office\">Submit</a> one."
+msgstr ""
+
+#: botias/__init__.py:139
+#, python-format
+msgid "Error: %(error)s. Try fixing your file."
+msgstr ""
+
+#: botias/__init__.py:161
+#, python-format
+msgid "Error: %(error)s. Contact administration."
+msgstr ""
+
+#: botias/__init__.py:168
+msgid "Error: no employee id given"
+msgstr ""
+
+#: botias/__init__.py:190
+msgid "File uploaded successfully"
+msgstr ""
+
+#: botias/__init__.py:192
+msgid "Files of this type are not allowed to upload"
+msgstr ""
+
+#: botias/__init__.py:226 botias/templates/layout.html:86
+#: botias/templates/register.html:18
+msgid "Register"
+msgstr ""
+
+#: botias/__init__.py:231
+msgid "Already authenticated"
+msgstr ""
+
+#: botias/__init__.py:249
+msgid "Authentication failed. Check login and password."
+msgstr ""
+
+#: botias/__init__.py:250 botias/templates/login.html:4
+#: botias/templates/login.html:14
+msgid "Login"
+msgstr ""
+
+#: botias/__init__.py:258
+msgid "You have logged out"
+msgstr ""
+
+#: botias/__init__.py:263
+msgid "Please authorize to access this page"
+msgstr ""
+
+#: botias/__init__.py:272 botias/templates/layout.html:76
+#: botias/templates/office.html:79
+msgid "My office"
+msgstr ""
+
+#: botias/__init__.py:290 botias/templates/layout.html:77
+#: botias/templates/preferences.html:16
+msgid "Preferences"
+msgstr ""
+
+#: botias/__init__.py:296 botias/templates/layout.html:66
+#: botias/templates/layout.html:101 botias/templates/tos.html:5
+msgid "Terms of service"
+msgstr ""
+
+#: botias/__init__.py:300 botias/templates/about.html:5
+#: botias/templates/layout.html:62
+msgid "About service"
+msgstr ""
+
+#: botias/__init__.py:306 botias/templates/docs.html:5
+#: botias/templates/layout.html:65
+msgid "Documentation"
+msgstr ""
+
+#: botias/__init__.py:310 botias/templates/faq.html:5
+#: botias/templates/layout.html:64
+msgid "Frequently asked questions"
+msgstr ""
+
+#: botias/templates/layout.html:74
 #, python-format
 msgid "Welcome, %(name)s"
 msgstr ""
 
-#: templates/layout.html:79
+#: botias/templates/layout.html:79
 msgid "Log out"
 msgstr ""
 
-#: templates/layout.html:83
+#: botias/templates/layout.html:83
 msgid "Please authorize"
 msgstr ""
 
-#: templates/layout.html:85
+#: botias/templates/layout.html:85
 msgid "Log in"
 msgstr ""
 
-#: templates/layout.html:106
+#: botias/templates/layout.html:106
 msgid "Version "
 msgstr ""
 
-#: templates/layout.html:106
+#: botias/templates/layout.html:106
 msgid "Rainbow technologies LTD., 2012"
 msgstr ""
 
-#: templates/login.html:11
+#: botias/templates/login.html:11
 msgid "Password"
 msgstr ""
 
-#: templates/office.html:43
+#: botias/templates/office.html:43
 msgid "Enter employee id"
 msgstr ""
 
-#: templates/office.html:49
+#: botias/templates/office.html:49
 msgid "Incorrect employee id"
 msgstr ""
 
-#: templates/office.html:65
+#: botias/templates/office.html:65
 msgid "Show text files"
 msgstr ""
 
-#: templates/office.html:67
+#: botias/templates/office.html:67
 msgid "Hide text files"
 msgstr ""
 
-#: templates/office.html:94
+#: botias/templates/office.html:94
 msgid "No files uploaded."
 msgstr ""
 
-#: templates/office.html:99
+#: botias/templates/office.html:99
 msgid "Uploaded files"
 msgstr ""
 
-#: templates/office.html:114
+#: botias/templates/office.html:114
 msgid "Download"
 msgstr ""
 
-#: templates/office.html:115
+#: botias/templates/office.html:115
 msgid "Calculate funding plan for single employee"
 msgstr ""
 
-#: templates/office.html:115
+#: botias/templates/office.html:115
 msgid "Calculate employee"
 msgstr ""
 
-#: templates/office.html:116
+#: botias/templates/office.html:116
 msgid "Calculate overall funding plan"
 msgstr ""
 
-#: templates/office.html:116
+#: botias/templates/office.html:116
 msgid "Calculate plan"
 msgstr ""
 
-#: templates/office.html:123
+#: botias/templates/office.html:123
 msgid "Upload new file"
 msgstr ""
 
-#: templates/office.html:125
+#: botias/templates/office.html:125
 msgid "Close"
 msgstr ""
 
-#: templates/office.html:130
+#: botias/templates/office.html:130
 msgid "Submit"
 msgstr ""
 
-#: templates/preferences.html:19
+#: botias/templates/preferences.html:19
 msgid "Profile parameters"
 msgstr ""
 
-#: templates/preferences.html:20
+#: botias/templates/preferences.html:20
 msgid "Calculation parameters"
 msgstr ""
 
-#: templates/preferences.html:21
+#: botias/templates/preferences.html:21
 msgid "Actuarial assumptions"
 msgstr ""
 
-#: templates/preferences.html:31 templates/preferences.html:43
-#: templates/preferences.html:55
+#: botias/templates/preferences.html:31 botias/templates/preferences.html:43
+#: botias/templates/preferences.html:55
 msgid "Save changes"
 msgstr ""
 
-#: templates/preferences.html:50
+#: botias/templates/preferences.html:50
 msgid "Discount rates"
 msgstr ""
 
-#: templates/register.html:8
+#: botias/templates/register.html:8
 msgid "Individual code"
 msgstr ""
 
-#: templates/register.html:10
+#: botias/templates/register.html:10
 msgid "Corporate code"
 msgstr ""
 
-#: templates/register.html:29
+#: botias/templates/register.html:29
 msgid "Register!"
 msgstr ""
 
-#: templates/registered.html:5
+#: botias/templates/registered.html:5
 msgid "Registration successeful"
 msgstr ""
 
-#: templates/registered.html:8
+#: botias/templates/registered.html:8
 #, python-format
 msgid ""
 "Thank you, %(name)s! We've sent you an email to %(email)s with your "
 "password. If you dont get it, check 'spam' folder."
 msgstr ""
 
-#: templates/result.html:68
+#: botias/templates/result.html:68
 msgid "Connection error. Contact administration."
 msgstr ""
 
-#: templates/result.html:70
+#: botias/templates/result.html:70
 msgid "Page not found. Contact administration"
 msgstr ""
 
-#: templates/result.html:72
+#: botias/templates/result.html:72
 msgid "Internal server error. Contact administration."
 msgstr ""
 
-#: templates/result.html:74
+#: botias/templates/result.html:74
 msgid "Incorrect server response. Contact administration."
 msgstr ""
 
-#: templates/result.html:76
+#: botias/templates/result.html:76
 msgid "Response timed out. Contact administration."
 msgstr ""
 
-#: templates/result.html:78
+#: botias/templates/result.html:78
 msgid "AJAX request aborted."
 msgstr ""
 
-#: templates/result.html:80
+#: botias/templates/result.html:80
 msgid "Unknown error: "
 msgstr ""
 
-#: templates/result.html:80
+#: botias/templates/result.html:80
 msgid "Contact administration."
 msgstr ""
 
-#: templates/result.html:155
+#: botias/templates/result.html:155
 msgid "Processing data..."
 msgstr ""
 
-#: templates/result.html:159
+#: botias/templates/result.html:159
 msgid "Try again"
 msgstr ""
 

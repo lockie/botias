@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version:  git\n"
 "Report-Msgid-Bugs-To: awkravchuk@gmail.com\n"
-"POT-Creation-Date: 2012-11-28 20:16+0400\n"
+"POT-Creation-Date: 2012-11-29 05:12+0400\n"
 "PO-Revision-Date: 2012-10-16 18:49+0400\n"
 "Last-Translator: Andrew Kravchuk <awkravchuk@gmail.com>\n"
 "Language-Team: ru <LL@li.org>\n"
@@ -17,85 +17,6 @@ msgstr ""
 "Content-Type: text/plain; charset=utf-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Generated-By: Babel 0.9.6\n"
-
-#: application.py:122
-msgid "Error: no employee id given."
-msgstr "Ошибка: не указан № работника"
-
-#: application.py:126
-msgid "Error: no file submitted! <a href=\"/office\">Submit</a> one."
-msgstr "Ошибка: файл не отправлен. <a href=\"/submit\">Загрузите</a> файл."
-
-#: application.py:133
-#, python-format
-msgid "Error: %(error)s. Try fixing your file."
-msgstr "Ошибка: %(error)s. Попробуйте другой файл."
-
-#: application.py:155
-#, python-format
-msgid "Error: %(error)s. Contact administration."
-msgstr "Ошибка: %(error)s. Свяжитесь с администрацией."
-
-#: application.py:162
-msgid "Error: no employee id given"
-msgstr "Ошибка: не указан № работника"
-
-#: application.py:184
-msgid "File uploaded successfully"
-msgstr "Файл загружен на сервер"
-
-#: application.py:186
-msgid "Files of this type are not allowed to upload"
-msgstr "Файлы предоставленного типа не разрешены для загрузки"
-
-#: application.py:220 templates/layout.html:86 templates/register.html:18
-msgid "Register"
-msgstr "Регистрация"
-
-#: application.py:225
-msgid "Already authenticated"
-msgstr "Вы уже вошли"
-
-#: application.py:243
-msgid "Authentication failed. Check login and password."
-msgstr "Не удалось войти. Проверьте логин и пароль."
-
-#: application.py:244 templates/login.html:4 templates/login.html:14
-msgid "Login"
-msgstr "Вход"
-
-#: application.py:252
-msgid "You have logged out"
-msgstr "Вы вышли"
-
-#: application.py:257
-msgid "Please authorize to access this page"
-msgstr "Пожалуйста, авторизуйтесь для доступа к запрошенной странице"
-
-#: application.py:266 templates/layout.html:76 templates/office.html:79
-msgid "My office"
-msgstr "Мой кабинет"
-
-#: application.py:284 templates/layout.html:77 templates/preferences.html:16
-msgid "Preferences"
-msgstr "Настройки"
-
-#: application.py:290 templates/layout.html:66 templates/layout.html:101
-#: templates/tos.html:5
-msgid "Terms of service"
-msgstr "Условия использования"
-
-#: application.py:294 templates/about.html:5 templates/layout.html:62
-msgid "About service"
-msgstr "О сервисе"
-
-#: application.py:300 templates/docs.html:5 templates/layout.html:65
-msgid "Documentation"
-msgstr "Документы"
-
-#: application.py:304 templates/faq.html:5 templates/layout.html:64
-msgid "Frequently asked questions"
-msgstr "Вопросы и ответы"
 
 #: parse.py:29
 #, python-format
@@ -202,7 +123,7 @@ msgstr "для выхода на IPO"
 msgid "Approx. beneficiary count"
 msgstr "Примерное количество бенефициаров "
 
-#: registerform.py:31 templates/login.html:8
+#: registerform.py:31 botias/templates/login.html:8
 msgid "E-mail"
 msgstr "Адрес e-mail"
 
@@ -228,129 +149,215 @@ msgstr "Превышен интервал ожидания для соедине
 msgid "No request has been sent to server. Try again."
 msgstr "Запрос серверу не был отправлен. Повторите попытку."
 
-#: templates/layout.html:74
+#: botias/__init__.py:128
+msgid "Error: no employee id given."
+msgstr "Ошибка: не указан № работника"
+
+#: botias/__init__.py:132
+msgid "Error: no file submitted! <a href=\"/office\">Submit</a> one."
+msgstr "Ошибка: файл не отправлен. <a href=\"/submit\">Загрузите</a> файл."
+
+#: botias/__init__.py:139
+#, python-format
+msgid "Error: %(error)s. Try fixing your file."
+msgstr "Ошибка: %(error)s. Попробуйте другой файл."
+
+#: botias/__init__.py:161
+#, python-format
+msgid "Error: %(error)s. Contact administration."
+msgstr "Ошибка: %(error)s. Свяжитесь с администрацией."
+
+#: botias/__init__.py:168
+msgid "Error: no employee id given"
+msgstr "Ошибка: не указан № работника"
+
+#: botias/__init__.py:190
+msgid "File uploaded successfully"
+msgstr "Файл загружен на сервер"
+
+#: botias/__init__.py:192
+msgid "Files of this type are not allowed to upload"
+msgstr "Файлы предоставленного типа не разрешены для загрузки"
+
+#: botias/__init__.py:226 botias/templates/layout.html:86
+#: botias/templates/register.html:18
+msgid "Register"
+msgstr "Регистрация"
+
+#: botias/__init__.py:231
+msgid "Already authenticated"
+msgstr "Вы уже вошли"
+
+#: botias/__init__.py:249
+msgid "Authentication failed. Check login and password."
+msgstr "Не удалось войти. Проверьте логин и пароль."
+
+#: botias/__init__.py:250 botias/templates/login.html:4
+#: botias/templates/login.html:14
+msgid "Login"
+msgstr "Вход"
+
+#: botias/__init__.py:258
+msgid "You have logged out"
+msgstr "Вы вышли"
+
+#: botias/__init__.py:263
+msgid "Please authorize to access this page"
+msgstr "Пожалуйста, авторизуйтесь для доступа к запрошенной странице"
+
+#: botias/__init__.py:272 botias/templates/layout.html:76
+#: botias/templates/office.html:79
+msgid "My office"
+msgstr "Мой кабинет"
+
+#: botias/__init__.py:290 botias/templates/layout.html:77
+#: botias/templates/preferences.html:16
+msgid "Preferences"
+msgstr "Настройки"
+
+#: botias/__init__.py:296 botias/templates/layout.html:66
+#: botias/templates/layout.html:101 botias/templates/tos.html:5
+msgid "Terms of service"
+msgstr "Условия использования"
+
+#: botias/__init__.py:300 botias/templates/about.html:5
+#: botias/templates/layout.html:62
+msgid "About service"
+msgstr "О сервисе"
+
+#: botias/__init__.py:306 botias/templates/docs.html:5
+#: botias/templates/layout.html:65
+msgid "Documentation"
+msgstr "Документы"
+
+#: botias/__init__.py:310 botias/templates/faq.html:5
+#: botias/templates/layout.html:64
+msgid "Frequently asked questions"
+msgstr "Вопросы и ответы"
+
+#: botias/templates/layout.html:74
 #, python-format
 msgid "Welcome, %(name)s"
 msgstr "Добро пожаловать, %(name)s"
 
-#: templates/layout.html:79
+#: botias/templates/layout.html:79
 msgid "Log out"
 msgstr "Выход"
 
-#: templates/layout.html:83
+#: botias/templates/layout.html:83
 msgid "Please authorize"
 msgstr "Пожалуйста, представьтесь системе"
 
-#: templates/layout.html:85
+#: botias/templates/layout.html:85
 msgid "Log in"
 msgstr "Вход"
 
-#: templates/layout.html:106
+#: botias/templates/layout.html:106
 msgid "Version "
 msgstr "Версия "
 
-#: templates/layout.html:106
+#: botias/templates/layout.html:106
 msgid "Rainbow technologies LTD., 2012"
 msgstr ""
 
-#: templates/login.html:11
+#: botias/templates/login.html:11
 msgid "Password"
 msgstr "Пароль"
 
-#: templates/office.html:43
+#: botias/templates/office.html:43
 msgid "Enter employee id"
 msgstr "Введите № работника"
 
-#: templates/office.html:49
+#: botias/templates/office.html:49
 msgid "Incorrect employee id"
 msgstr "Некорректный № работника"
 
-#: templates/office.html:65
+#: botias/templates/office.html:65
 msgid "Show text files"
 msgstr "Показать тестовые файлы"
 
-#: templates/office.html:67
+#: botias/templates/office.html:67
 msgid "Hide text files"
 msgstr "Скрыть тестовые файлы"
 
-#: templates/office.html:94
+#: botias/templates/office.html:94
 msgid "No files uploaded."
 msgstr "Файлы не загружены."
 
-#: templates/office.html:99
+#: botias/templates/office.html:99
 msgid "Uploaded files"
 msgstr "Загруженные файлы"
 
-#: templates/office.html:114
+#: botias/templates/office.html:114
 msgid "Download"
 msgstr "Скачать"
 
-#: templates/office.html:115
+#: botias/templates/office.html:115
 msgid "Calculate funding plan for single employee"
 msgstr "Рассчитать план финансирования для одного работника"
 
-#: templates/office.html:115
+#: botias/templates/office.html:115
 msgid "Calculate employee"
 msgstr "Рассчитать работника"
 
-#: templates/office.html:116
+#: botias/templates/office.html:116
 msgid "Calculate overall funding plan"
 msgstr "Рассчитать общий план финансирования"
 
-#: templates/office.html:116
+#: botias/templates/office.html:116
 msgid "Calculate plan"
 msgstr "Рассчитать план"
 
-#: templates/office.html:123
+#: botias/templates/office.html:123
 msgid "Upload new file"
 msgstr "Загрузить новый файл"
 
-#: templates/office.html:125
+#: botias/templates/office.html:125
 msgid "Close"
 msgstr "Закрыть"
 
-#: templates/office.html:130
+#: botias/templates/office.html:130
 msgid "Submit"
 msgstr "Отправить"
 
-#: templates/preferences.html:19
+#: botias/templates/preferences.html:19
 msgid "Profile parameters"
 msgstr "Параметры профиля"
 
-#: templates/preferences.html:20
+#: botias/templates/preferences.html:20
 msgid "Calculation parameters"
 msgstr "Параметры расчёта"
 
-#: templates/preferences.html:21
+#: botias/templates/preferences.html:21
 msgid "Actuarial assumptions"
 msgstr "Актуарные предположения"
 
-#: templates/preferences.html:31 templates/preferences.html:43
-#: templates/preferences.html:55
+#: botias/templates/preferences.html:31 botias/templates/preferences.html:43
+#: botias/templates/preferences.html:55
 msgid "Save changes"
 msgstr "Сохранить изменения"
 
-#: templates/preferences.html:50
+#: botias/templates/preferences.html:50
 msgid "Discount rates"
 msgstr "Ставки дисконтирования"
 
-#: templates/register.html:8
+#: botias/templates/register.html:8
 msgid "Individual code"
 msgstr "ИНН"
 
-#: templates/register.html:10
+#: botias/templates/register.html:10
 msgid "Corporate code"
 msgstr "ОКПО (ЕГРПОУ)"
 
-#: templates/register.html:29
+#: botias/templates/register.html:29
 msgid "Register!"
 msgstr "Регистрация"
 
-#: templates/registered.html:5
+#: botias/templates/registered.html:5
 msgid "Registration successeful"
 msgstr "Регистрация произведена успешно"
 
-#: templates/registered.html:8
+#: botias/templates/registered.html:8
 #, python-format
 msgid ""
 "Thank you, %(name)s! We've sent you an email to %(email)s with your "
@@ -359,43 +366,43 @@ msgstr ""
 "Спасибо, %(name)s! Мы выслали письмо по адресу %(email)s с вашим паролем."
 " Если вы его не получили, проверьте папку 'спам'."
 
-#: templates/result.html:68
+#: botias/templates/result.html:68
 msgid "Connection error. Contact administration."
 msgstr "Ошибка соединения. Свяжитесь с администрацией."
 
-#: templates/result.html:70
+#: botias/templates/result.html:70
 msgid "Page not found. Contact administration"
 msgstr "Страница не найдена. Свяжитесь с администрацией."
 
-#: templates/result.html:72
+#: botias/templates/result.html:72
 msgid "Internal server error. Contact administration."
 msgstr "Внутренняя ошибка сервера. Свяжитесь с администрацией."
 
-#: templates/result.html:74
+#: botias/templates/result.html:74
 msgid "Incorrect server response. Contact administration."
 msgstr "Сервер некорректно ответил на запрос. Свяжитесь с администрацией."
 
-#: templates/result.html:76
+#: botias/templates/result.html:76
 msgid "Response timed out. Contact administration."
 msgstr "Превышен интервал ожидания для запроса. Свяжитесь с администрацией."
 
-#: templates/result.html:78
+#: botias/templates/result.html:78
 msgid "AJAX request aborted."
 msgstr "AJAX-запрос отменён."
 
-#: templates/result.html:80
+#: botias/templates/result.html:80
 msgid "Unknown error: "
 msgstr "Неизвестная ошибка: "
 
-#: templates/result.html:80
+#: botias/templates/result.html:80
 msgid "Contact administration."
 msgstr "Свяжитесь с администрацией."
 
-#: templates/result.html:155
+#: botias/templates/result.html:155
 msgid "Processing data..."
 msgstr "Обработка данных..."
 
-#: templates/result.html:159
+#: botias/templates/result.html:159
 msgid "Try again"
 msgstr "Повторить попытку"
 

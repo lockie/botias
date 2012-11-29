@@ -1,9 +1,9 @@
-[submodule "static/noty"]
-	path = static/noty
+[submodule "botias/static/noty"]
+	path = botias/static/noty
 	url = git://github.com/needim/noty.git
-[submodule "static/jquery-handsontable"]
-	path = static/jquery-handsontable
+[submodule "botias/static/jquery-handsontable"]
+	path = botias/static/jquery-handsontable
 	url = git://github.com/warpech/jquery-handsontable.git
-[submodule "static/bootbox"]
-	path = static/bootbox
+[submodule "botias/static/bootbox"]
+	path = botias/static/bootbox
 	url = git://github.com/makeusabrew/bootbox.git

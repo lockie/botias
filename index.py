@@ -1,6 +1,6 @@
 #!/usr/bin/env python
 
-from application import app
+from botias import init_app
 
 #def app(environ, start_response): # simple test; works always
 #	start_response('200 OK', [('Content-Type', 'text/plain')])
@@ -44,14 +44,14 @@ if __name__ == '__main__':
 	parse_config_file("app.conf")
 	parse_command_line()
 
-	http_server = HTTPServer(WSGIContainer(app))
-	app.config.update(
+	app = init_app(
 		DEBUG=options.debug,
 		SECRET_KEY=options.secret,
 		SQLALCHEMY_DATABASE_URI=options.db,
 		UPLOAD_FOLDER=options.upload,
 		MAX_CONTENT_LENGTH=options.maxsize
 	)
+	http_server = HTTPServer(WSGIContainer(app))
 	logging.info("Starting Tornado web server on port %s" % options.port)
 	http_server.listen(options.port)
 	if options.debug:
