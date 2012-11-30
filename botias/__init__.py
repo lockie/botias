@@ -41,6 +41,11 @@ rpc = RpcClient('server')
 def init_app(**kwargs):
 	app.config.update(kwargs)
 	db.init_app(app)
+	db.app = app
+	# are we running in-memory DB?
+	if app.config['SQLALCHEMY_DATABASE_URI'] == 'sqlite://':
+		db.create_all()
+		db.session.commit()
 	return app
 
 # version
