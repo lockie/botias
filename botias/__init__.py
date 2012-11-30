@@ -36,16 +36,20 @@ db = SQLAlchemy()
 login_manager = LoginManager()
 login_manager.setup_app(app)
 login_manager.login_view = 'login'
-rpc = RpcClient('server')
+rpc = None
 
 def init_app(**kwargs):
 	app.config.update(kwargs)
+	# init db
 	db.init_app(app)
 	db.app = app
 	# are we running in-memory DB?
 	if app.config['SQLALCHEMY_DATABASE_URI'] == 'sqlite://':
 		db.create_all()
 		db.session.commit()
+	# init backend connection
+	global rpc
+	rpc = RpcClient(app.config['BACKEND_ADDRESS'])
 	return app
 
 # version

@@ -42,6 +42,11 @@ if __name__ == '__main__':
 		help="Maximum allowed upload file size, bytes",
 		metavar="SIZE",
 		type=int)
+	define("backend",
+		default="server",
+		help="Backend hostname/ipaddr or AMQP URI",
+		metavar="ADDR",
+		type=str)
 	if os.path.exists("app.conf"):
 		parse_config_file("app.conf")
 	parse_command_line()
@@ -51,7 +56,8 @@ if __name__ == '__main__':
 		SECRET_KEY=options.secret,
 		SQLALCHEMY_DATABASE_URI=options.db,
 		UPLOAD_FOLDER=options.upload,
-		MAX_CONTENT_LENGTH=options.maxsize
+		MAX_CONTENT_LENGTH=options.maxsize,
+		BACKEND_ADDRESS=options.backend
 	)
 	http_server = HTTPServer(WSGIContainer(app))
 	logging.info("Starting Tornado web server on port %s" % options.port)

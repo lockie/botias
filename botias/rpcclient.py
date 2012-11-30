@@ -1,22 +1,31 @@
 #!/usr/bin/env python
 
-from pika import BasicProperties
+import pika
 from time import time
 from flask.ext.babel import lazy_gettext as _
 
 
 class RpcClient(object):
 	def __init__(self, host, timeout=5):
-		# TODO : handle RabbitMQ non-availability
-		from pika import ConnectionParameters
-		from pika.adapters.tornado_connection import TornadoConnection
-		self.connection = TornadoConnection(
-			ConnectionParameters(host=host),
-			on_open_callback=self.on_connected,
-			stop_ioloop_on_close=False)
+		self.host=host
 		self.timeout = timeout
+		self.connection = None
 		self.responses = {}
 		self.timeouts  = {}
+		self.try_connect()
+
+	def try_connect(self):
+		try:
+			from pika.adapters.tornado_connection import TornadoConnection
+			self.connection = TornadoConnection(
+				pika.ConnectionParameters(
+					host=self.host,
+					connection_attempts=2,
+					socket_timeout=self.timeout),
+				on_open_callback=self.on_connected,
+				stop_ioloop_on_close=False)
+		except pika.exceptions.AMQPConnectionError:
+			pass
 
 	def on_connected(self, connection):
 		self.channel = self.connection.channel(self.on_channel_open)
@@ -38,6 +47,10 @@ class RpcClient(object):
 			self.timeouts.pop(header.correlation_id)
 
 	def call(self, user, data):
+		if self.connection is None:
+			self.try_connect()
+			if self.connection is None:
+				return  _('Connection to server timed out. Try again later.')
 		# generate unique correlation id for each request
 		corr_id = user
 		if corr_id in self.timeouts:
@@ -47,7 +60,7 @@ class RpcClient(object):
 		self.channel.basic_publish(
 			exchange='',
 			routing_key='rpc_queue',
-			properties=BasicProperties(
+			properties=pika.BasicProperties(
 				reply_to=self.callback_queue,
 				correlation_id=corr_id,
 				delivery_mode=2,  # make message persistent
