@@ -6,6 +6,7 @@ recursive-include botias/static *
 recursive-include botias/translations *.mo
 global-exclude .git*
 global-exclude README*
+include README.txt
 prune botias/static/jquery-handsontable/demo
 prune botias/static/jquery-handsontable/test
 prune botias/static/bootbox/tests
