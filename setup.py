@@ -13,7 +13,6 @@ setup(
 	license='commercial',
 	long_description=open('README.txt').read(),
 	packages=['botias',],
-	scripts=['bin/botias-frontend.py',],
 	include_package_data=True,
 	install_requires=[
 		"Babel==0.9.6",

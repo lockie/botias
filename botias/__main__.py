@@ -2,9 +2,6 @@
 
 from botias import init_app
 
-#def app(environ, start_response): # simple test; works always
-#	start_response('200 OK', [('Content-Type', 'text/plain')])
-#	return ['Hello, world!']
 
 if __name__ == '__main__':
 	import os.path
