@@ -214,7 +214,9 @@ def register():
 		purpose = ['edu', 'aud', 'lst', 'ipo'].index(request.form['purpose'])
 		beneficiary = request.form['beneficiary']
 		email = request.form['email']
-		# TODO : check email uniqueness
+		if len(db.session.query(User).filter_by(email=email).all()) != 0:
+			flash(gettext('The user with email %(email)s already exists', email=email), 'error')
+			return redirect(url_for('register'))
 		seed(code)
 		password = ''.join([choice(string.letters + string.digits) for i in range(8)])
 		user = User(name,
