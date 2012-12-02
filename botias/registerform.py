@@ -13,7 +13,7 @@ class RegisterForm(Form):
 		[validators.Required(_('This field is required.')),
 		validators.Length(min=2, max=35, message=_('Wrong length.'))]
 	)
-	individual = BooleanField(_('Individual'),
+	corporate = BooleanField(_('Corporate'),
 		description=_('Are you individual or corporate user'))
 	code = TextField('Code',
 		[validators.Required(_('This field is required.')),

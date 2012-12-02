@@ -79,17 +79,17 @@ class User(db.Model):
 	id = db.Column(db.Integer, primary_key=True)
 	name = db.Column(db.String(25))
 	surname = db.Column(db.String(35))
-	individual = db.Column(db.Boolean())
+	corporate = db.Column(db.Boolean())
 	code = db.Column(db.String(10))
 	purpose = db.Column(db.SmallInteger())
 	beneficiary = db.Column(db.Integer())
 	email = db.Column(db.String(80), unique=True)
 	password = db.Column(db.String(20))
 
-	def __init__(self, name, surname, individual, code, purpose, beneficiary, email, password):
+	def __init__(self, name, surname, corporate, code, purpose, beneficiary, email, password):
 		self.name = name
 		self.surname = surname
-		self.individual = (individual == u'y')
+		self.corporate = corporate
 		self.code = code
 		self.purpose = purpose
 		self.beneficiary = int(beneficiary)
@@ -208,7 +208,7 @@ def register():
 	if form.validate_on_submit():
 		name = request.form['name']
 		surname = request.form['surname']
-		individual = 'individual' in request.form and request.form['individual'] == u'y'
+		corporate = 'corporate' in request.form and request.form['corporate'] == u'y'
 		code = request.form['code']
 		# TODO : check code length
 		purpose = ['edu', 'aud', 'lst', 'ipo'].index(request.form['purpose'])
@@ -221,7 +221,7 @@ def register():
 		password = ''.join([choice(string.letters + string.digits) for i in range(8)])
 		user = User(name,
 			surname,
-			individual,
+			corporate,
 			code,
 			purpose,
 			beneficiary,

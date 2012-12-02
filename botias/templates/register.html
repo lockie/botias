@@ -4,14 +4,15 @@
 <script type="text/javascript">
 	function set_code_label()
 	{
-		if($('input[name=individual]').is(':checked'))
-			$("label[for=code]").html('{{ _("Individual code") }}');
-		else
+		if($('input[name=corporate]').is(':checked'))
 			$("label[for=code]").html('{{ _("Corporate code") }}');
+		else
+			$("label[for=code]").html('{{ _("Individual code") }}');
 	}
 	$(function () {
 		$(document).ready(set_code_label);
-		$("#individual").click(set_code_label);
+		$('input[name=corporate]').attr('checked', true);
+		$("#corporate").click(set_code_label);
 	});
 </script>
 <div class="container"><div class="login-form">
@@ -20,7 +21,7 @@
     <fieldset>
       {{ horizontal_field(form.name) }}
       {{ horizontal_field(form.surname) }}
-      {{ horizontal_field(form.individual) }}
+      {{ horizontal_field(form.corporate) }}
       {{ horizontal_field(form.code) }}
       {{ horizontal_field(form.purpose) }}
       {{ horizontal_field(form.beneficiary) }}
