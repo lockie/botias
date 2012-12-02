@@ -210,7 +210,12 @@ def register():
 		surname = request.form['surname']
 		corporate = 'corporate' in request.form and request.form['corporate'] == u'y'
 		code = request.form['code']
-		# TODO : check code length
+		if corporate and len(code) != 8:
+			flash(gettext('Corporate code length should be 8'), 'error')
+			return redirect(url_for('register'))
+		if not corporate and len(code) != 10:
+			flash(gettext('Individual code length should be 10'), 'error')
+			return redirect(url_for('register'))
 		purpose = ['edu', 'aud', 'lst', 'ipo'].index(request.form['purpose'])
 		beneficiary = request.form['beneficiary']
 		email = request.form['email']
