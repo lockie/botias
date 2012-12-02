@@ -175,7 +175,7 @@ def result():
 	if 'id' not in request.args:
 		flash(gettext('Error: no employee id given'), 'error')
 		return redirect(request.referrer or url_for('office'))
-	return render_template('result.html', id=request.args['id'])
+	return render_template('result.html', id=request.args['id'], title=gettext('Results'))
 
 @app.route('/submit', methods=['GET', 'POST'])
 @login_required
