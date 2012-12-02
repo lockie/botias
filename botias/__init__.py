@@ -208,7 +208,7 @@ def register():
 	if form.validate_on_submit():
 		name = request.form['name']
 		surname = request.form['surname']
-		individual = request.form['individual']
+		individual = 'individual' in request.form and request.form['individual'] == u'y'
 		code = request.form['code']
 		# TODO : check code length
 		purpose = ['edu', 'aud', 'lst', 'ipo'].index(request.form['purpose'])
