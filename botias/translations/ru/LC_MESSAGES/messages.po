@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version:  git\n"
 "Report-Msgid-Bugs-To: awkravchuk@gmail.com\n"
-"POT-Creation-Date: 2012-11-29 05:12+0400\n"
+"POT-Creation-Date: 2012-12-03 00:41+0400\n"
 "PO-Revision-Date: 2012-10-16 18:49+0400\n"
 "Last-Translator: Andrew Kravchuk <awkravchuk@gmail.com>\n"
 "Language-Team: ru <LL@li.org>\n"
@@ -18,222 +18,245 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "Generated-By: Babel 0.9.6\n"
 
-#: parse.py:29
+#: botias/__init__.py:136
+msgid "Error: no employee id given."
+msgstr "Ошибка: не указан № работника"
+
+#: botias/__init__.py:140
+msgid "Error: no file submitted! <a href=\"/office\">Submit</a> one."
+msgstr "Ошибка: файл не отправлен. <a href=\"/submit\">Загрузите</a> файл."
+
+#: botias/__init__.py:147
+#, python-format
+msgid "Error: %(error)s. Try fixing your file."
+msgstr "Ошибка: %(error)s. Попробуйте другой файл."
+
+#: botias/__init__.py:169
+#, python-format
+msgid "Error: %(error)s. Contact administration."
+msgstr "Ошибка: %(error)s. Свяжитесь с администрацией."
+
+#: botias/__init__.py:176
+msgid "Error: no employee id given"
+msgstr "Ошибка: не указан № работника"
+
+#: botias/__init__.py:178
+msgid "Results"
+msgstr "Результаты"
+
+#: botias/__init__.py:198
+msgid "File uploaded successfully"
+msgstr "Файл загружен на сервер"
+
+#: botias/__init__.py:200
+msgid "Files of this type are not allowed to upload"
+msgstr "Файлы предоставленного типа не разрешены для загрузки"
+
+#: botias/__init__.py:214
+msgid "Corporate code length should be 8"
+msgstr "Длина кода ОКПО - 8 цифр."
+
+#: botias/__init__.py:217
+msgid "Individual code length should be 10"
+msgstr "Длина кода ИНН - 10 цифр."
+
+#: botias/__init__.py:223
+#, python-format
+msgid "The user with email %(email)s already exists"
+msgstr "Пользователь с почтовым адресом %(email)s уже зарегистрирован"
+
+#: botias/__init__.py:241 botias/templates/layout.html:86
+#: botias/templates/register.html:19
+msgid "Register"
+msgstr "Регистрация"
+
+#: botias/__init__.py:246
+msgid "Already authenticated"
+msgstr "Вы уже вошли"
+
+#: botias/__init__.py:264
+msgid "Authentication failed. Check login and password."
+msgstr "Не удалось войти. Проверьте логин и пароль."
+
+#: botias/__init__.py:265 botias/templates/login.html:4
+#: botias/templates/login.html:14
+msgid "Login"
+msgstr "Вход"
+
+#: botias/__init__.py:273
+msgid "You have logged out"
+msgstr "Вы вышли"
+
+#: botias/__init__.py:278
+msgid "Please authorize to access this page"
+msgstr "Пожалуйста, авторизуйтесь для доступа к запрошенной странице"
+
+#: botias/__init__.py:287 botias/templates/layout.html:76
+#: botias/templates/office.html:79
+msgid "My office"
+msgstr "Мой кабинет"
+
+#: botias/__init__.py:305 botias/templates/layout.html:77
+#: botias/templates/preferences.html:16
+msgid "Preferences"
+msgstr "Настройки"
+
+#: botias/__init__.py:311 botias/templates/layout.html:66
+#: botias/templates/layout.html:101 botias/templates/tos.html:5
+msgid "Terms of service"
+msgstr "Условия использования"
+
+#: botias/__init__.py:315 botias/templates/about.html:5
+#: botias/templates/layout.html:62
+msgid "About service"
+msgstr "О сервисе"
+
+#: botias/__init__.py:321 botias/templates/docs.html:5
+#: botias/templates/layout.html:65
+msgid "Documentation"
+msgstr "Документы"
+
+#: botias/__init__.py:325 botias/templates/faq.html:5
+#: botias/templates/layout.html:64
+msgid "Frequently asked questions"
+msgstr "Вопросы и ответы"
+
+#: botias/parse.py:29
 #, python-format
 msgid "Invalid year in sheet name: \"%(name)s\""
 msgstr "Некорректный год в названии листа: \"%(name)s\""
 
-#: parse.py:33
+#: botias/parse.py:33
 #, python-format
 msgid "Invalid year: %(year)s"
 msgstr "Некорректный год: %(year)s"
 
-#: parse.py:44
+#: botias/parse.py:44
 #, python-format
 msgid "No record with id %(id)d for year %(year)d"
 msgstr "Не найдена запись для работника № %(id)d за год %(year)d"
 
-#: parse.py:53
+#: botias/parse.py:53
 #, python-format
 msgid "Invalid gender: %(gender)s"
 msgstr "Некорректный пол: %(gender)s"
 
-#: parse.py:59
+#: botias/parse.py:59
 #, python-format
 msgid "Invalid birth date: %(day)d.%(month)d.%(year)d"
 msgstr "Некорректная дата рождения: %(day)d.%(month)d.%(year)d"
 
-#: parse.py:66
+#: botias/parse.py:66
 #, python-format
 msgid "Invalid salary: %(salary)s"
 msgstr "Некорректная заработная плата: %(salary)s"
 
-#: parse.py:78 parse.py:80
+#: botias/parse.py:78 botias/parse.py:80
 #, python-format
 msgid "Invalid overall experience: \"%(exp)s\""
 msgstr "Некорректный общий стаж: \"%(exp)s\""
 
-#: parse.py:91 parse.py:93
+#: botias/parse.py:91 botias/parse.py:93
 #, python-format
 msgid "Invalid company experience: \"%(exp)s\""
 msgstr "Некорректный стаж в компании: \"%(exp)s\""
 
-#: parse.py:159
+#: botias/parse.py:159
 #, python-format
 msgid "Invalid sheets count (%(count)d), must be 4"
 msgstr "Некорректное количество листов (%(count)d), требуется 4"
 
-#: preferencesform.py:8 registerform.py:8
+#: botias/preferencesform.py:8 botias/registerform.py:8
 msgid "Name"
 msgstr "Имя"
 
-#: preferencesform.py:10 preferencesform.py:14 registerform.py:10
-#: registerform.py:14 registerform.py:20 registerform.py:33
+#: botias/preferencesform.py:10 botias/preferencesform.py:14
+#: botias/registerform.py:10 botias/registerform.py:14
+#: botias/registerform.py:20 botias/registerform.py:33
 msgid "Wrong length."
 msgstr "Некорректная длина."
 
-#: preferencesform.py:12 registerform.py:12
+#: botias/preferencesform.py:12 botias/registerform.py:12
 msgid "Surname"
 msgstr "Фамилия"
 
-#: preferencesform.py:13 registerform.py:9 registerform.py:13
-#: registerform.py:19 registerform.py:29 registerform.py:32
+#: botias/preferencesform.py:13 botias/registerform.py:9
+#: botias/registerform.py:13 botias/registerform.py:19
+#: botias/registerform.py:29 botias/registerform.py:32
 msgid "This field is required."
 msgstr "Это поле обязательно для заполнения."
 
-#: preferencesform.py:24
+#: botias/preferencesform.py:24
 msgid "Annual income growth rate"
 msgstr "Ежегодный рост заработка"
 
-#: preferencesform.py:26
+#: botias/preferencesform.py:26
 msgid "Annual pension indexation rate"
 msgstr "Ежегодная индексация пенсий"
 
-#: registerform.py:16
-msgid "Individual"
-msgstr "Физическое лицо"
+#: botias/registerform.py:16
+msgid "Corporate"
+msgstr "Юридическое лицо"
 
-#: registerform.py:17
+#: botias/registerform.py:17
 msgid "Are you individual or corporate user"
 msgstr ""
-"Поставьте флажок, если вы - физическое лицо. Если вы действуете от имени "
-"юридического лица, оставьте флажок неотмеченным."
+"Снимите флажок, если вы - физическое лицо. Если вы действуете от имени "
+"юридического лица, оставьте флажок отмеченным."
 
-#: registerform.py:22
+#: botias/registerform.py:22
 msgid "Purpose of calculation"
 msgstr "Цель расчётов"
 
-#: registerform.py:23
+#: botias/registerform.py:23
 msgid "educational purposes"
 msgstr "учебные цели"
 
-#: registerform.py:24
+#: botias/registerform.py:24
 msgid "annual audit"
 msgstr "для ежегодного аудита"
 
-#: registerform.py:25
+#: botias/registerform.py:25
 msgid "introduction of the issuer in exchange listing"
 msgstr "для введения эмитента в листинг биржи"
 
-#: registerform.py:26
+#: botias/registerform.py:26
 msgid "IPO entry"
 msgstr "для выхода на IPO"
 
-#: registerform.py:28
+#: botias/registerform.py:28
 msgid "Approx. beneficiary count"
 msgstr "Примерное количество бенефициаров "
 
-#: registerform.py:31 botias/templates/login.html:8
+#: botias/registerform.py:31 botias/templates/login.html:8
 msgid "E-mail"
 msgstr "Адрес e-mail"
 
-#: registerform.py:34
+#: botias/registerform.py:34
 msgid "Invalid email address."
 msgstr "Некорректный адрес e-mail."
 
-#: registerform.py:35
+#: botias/registerform.py:35
 msgid "We will send you your password to this email."
 msgstr "На этот адрес будет отправлен ваш пароль для входа."
 
-#: rpcclient.py:44
+#: botias/rpcclient.py:53 botias/rpcclient.py:78
+msgid "Connection to server timed out. Try again later."
+msgstr "Превышен интервал ожидания для соединения с сервером. Повторите попытку."
+
+#: botias/rpcclient.py:57
 msgid "Server still processes your previous request. Try again a bit later."
 msgstr ""
 "Сервер всё ещё обрабатывает ваш предыдущий запрос. Повторите попытку чуть"
 " позже."
 
-#: rpcclient.py:65
-msgid "Connection to server timed out. Try again later."
-msgstr "Превышен интервал ожидания для соединения с сервером. Повторите попытку."
-
-#: rpcclient.py:69
+#: botias/rpcclient.py:82
 msgid "No request has been sent to server. Try again."
 msgstr "Запрос серверу не был отправлен. Повторите попытку."
 
-#: botias/__init__.py:128
-msgid "Error: no employee id given."
-msgstr "Ошибка: не указан № работника"
-
-#: botias/__init__.py:132
-msgid "Error: no file submitted! <a href=\"/office\">Submit</a> one."
-msgstr "Ошибка: файл не отправлен. <a href=\"/submit\">Загрузите</a> файл."
-
-#: botias/__init__.py:139
-#, python-format
-msgid "Error: %(error)s. Try fixing your file."
-msgstr "Ошибка: %(error)s. Попробуйте другой файл."
-
-#: botias/__init__.py:161
-#, python-format
-msgid "Error: %(error)s. Contact administration."
-msgstr "Ошибка: %(error)s. Свяжитесь с администрацией."
-
-#: botias/__init__.py:168
-msgid "Error: no employee id given"
-msgstr "Ошибка: не указан № работника"
-
-#: botias/__init__.py:190
-msgid "File uploaded successfully"
-msgstr "Файл загружен на сервер"
-
-#: botias/__init__.py:192
-msgid "Files of this type are not allowed to upload"
-msgstr "Файлы предоставленного типа не разрешены для загрузки"
-
-#: botias/__init__.py:226 botias/templates/layout.html:86
-#: botias/templates/register.html:18
-msgid "Register"
-msgstr "Регистрация"
-
-#: botias/__init__.py:231
-msgid "Already authenticated"
-msgstr "Вы уже вошли"
-
-#: botias/__init__.py:249
-msgid "Authentication failed. Check login and password."
-msgstr "Не удалось войти. Проверьте логин и пароль."
-
-#: botias/__init__.py:250 botias/templates/login.html:4
-#: botias/templates/login.html:14
-msgid "Login"
-msgstr "Вход"
-
-#: botias/__init__.py:258
-msgid "You have logged out"
-msgstr "Вы вышли"
-
-#: botias/__init__.py:263
-msgid "Please authorize to access this page"
-msgstr "Пожалуйста, авторизуйтесь для доступа к запрошенной странице"
-
-#: botias/__init__.py:272 botias/templates/layout.html:76
-#: botias/templates/office.html:79
-msgid "My office"
-msgstr "Мой кабинет"
-
-#: botias/__init__.py:290 botias/templates/layout.html:77
-#: botias/templates/preferences.html:16
-msgid "Preferences"
-msgstr "Настройки"
-
-#: botias/__init__.py:296 botias/templates/layout.html:66
-#: botias/templates/layout.html:101 botias/templates/tos.html:5
-msgid "Terms of service"
-msgstr "Условия использования"
-
-#: botias/__init__.py:300 botias/templates/about.html:5
-#: botias/templates/layout.html:62
-msgid "About service"
-msgstr "О сервисе"
-
-#: botias/__init__.py:306 botias/templates/docs.html:5
-#: botias/templates/layout.html:65
-msgid "Documentation"
-msgstr "Документы"
-
-#: botias/__init__.py:310 botias/templates/faq.html:5
-#: botias/templates/layout.html:64
-msgid "Frequently asked questions"
-msgstr "Вопросы и ответы"
+#: botias/templates/layout.html:45
+msgid "Botias"
+msgstr "Ботиас"
 
 #: botias/templates/layout.html:74
 #, python-format
@@ -284,39 +307,44 @@ msgstr "Скрыть тестовые файлы"
 msgid "No files uploaded."
 msgstr "Файлы не загружены."
 
-#: botias/templates/office.html:99
+#: botias/templates/office.html:95
+#, fuzzy
+msgid "Download test file"
+msgstr "Загрузить новый файл"
+
+#: botias/templates/office.html:100
 msgid "Uploaded files"
 msgstr "Загруженные файлы"
 
-#: botias/templates/office.html:114
+#: botias/templates/office.html:115
 msgid "Download"
 msgstr "Скачать"
 
-#: botias/templates/office.html:115
+#: botias/templates/office.html:116
 msgid "Calculate funding plan for single employee"
 msgstr "Рассчитать план финансирования для одного работника"
 
-#: botias/templates/office.html:115
+#: botias/templates/office.html:116
 msgid "Calculate employee"
 msgstr "Рассчитать работника"
 
-#: botias/templates/office.html:116
+#: botias/templates/office.html:117
 msgid "Calculate overall funding plan"
-msgstr "Рассчитать общий план финансирования"
+msgstr "Рассчитать общий отчёт"
 
-#: botias/templates/office.html:116
+#: botias/templates/office.html:117
 msgid "Calculate plan"
-msgstr "Рассчитать план"
+msgstr "Рассчитать общий отчёт"
 
-#: botias/templates/office.html:123
+#: botias/templates/office.html:124
 msgid "Upload new file"
 msgstr "Загрузить новый файл"
 
-#: botias/templates/office.html:125
+#: botias/templates/office.html:126
 msgid "Close"
 msgstr "Закрыть"
 
-#: botias/templates/office.html:130
+#: botias/templates/office.html:131
 msgid "Submit"
 msgstr "Отправить"
 
@@ -342,14 +370,14 @@ msgid "Discount rates"
 msgstr "Ставки дисконтирования"
 
 #: botias/templates/register.html:8
-msgid "Individual code"
-msgstr "ИНН"
-
-#: botias/templates/register.html:10
 msgid "Corporate code"
 msgstr "ОКПО (ЕГРПОУ)"
 
-#: botias/templates/register.html:29
+#: botias/templates/register.html:10
+msgid "Individual code"
+msgstr "ИНН"
+
+#: botias/templates/register.html:30
 msgid "Register!"
 msgstr "Регистрация"
 
@@ -366,43 +394,43 @@ msgstr ""
 "Спасибо, %(name)s! Мы выслали письмо по адресу %(email)s с вашим паролем."
 " Если вы его не получили, проверьте папку 'спам'."
 
-#: botias/templates/result.html:68
+#: botias/templates/result.html:67
 msgid "Connection error. Contact administration."
 msgstr "Ошибка соединения. Свяжитесь с администрацией."
 
-#: botias/templates/result.html:70
+#: botias/templates/result.html:69
 msgid "Page not found. Contact administration"
 msgstr "Страница не найдена. Свяжитесь с администрацией."
 
-#: botias/templates/result.html:72
+#: botias/templates/result.html:71
 msgid "Internal server error. Contact administration."
 msgstr "Внутренняя ошибка сервера. Свяжитесь с администрацией."
 
-#: botias/templates/result.html:74
+#: botias/templates/result.html:73
 msgid "Incorrect server response. Contact administration."
 msgstr "Сервер некорректно ответил на запрос. Свяжитесь с администрацией."
 
-#: botias/templates/result.html:76
+#: botias/templates/result.html:75
 msgid "Response timed out. Contact administration."
 msgstr "Превышен интервал ожидания для запроса. Свяжитесь с администрацией."
 
-#: botias/templates/result.html:78
+#: botias/templates/result.html:77
 msgid "AJAX request aborted."
 msgstr "AJAX-запрос отменён."
 
-#: botias/templates/result.html:80
+#: botias/templates/result.html:79
 msgid "Unknown error: "
 msgstr "Неизвестная ошибка: "
 
-#: botias/templates/result.html:80
+#: botias/templates/result.html:79
 msgid "Contact administration."
 msgstr "Свяжитесь с администрацией."
 
-#: botias/templates/result.html:155
+#: botias/templates/result.html:154
 msgid "Processing data..."
 msgstr "Обработка данных..."
 
-#: botias/templates/result.html:159
+#: botias/templates/result.html:158
 msgid "Try again"
 msgstr "Повторить попытку"
 

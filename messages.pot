@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PROJECT VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2012-11-29 05:12+0400\n"
+"POT-Creation-Date: 2012-12-03 00:41+0400\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -17,217 +17,240 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "Generated-By: Babel 0.9.6\n"
 
-#: parse.py:29
-#, python-format
-msgid "Invalid year in sheet name: \"%(name)s\""
-msgstr ""
-
-#: parse.py:33
-#, python-format
-msgid "Invalid year: %(year)s"
-msgstr ""
-
-#: parse.py:44
-#, python-format
-msgid "No record with id %(id)d for year %(year)d"
-msgstr ""
-
-#: parse.py:53
-#, python-format
-msgid "Invalid gender: %(gender)s"
-msgstr ""
-
-#: parse.py:59
-#, python-format
-msgid "Invalid birth date: %(day)d.%(month)d.%(year)d"
-msgstr ""
-
-#: parse.py:66
-#, python-format
-msgid "Invalid salary: %(salary)s"
-msgstr ""
-
-#: parse.py:78 parse.py:80
-#, python-format
-msgid "Invalid overall experience: \"%(exp)s\""
-msgstr ""
-
-#: parse.py:91 parse.py:93
-#, python-format
-msgid "Invalid company experience: \"%(exp)s\""
-msgstr ""
-
-#: parse.py:159
-#, python-format
-msgid "Invalid sheets count (%(count)d), must be 4"
-msgstr ""
-
-#: preferencesform.py:8 registerform.py:8
-msgid "Name"
-msgstr ""
-
-#: preferencesform.py:10 preferencesform.py:14 registerform.py:10
-#: registerform.py:14 registerform.py:20 registerform.py:33
-msgid "Wrong length."
-msgstr ""
-
-#: preferencesform.py:12 registerform.py:12
-msgid "Surname"
-msgstr ""
-
-#: preferencesform.py:13 registerform.py:9 registerform.py:13
-#: registerform.py:19 registerform.py:29 registerform.py:32
-msgid "This field is required."
-msgstr ""
-
-#: preferencesform.py:24
-msgid "Annual income growth rate"
-msgstr ""
-
-#: preferencesform.py:26
-msgid "Annual pension indexation rate"
-msgstr ""
-
-#: registerform.py:16
-msgid "Individual"
-msgstr ""
-
-#: registerform.py:17
-msgid "Are you individual or corporate user"
-msgstr ""
-
-#: registerform.py:22
-msgid "Purpose of calculation"
-msgstr ""
-
-#: registerform.py:23
-msgid "educational purposes"
-msgstr ""
-
-#: registerform.py:24
-msgid "annual audit"
-msgstr ""
-
-#: registerform.py:25
-msgid "introduction of the issuer in exchange listing"
-msgstr ""
-
-#: registerform.py:26
-msgid "IPO entry"
-msgstr ""
-
-#: registerform.py:28
-msgid "Approx. beneficiary count"
-msgstr ""
-
-#: registerform.py:31 botias/templates/login.html:8
-msgid "E-mail"
-msgstr ""
-
-#: registerform.py:34
-msgid "Invalid email address."
-msgstr ""
-
-#: registerform.py:35
-msgid "We will send you your password to this email."
-msgstr ""
-
-#: rpcclient.py:44
-msgid "Server still processes your previous request. Try again a bit later."
-msgstr ""
-
-#: rpcclient.py:65
-msgid "Connection to server timed out. Try again later."
-msgstr ""
-
-#: rpcclient.py:69
-msgid "No request has been sent to server. Try again."
-msgstr ""
-
-#: botias/__init__.py:128
+#: botias/__init__.py:136
 msgid "Error: no employee id given."
 msgstr ""
 
-#: botias/__init__.py:132
+#: botias/__init__.py:140
 msgid "Error: no file submitted! <a href=\"/office\">Submit</a> one."
 msgstr ""
 
-#: botias/__init__.py:139
+#: botias/__init__.py:147
 #, python-format
 msgid "Error: %(error)s. Try fixing your file."
 msgstr ""
 
-#: botias/__init__.py:161
+#: botias/__init__.py:169
 #, python-format
 msgid "Error: %(error)s. Contact administration."
 msgstr ""
 
-#: botias/__init__.py:168
+#: botias/__init__.py:176
 msgid "Error: no employee id given"
 msgstr ""
 
-#: botias/__init__.py:190
+#: botias/__init__.py:178
+msgid "Results"
+msgstr ""
+
+#: botias/__init__.py:198
 msgid "File uploaded successfully"
 msgstr ""
 
-#: botias/__init__.py:192
+#: botias/__init__.py:200
 msgid "Files of this type are not allowed to upload"
 msgstr ""
 
-#: botias/__init__.py:226 botias/templates/layout.html:86
-#: botias/templates/register.html:18
+#: botias/__init__.py:214
+msgid "Corporate code length should be 8"
+msgstr ""
+
+#: botias/__init__.py:217
+msgid "Individual code length should be 10"
+msgstr ""
+
+#: botias/__init__.py:223
+#, python-format
+msgid "The user with email %(email)s already exists"
+msgstr ""
+
+#: botias/__init__.py:241 botias/templates/layout.html:86
+#: botias/templates/register.html:19
 msgid "Register"
 msgstr ""
 
-#: botias/__init__.py:231
+#: botias/__init__.py:246
 msgid "Already authenticated"
 msgstr ""
 
-#: botias/__init__.py:249
+#: botias/__init__.py:264
 msgid "Authentication failed. Check login and password."
 msgstr ""
 
-#: botias/__init__.py:250 botias/templates/login.html:4
+#: botias/__init__.py:265 botias/templates/login.html:4
 #: botias/templates/login.html:14
 msgid "Login"
 msgstr ""
 
-#: botias/__init__.py:258
+#: botias/__init__.py:273
 msgid "You have logged out"
 msgstr ""
 
-#: botias/__init__.py:263
+#: botias/__init__.py:278
 msgid "Please authorize to access this page"
 msgstr ""
 
-#: botias/__init__.py:272 botias/templates/layout.html:76
+#: botias/__init__.py:287 botias/templates/layout.html:76
 #: botias/templates/office.html:79
 msgid "My office"
 msgstr ""
 
-#: botias/__init__.py:290 botias/templates/layout.html:77
+#: botias/__init__.py:305 botias/templates/layout.html:77
 #: botias/templates/preferences.html:16
 msgid "Preferences"
 msgstr ""
 
-#: botias/__init__.py:296 botias/templates/layout.html:66
+#: botias/__init__.py:311 botias/templates/layout.html:66
 #: botias/templates/layout.html:101 botias/templates/tos.html:5
 msgid "Terms of service"
 msgstr ""
 
-#: botias/__init__.py:300 botias/templates/about.html:5
+#: botias/__init__.py:315 botias/templates/about.html:5
 #: botias/templates/layout.html:62
 msgid "About service"
 msgstr ""
 
-#: botias/__init__.py:306 botias/templates/docs.html:5
+#: botias/__init__.py:321 botias/templates/docs.html:5
 #: botias/templates/layout.html:65
 msgid "Documentation"
 msgstr ""
 
-#: botias/__init__.py:310 botias/templates/faq.html:5
+#: botias/__init__.py:325 botias/templates/faq.html:5
 #: botias/templates/layout.html:64
 msgid "Frequently asked questions"
+msgstr ""
+
+#: botias/parse.py:29
+#, python-format
+msgid "Invalid year in sheet name: \"%(name)s\""
+msgstr ""
+
+#: botias/parse.py:33
+#, python-format
+msgid "Invalid year: %(year)s"
+msgstr ""
+
+#: botias/parse.py:44
+#, python-format
+msgid "No record with id %(id)d for year %(year)d"
+msgstr ""
+
+#: botias/parse.py:53
+#, python-format
+msgid "Invalid gender: %(gender)s"
+msgstr ""
+
+#: botias/parse.py:59
+#, python-format
+msgid "Invalid birth date: %(day)d.%(month)d.%(year)d"
+msgstr ""
+
+#: botias/parse.py:66
+#, python-format
+msgid "Invalid salary: %(salary)s"
+msgstr ""
+
+#: botias/parse.py:78 botias/parse.py:80
+#, python-format
+msgid "Invalid overall experience: \"%(exp)s\""
+msgstr ""
+
+#: botias/parse.py:91 botias/parse.py:93
+#, python-format
+msgid "Invalid company experience: \"%(exp)s\""
+msgstr ""
+
+#: botias/parse.py:159
+#, python-format
+msgid "Invalid sheets count (%(count)d), must be 4"
+msgstr ""
+
+#: botias/preferencesform.py:8 botias/registerform.py:8
+msgid "Name"
+msgstr ""
+
+#: botias/preferencesform.py:10 botias/preferencesform.py:14
+#: botias/registerform.py:10 botias/registerform.py:14
+#: botias/registerform.py:20 botias/registerform.py:33
+msgid "Wrong length."
+msgstr ""
+
+#: botias/preferencesform.py:12 botias/registerform.py:12
+msgid "Surname"
+msgstr ""
+
+#: botias/preferencesform.py:13 botias/registerform.py:9
+#: botias/registerform.py:13 botias/registerform.py:19
+#: botias/registerform.py:29 botias/registerform.py:32
+msgid "This field is required."
+msgstr ""
+
+#: botias/preferencesform.py:24
+msgid "Annual income growth rate"
+msgstr ""
+
+#: botias/preferencesform.py:26
+msgid "Annual pension indexation rate"
+msgstr ""
+
+#: botias/registerform.py:16
+msgid "Corporate"
+msgstr ""
+
+#: botias/registerform.py:17
+msgid "Are you individual or corporate user"
+msgstr ""
+
+#: botias/registerform.py:22
+msgid "Purpose of calculation"
+msgstr ""
+
+#: botias/registerform.py:23
+msgid "educational purposes"
+msgstr ""
+
+#: botias/registerform.py:24
+msgid "annual audit"
+msgstr ""
+
+#: botias/registerform.py:25
+msgid "introduction of the issuer in exchange listing"
+msgstr ""
+
+#: botias/registerform.py:26
+msgid "IPO entry"
+msgstr ""
+
+#: botias/registerform.py:28
+msgid "Approx. beneficiary count"
+msgstr ""
+
+#: botias/registerform.py:31 botias/templates/login.html:8
+msgid "E-mail"
+msgstr ""
+
+#: botias/registerform.py:34
+msgid "Invalid email address."
+msgstr ""
+
+#: botias/registerform.py:35
+msgid "We will send you your password to this email."
+msgstr ""
+
+#: botias/rpcclient.py:53 botias/rpcclient.py:78
+msgid "Connection to server timed out. Try again later."
+msgstr ""
+
+#: botias/rpcclient.py:57
+msgid "Server still processes your previous request. Try again a bit later."
+msgstr ""
+
+#: botias/rpcclient.py:82
+msgid "No request has been sent to server. Try again."
+msgstr ""
+
+#: botias/templates/layout.html:45
+msgid "Botias"
 msgstr ""
 
 #: botias/templates/layout.html:74
@@ -279,39 +302,43 @@ msgstr ""
 msgid "No files uploaded."
 msgstr ""
 
-#: botias/templates/office.html:99
+#: botias/templates/office.html:95
+msgid "Download test file"
+msgstr ""
+
+#: botias/templates/office.html:100
 msgid "Uploaded files"
 msgstr ""
 
-#: botias/templates/office.html:114
+#: botias/templates/office.html:115
 msgid "Download"
 msgstr ""
 
-#: botias/templates/office.html:115
+#: botias/templates/office.html:116
 msgid "Calculate funding plan for single employee"
 msgstr ""
 
-#: botias/templates/office.html:115
+#: botias/templates/office.html:116
 msgid "Calculate employee"
 msgstr ""
 
-#: botias/templates/office.html:116
+#: botias/templates/office.html:117
 msgid "Calculate overall funding plan"
 msgstr ""
 
-#: botias/templates/office.html:116
+#: botias/templates/office.html:117
 msgid "Calculate plan"
 msgstr ""
 
-#: botias/templates/office.html:123
+#: botias/templates/office.html:124
 msgid "Upload new file"
 msgstr ""
 
-#: botias/templates/office.html:125
+#: botias/templates/office.html:126
 msgid "Close"
 msgstr ""
 
-#: botias/templates/office.html:130
+#: botias/templates/office.html:131
 msgid "Submit"
 msgstr ""
 
@@ -337,14 +364,14 @@ msgid "Discount rates"
 msgstr ""
 
 #: botias/templates/register.html:8
-msgid "Individual code"
-msgstr ""
-
-#: botias/templates/register.html:10
 msgid "Corporate code"
 msgstr ""
 
-#: botias/templates/register.html:29
+#: botias/templates/register.html:10
+msgid "Individual code"
+msgstr ""
+
+#: botias/templates/register.html:30
 msgid "Register!"
 msgstr ""
 
@@ -359,43 +386,43 @@ msgid ""
 "password. If you dont get it, check 'spam' folder."
 msgstr ""
 
-#: botias/templates/result.html:68
+#: botias/templates/result.html:67
 msgid "Connection error. Contact administration."
 msgstr ""
 
-#: botias/templates/result.html:70
+#: botias/templates/result.html:69
 msgid "Page not found. Contact administration"
 msgstr ""
 
-#: botias/templates/result.html:72
+#: botias/templates/result.html:71
 msgid "Internal server error. Contact administration."
 msgstr ""
 
-#: botias/templates/result.html:74
+#: botias/templates/result.html:73
 msgid "Incorrect server response. Contact administration."
 msgstr ""
 
-#: botias/templates/result.html:76
+#: botias/templates/result.html:75
 msgid "Response timed out. Contact administration."
 msgstr ""
 
-#: botias/templates/result.html:78
+#: botias/templates/result.html:77
 msgid "AJAX request aborted."
 msgstr ""
 
-#: botias/templates/result.html:80
+#: botias/templates/result.html:79
 msgid "Unknown error: "
 msgstr ""
 
-#: botias/templates/result.html:80
+#: botias/templates/result.html:79
 msgid "Contact administration."
 msgstr ""
 
-#: botias/templates/result.html:155
+#: botias/templates/result.html:154
 msgid "Processing data..."
 msgstr ""
 
-#: botias/templates/result.html:159
+#: botias/templates/result.html:158
 msgid "Try again"
 msgstr ""
 
