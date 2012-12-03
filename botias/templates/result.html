@@ -109,7 +109,7 @@
 							$("#table6").handsontable('loadData', [data.result.headers].concat(data.result.t6));
 							$("#table7").handsontable('loadData', [data.result.headers].concat(data.result.t7));
 							$("#table8").handsontable('loadData', [data.result.headers].concat(data.result.t8));
-							$("#table9").handsontable('loadData', [data.result.headers].concat(data.result.t9));
+							$("#table9").handsontable('loadData', [[data.result.headers[0]+1]].concat(data.result.t9));
 							$("#tableA").handsontable('loadData', [data.result.headers].concat(data.result.tA));
 							$("#tableB").handsontable('loadData', [data.result.headers].concat(data.result.tB));
 							$("#tableC").handsontable('loadData', [data.result.headers].concat(data.result.tC));
@@ -522,7 +522,7 @@
 		"Стоимость прошлых услуг - негарантированные выплаты",
 		"Результаты секвестров",
 		"Расходы, признанные в составе отчета о прибылях и убытках"
-	]) }}
+	], 1) }}
 
 	<h3>Дополнительная информация</h3>
 	{{ table("tableA", ["",
