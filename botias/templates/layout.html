@@ -103,7 +103,15 @@
 					<br />
 				{% endif %}
 			</p>
-			<p>{{ _('Version ')|version }}. &copy; {{ _('Rainbow technologies LTD., 2012') }}</p>
+			<p>
+			{% if not config['DEBUG'] %}
+			<!--
+			{% endif %}
+			{{ _('Version ')|version }}.
+			{% if not config['DEBUG'] %}
+			-->
+			{% endif %}
+			&copy; {{ _('Rainbow technologies LTD., 2012') }}</p>
 		</div>
 	</div>
 </footer>
