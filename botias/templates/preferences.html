@@ -25,8 +25,8 @@
 		<div id="profile" class="tab-pane active">
 			<form class="form-horizontal" action="{{ url_for('preferences', act='profile') }}" method="post">
 				<fieldset>
-					{{ horizontal_field(profile_form.name) }}
-					{{ horizontal_field(profile_form.surname) }}
+					{{ horizontal_field(profile_form.name, value=profile_form.name.default) }}
+					{{ horizontal_field(profile_form.surname, value=profile_form.surname.default) }}
 					<div class="form-actions">
 						<button type="submit" class="btn btn-primary">{{ _('Save changes') }}</button>
 					</div>

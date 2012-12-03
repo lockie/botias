@@ -291,15 +291,17 @@ def office():
 def preferences():
 	action = request.args.get('act')
 	if action == 'profile':
-		return 'profile parameters, like, ya know, saved'
+		flash(gettext('Profile parameters saved'), 'success')
 	elif action == 'calc':
-		return 'calc parameters, like, ya know, saved'
+		flash(gettext('Calculation parameters saved'), 'success')
 	elif action == 'actuarial':
-		return 'actuarial parameters, like, ya know, saved'
+		flash(gettext('Actuarial parameters saved'), 'success')
 
 	profile_form = ProfileForm()
 	calc_form = CalcForm()
 	actuarial_form = ActuarialForm()
+	profile_form.name.default = current_user.name
+	profile_form.surname.default = current_user.surname
 	# TODO : non-fake, actual data
 	actuarial_form.discount_rates = [ [2010, "15,00%"], [2011, "14,00%"], [2012, "13,00%"] ]
 	return render_template('preferences.html', title=gettext('Preferences'),

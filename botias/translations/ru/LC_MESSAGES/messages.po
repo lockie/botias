@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version:  git\n"
 "Report-Msgid-Bugs-To: awkravchuk@gmail.com\n"
-"POT-Creation-Date: 2012-12-03 13:23+0400\n"
+"POT-Creation-Date: 2012-12-03 13:59+0400\n"
 "PO-Revision-Date: 2012-10-16 18:49+0400\n"
 "Last-Translator: Andrew Kravchuk <awkravchuk@gmail.com>\n"
 "Language-Team: ru <LL@li.org>\n"
@@ -100,27 +100,39 @@ msgstr "Пожалуйста, авторизуйтесь для доступа �
 msgid "My office"
 msgstr "Мой кабинет"
 
-#: botias/__init__.py:305 botias/templates/layout.html:77
+#: botias/__init__.py:294
+msgid "Profile parameters saved"
+msgstr "Параметры профиля сохранены"
+
+#: botias/__init__.py:296
+msgid "Calculation parameters saved"
+msgstr "Параметры расчёта сохранены"
+
+#: botias/__init__.py:298
+msgid "Actuarial parameters saved"
+msgstr "Актуарные предположения сохранены"
+
+#: botias/__init__.py:307 botias/templates/layout.html:77
 #: botias/templates/preferences.html:16
 msgid "Preferences"
 msgstr "Настройки"
 
-#: botias/__init__.py:311 botias/templates/layout.html:66
+#: botias/__init__.py:313 botias/templates/layout.html:66
 #: botias/templates/layout.html:101 botias/templates/tos.html:5
 msgid "Terms of service"
 msgstr "Условия использования"
 
-#: botias/__init__.py:315 botias/templates/about.html:5
+#: botias/__init__.py:317 botias/templates/about.html:5
 #: botias/templates/layout.html:62
 msgid "About service"
 msgstr "О сервисе"
 
-#: botias/__init__.py:321 botias/templates/docs.html:5
+#: botias/__init__.py:323 botias/templates/docs.html:5
 #: botias/templates/layout.html:65
 msgid "Documentation"
 msgstr "Документы"
 
-#: botias/__init__.py:325 botias/templates/faq.html:5
+#: botias/__init__.py:327 botias/templates/faq.html:5
 #: botias/templates/layout.html:64
 msgid "Frequently asked questions"
 msgstr "Вопросы и ответы"
