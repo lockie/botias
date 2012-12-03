@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PROJECT VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2012-12-03 00:41+0400\n"
+"POT-Creation-Date: 2012-12-03 01:30+0400\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -62,6 +62,10 @@ msgstr ""
 #: botias/__init__.py:223
 #, python-format
 msgid "The user with email %(email)s already exists"
+msgstr ""
+
+#: botias/__init__.py:239 botias/templates/registered.html:5
+msgid "Registration successeful"
 msgstr ""
 
 #: botias/__init__.py:241 botias/templates/layout.html:86
@@ -375,15 +379,18 @@ msgstr ""
 msgid "Register!"
 msgstr ""
 
-#: botias/templates/registered.html:5
-msgid "Registration successeful"
-msgstr ""
-
 #: botias/templates/registered.html:8
 #, python-format
 msgid ""
 "Thank you, %(name)s! We've sent you an email to %(email)s with your "
 "password. If you dont get it, check 'spam' folder."
+msgstr ""
+
+#: botias/templates/registered.html:9
+#, python-format
+msgid ""
+"Thank you, %(name)s! Your password is %(password)s, use it for login with"
+" your email %(email)s."
 msgstr ""
 
 #: botias/templates/result.html:67

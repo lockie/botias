@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version:  git\n"
 "Report-Msgid-Bugs-To: awkravchuk@gmail.com\n"
-"POT-Creation-Date: 2012-12-03 00:41+0400\n"
+"POT-Creation-Date: 2012-12-03 01:30+0400\n"
 "PO-Revision-Date: 2012-10-16 18:49+0400\n"
 "Last-Translator: Andrew Kravchuk <awkravchuk@gmail.com>\n"
 "Language-Team: ru <LL@li.org>\n"
@@ -64,6 +64,10 @@ msgstr "Длина кода ИНН - 10 цифр."
 #, python-format
 msgid "The user with email %(email)s already exists"
 msgstr "Пользователь с почтовым адресом %(email)s уже зарегистрирован"
+
+#: botias/__init__.py:239 botias/templates/registered.html:5
+msgid "Registration successeful"
+msgstr "Регистрация произведена успешно"
 
 #: botias/__init__.py:241 botias/templates/layout.html:86
 #: botias/templates/register.html:19
@@ -381,10 +385,6 @@ msgstr "ИНН"
 msgid "Register!"
 msgstr "Регистрация"
 
-#: botias/templates/registered.html:5
-msgid "Registration successeful"
-msgstr "Регистрация произведена успешно"
-
 #: botias/templates/registered.html:8
 #, python-format
 msgid ""
@@ -393,6 +393,15 @@ msgid ""
 msgstr ""
 "Спасибо, %(name)s! Мы выслали письмо по адресу %(email)s с вашим паролем."
 " Если вы его не получили, проверьте папку 'спам'."
+
+#: botias/templates/registered.html:9
+#, python-format
+msgid ""
+"Thank you, %(name)s! Your password is %(password)s, use it for login with"
+" your email %(email)s."
+msgstr ""
+"Спасибо, %(name)s! Ваш пароль %(password)s , используйте его для входа с "
+"вашим адресом e-mail %(email)s"
 
 #: botias/templates/result.html:67
 msgid "Connection error. Contact administration."

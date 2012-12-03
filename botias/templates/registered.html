@@ -5,7 +5,8 @@
 	<h2>{{ _('Registration successeful') }}</h2>
 
 	<p class="lead text-success">
-	{{ _("Thank you, %(name)s! We've sent you an email to %(email)s with your password. If you dont get it, check 'spam' folder.", name=name, email=email) }}
+	<!-- {{ _("Thank you, %(name)s! We've sent you an email to %(email)s with your password. If you dont get it, check 'spam' folder.", name=name, email=email) }} -->
+	{{ _("Thank you, %(name)s! Your password is %(password)s, use it for login with your email %(email)s.", name=name, email=email, password=password) }}
 	</p>
 
 </div>

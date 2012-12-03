@@ -236,7 +236,7 @@ def register():
 		# TODO : send email
 		db.session.add(user)
 		db.session.commit()
-		return password
+		return render_template('registered.html', title=gettext('Registration successeful'), name=name, email=email, password=password)
 #		return render_template('registered.html', title=gettext('Registration successeful'), name=name, email=email)
 	return render_template('register.html', title=gettext('Register'), form=form)
 
