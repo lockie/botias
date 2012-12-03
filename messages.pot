@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PROJECT VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2012-12-03 01:30+0400\n"
+"POT-Creation-Date: 2012-12-03 13:23+0400\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -274,11 +274,11 @@ msgstr ""
 msgid "Log in"
 msgstr ""
 
-#: botias/templates/layout.html:106
+#: botias/templates/layout.html:110
 msgid "Version "
 msgstr ""
 
-#: botias/templates/layout.html:106
+#: botias/templates/layout.html:114
 msgid "Rainbow technologies LTD., 2012"
 msgstr ""
 

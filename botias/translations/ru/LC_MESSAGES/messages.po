@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version:  git\n"
 "Report-Msgid-Bugs-To: awkravchuk@gmail.com\n"
-"POT-Creation-Date: 2012-12-03 01:30+0400\n"
+"POT-Creation-Date: 2012-12-03 13:23+0400\n"
 "PO-Revision-Date: 2012-10-16 18:49+0400\n"
 "Last-Translator: Andrew Kravchuk <awkravchuk@gmail.com>\n"
 "Language-Team: ru <LL@li.org>\n"
@@ -279,11 +279,11 @@ msgstr "Пожалуйста, представьтесь системе"
 msgid "Log in"
 msgstr "Вход"
 
-#: botias/templates/layout.html:106
+#: botias/templates/layout.html:110
 msgid "Version "
 msgstr "Версия "
 
-#: botias/templates/layout.html:106
+#: botias/templates/layout.html:114
 msgid "Rainbow technologies LTD., 2012"
 msgstr ""
 
@@ -312,9 +312,8 @@ msgid "No files uploaded."
 msgstr "Файлы не загружены."
 
 #: botias/templates/office.html:95
-#, fuzzy
 msgid "Download test file"
-msgstr "Загрузить новый файл"
+msgstr "Загрузить тестовый файл"
 
 #: botias/templates/office.html:100
 msgid "Uploaded files"
