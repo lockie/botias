@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version:  git\n"
 "Report-Msgid-Bugs-To: awkravchuk@gmail.com\n"
-"POT-Creation-Date: 2012-12-03 13:59+0400\n"
+"POT-Creation-Date: 2012-12-03 14:13+0400\n"
 "PO-Revision-Date: 2012-10-16 18:49+0400\n"
 "Last-Translator: Andrew Kravchuk <awkravchuk@gmail.com>\n"
 "Language-Team: ru <LL@li.org>\n"
@@ -290,6 +290,10 @@ msgstr "Пожалуйста, представьтесь системе"
 #: botias/templates/layout.html:85
 msgid "Log in"
 msgstr "Вход"
+
+#: botias/templates/layout.html:101
+msgid "Contact us"
+msgstr "Связаться"
 
 #: botias/templates/layout.html:110
 msgid "Version "
