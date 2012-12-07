@@ -20,6 +20,7 @@ setup(
 		"Flask==0.9",
 		"Flask-Babel==0.8",
 		"Flask-Bootstrap==2.0.4-3",
+		"Flask-DebugToolbar==0.7.1",
 		"Flask-Login==0.1.3",
 		"Flask-SQLAlchemy==0.16",
 		"Flask-WTF==0.8",

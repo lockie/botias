@@ -13,6 +13,7 @@ from flask.ext.sqlalchemy import SQLAlchemy
 from flask.ext.login import LoginManager, login_user, logout_user, login_required, current_user
 from flask.ext.bootstrap import Bootstrap
 from flask.ext.babel import Babel, gettext
+from flask_debugtoolbar import DebugToolbarExtension
 import bson
 import json
 from loginform import LoginForm
@@ -40,6 +41,9 @@ rpc = None
 
 def init_app(**kwargs):
 	app.config.update(kwargs)
+	# init debug toolbar
+	app.config['DEBUG_TB_INTERCEPT_REDIRECTS'] = False
+	toolbar = DebugToolbarExtension(app)
 	# init db
 	db.init_app(app)
 	db.app = app
