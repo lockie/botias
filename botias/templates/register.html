@@ -11,7 +11,11 @@
 	}
 	$(function () {
 		$(document).ready(set_code_label);
-		$('input[name=corporate]').attr('checked', true);
+		{% if corporate is defined and not corporate %}
+			$('input[name=corporate]').attr('checked', false);
+		{% else %}
+			$('input[name=corporate]').attr('checked', true);
+		{% endif %}
 		$("#corporate").click(set_code_label);
 	});
 </script>
@@ -19,13 +23,23 @@
   <h2>{{ _('Register') }}</h2>
   <form class="form-horizontal" action="{{ url_for('register') }}" method="post">
     <fieldset>
-      {{ horizontal_field(form.name) }}
-      {{ horizontal_field(form.surname) }}
-      {{ horizontal_field(form.corporate) }}
-      {{ horizontal_field(form.code) }}
-      {{ horizontal_field(form.purpose) }}
-      {{ horizontal_field(form.beneficiary) }}
-      {{ horizontal_field(form.email) }}
+      {% if name is defined %}
+        {{ horizontal_field(form.name, value=name) }}
+        {{ horizontal_field(form.surname, value=surname) }}
+        {{ horizontal_field(form.corporate) }}
+        {{ horizontal_field(form.code, value=code) }}
+        {{ horizontal_field(form.purpose, value=purpose) }}
+        {{ horizontal_field(form.beneficiary, value=beneficiary) }}
+        {{ horizontal_field(form.email, value=email) }}
+      {% else %}
+        {{ horizontal_field(form.name) }}
+        {{ horizontal_field(form.surname) }}
+        {{ horizontal_field(form.corporate) }}
+        {{ horizontal_field(form.code) }}
+        {{ horizontal_field(form.purpose) }}
+        {{ horizontal_field(form.beneficiary) }}
+        {{ horizontal_field(form.email) }}
+      {% endif %}
      <div class="form-actions">
         <button type="submit" class="btn btn-primary">{{ _('Register!') }}</button>
       </div>

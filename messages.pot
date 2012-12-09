@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PROJECT VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2012-12-03 14:13+0400\n"
+"POT-Creation-Date: 2012-12-09 20:33+0400\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -17,121 +17,121 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "Generated-By: Babel 0.9.6\n"
 
-#: botias/__init__.py:136
+#: botias/__init__.py:140
 msgid "Error: no employee id given."
 msgstr ""
 
-#: botias/__init__.py:140
+#: botias/__init__.py:144
 msgid "Error: no file submitted! <a href=\"/office\">Submit</a> one."
 msgstr ""
 
-#: botias/__init__.py:147
+#: botias/__init__.py:151
 #, python-format
 msgid "Error: %(error)s. Try fixing your file."
 msgstr ""
 
-#: botias/__init__.py:169
+#: botias/__init__.py:173
 #, python-format
 msgid "Error: %(error)s. Contact administration."
 msgstr ""
 
-#: botias/__init__.py:176
+#: botias/__init__.py:180
 msgid "Error: no employee id given"
 msgstr ""
 
-#: botias/__init__.py:178
+#: botias/__init__.py:182
 msgid "Results"
 msgstr ""
 
-#: botias/__init__.py:198
+#: botias/__init__.py:202
 msgid "File uploaded successfully"
 msgstr ""
 
-#: botias/__init__.py:200
+#: botias/__init__.py:204
 msgid "Files of this type are not allowed to upload"
 msgstr ""
 
-#: botias/__init__.py:214
+#: botias/__init__.py:211 botias/__init__.py:258
+msgid "Already authenticated"
+msgstr ""
+
+#: botias/__init__.py:225
 msgid "Corporate code length should be 8"
 msgstr ""
 
-#: botias/__init__.py:217
+#: botias/__init__.py:228
 msgid "Individual code length should be 10"
 msgstr ""
 
-#: botias/__init__.py:223
+#: botias/__init__.py:231
 #, python-format
 msgid "The user with email %(email)s already exists"
 msgstr ""
 
-#: botias/__init__.py:239 botias/templates/registered.html:5
-msgid "Registration successeful"
-msgstr ""
-
-#: botias/__init__.py:241 botias/templates/layout.html:86
-#: botias/templates/register.html:19
+#: botias/__init__.py:234 botias/__init__.py:253
+#: botias/templates/layout.html:86 botias/templates/register.html:23
 msgid "Register"
 msgstr ""
 
-#: botias/__init__.py:246
-msgid "Already authenticated"
+#: botias/__init__.py:251 botias/templates/registered.html:5
+msgid "Registration successeful"
 msgstr ""
 
-#: botias/__init__.py:264
+#: botias/__init__.py:276
 msgid "Authentication failed. Check login and password."
 msgstr ""
 
-#: botias/__init__.py:265 botias/templates/login.html:4
+#: botias/__init__.py:277 botias/templates/login.html:4
 #: botias/templates/login.html:14
 msgid "Login"
 msgstr ""
 
-#: botias/__init__.py:273
+#: botias/__init__.py:285
 msgid "You have logged out"
 msgstr ""
 
-#: botias/__init__.py:278
+#: botias/__init__.py:290
 msgid "Please authorize to access this page"
 msgstr ""
 
-#: botias/__init__.py:287 botias/templates/layout.html:76
+#: botias/__init__.py:299 botias/templates/layout.html:76
 #: botias/templates/office.html:79
 msgid "My office"
 msgstr ""
 
-#: botias/__init__.py:294
+#: botias/__init__.py:306
 msgid "Profile parameters saved"
 msgstr ""
 
-#: botias/__init__.py:296
+#: botias/__init__.py:308
 msgid "Calculation parameters saved"
 msgstr ""
 
-#: botias/__init__.py:298
+#: botias/__init__.py:310
 msgid "Actuarial parameters saved"
 msgstr ""
 
-#: botias/__init__.py:307 botias/templates/layout.html:77
+#: botias/__init__.py:319 botias/templates/layout.html:77
 #: botias/templates/preferences.html:16
 msgid "Preferences"
 msgstr ""
 
-#: botias/__init__.py:313 botias/templates/layout.html:66
+#: botias/__init__.py:325 botias/templates/layout.html:66
 #: botias/templates/layout.html:101 botias/templates/tos.html:5
 msgid "Terms of service"
 msgstr ""
 
-#: botias/__init__.py:317 botias/templates/about.html:5
+#: botias/__init__.py:329 botias/templates/about.html:5
 #: botias/templates/layout.html:62
 msgid "About service"
 msgstr ""
 
-#: botias/__init__.py:323 botias/templates/docs.html:5
+#: botias/__init__.py:335 botias/templates/docs.html:5
 #: botias/templates/layout.html:65
 msgid "Documentation"
 msgstr ""
 
-#: botias/__init__.py:327 botias/templates/faq.html:5
+#: botias/__init__.py:339 botias/templates/faq.html:5
 #: botias/templates/layout.html:64
 msgid "Frequently asked questions"
 msgstr ""
@@ -253,15 +253,15 @@ msgstr ""
 msgid "We will send you your password to this email."
 msgstr ""
 
-#: botias/rpcclient.py:53 botias/rpcclient.py:78
+#: botias/rpcclient.py:54 botias/rpcclient.py:79
 msgid "Connection to server timed out. Try again later."
 msgstr ""
 
-#: botias/rpcclient.py:57
+#: botias/rpcclient.py:58
 msgid "Server still processes your previous request. Try again a bit later."
 msgstr ""
 
-#: botias/rpcclient.py:82
+#: botias/rpcclient.py:83
 msgid "No request has been sent to server. Try again."
 msgstr ""
 
@@ -295,7 +295,7 @@ msgid "Version "
 msgstr ""
 
 #: botias/templates/layout.html:114
-msgid "Rainbow technologies LTD., 2012"
+msgid "2012"
 msgstr ""
 
 #: botias/templates/login.html:11
@@ -391,7 +391,7 @@ msgstr ""
 msgid "Individual code"
 msgstr ""
 
-#: botias/templates/register.html:30
+#: botias/templates/register.html:44
 msgid "Register!"
 msgstr ""
 
@@ -409,43 +409,43 @@ msgid ""
 " your email %(email)s."
 msgstr ""
 
-#: botias/templates/result.html:67
+#: botias/templates/result.html:64
 msgid "Connection error. Contact administration."
 msgstr ""
 
-#: botias/templates/result.html:69
+#: botias/templates/result.html:66
 msgid "Page not found. Contact administration"
 msgstr ""
 
-#: botias/templates/result.html:71
+#: botias/templates/result.html:68
 msgid "Internal server error. Contact administration."
 msgstr ""
 
-#: botias/templates/result.html:73
+#: botias/templates/result.html:70
 msgid "Incorrect server response. Contact administration."
 msgstr ""
 
-#: botias/templates/result.html:75
+#: botias/templates/result.html:72
 msgid "Response timed out. Contact administration."
 msgstr ""
 
-#: botias/templates/result.html:77
+#: botias/templates/result.html:74
 msgid "AJAX request aborted."
 msgstr ""
 
-#: botias/templates/result.html:79
+#: botias/templates/result.html:76
 msgid "Unknown error: "
 msgstr ""
 
-#: botias/templates/result.html:79
+#: botias/templates/result.html:76
 msgid "Contact administration."
 msgstr ""
 
-#: botias/templates/result.html:154
+#: botias/templates/result.html:151
 msgid "Processing data..."
 msgstr ""
 
-#: botias/templates/result.html:158
+#: botias/templates/result.html:155
 msgid "Try again"
 msgstr ""
 

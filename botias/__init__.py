@@ -206,26 +206,34 @@ def submit():
 
 
 @app.route('/register', methods=['GET', 'POST'])
-# TODO : only when anonymous
 def register():
+	if current_user.is_authenticated():
+		flash(gettext('Already authenticated'), 'warning')
+		return redirect(request.referrer or url_for('index'))
+
 	form = RegisterForm()
 	if form.validate_on_submit():
 		name = request.form['name']
 		surname = request.form['surname']
 		corporate = 'corporate' in request.form and request.form['corporate'] == u'y'
 		code = request.form['code']
-		if corporate and len(code) != 8:
-			flash(gettext('Corporate code length should be 8'), 'error')
-			return redirect(url_for('register'))
-		if not corporate and len(code) != 10:
-			flash(gettext('Individual code length should be 10'), 'error')
-			return redirect(url_for('register'))
 		purpose = ['edu', 'aud', 'lst', 'ipo'].index(request.form['purpose'])
 		beneficiary = request.form['beneficiary']
 		email = request.form['email']
+		valid = True
+		if corporate and len(code) != 8:
+			form.code.errors = [gettext('Corporate code length should be 8')]
+			valid = False
+		if not corporate and len(code) != 10:
+			form.code.errors = [gettext('Individual code length should be 10')]
+			valid = False
 		if len(db.session.query(User).filter_by(email=email).all()) != 0:
-			flash(gettext('The user with email %(email)s already exists', email=email), 'error')
-			return redirect(url_for('register'))
+			form.email.errors = [gettext('The user with email %(email)s already exists', email=email)]
+			valid = False
+		if not valid:
+			return render_template('register.html', title=gettext('Register'),
+				form=form, name=name, surname=surname, corporate=corporate,
+				code=code, purpose=purpose, beneficiary=beneficiary, email=email)
 		seed(code)
 		password = ''.join([choice(string.letters + string.digits) for i in range(8)])
 		user = User(name,
