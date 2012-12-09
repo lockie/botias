@@ -12,7 +12,8 @@ class RpcClient(object):
 		self.connection = None
 		self.responses = {}
 		self.timeouts  = {}
-		self.try_connect()
+		if host:
+			self.try_connect()
 
 	def try_connect(self):
 		try:

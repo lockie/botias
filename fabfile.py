@@ -88,15 +88,24 @@ environment=PATH="%(venv)s/bin"
 
 def deploy():
 	""" Create a python egg, install it on remote host & restart server"""
-	try:
-		# ensure everything is in place
-		local('ls .git &> /dev/null && git submodule update --init --recursive ; true')
+	# ensure everything is in place
+	have_virtualenv = os.path.exists('../bin/python') and os.path.exists('../bin/pybabel')
+	local('ls .git &> /dev/null && git submodule update --init --recursive ; true')
+	if have_virtualenv:
+		local('../bin/pybabel compile -d botias/translations')
+	else:
 		local('which pybabel &> /dev/null && pybabel compile -d botias/translations ; true')
-		# create a new source distribution as tarball
-		local('python setup.py sdist --formats=gztar', capture=False)
-		# figure out the release name and version
-		dist = local('python setup.py --fullname', capture=True).strip()
-		# upload the source tarball to the temporary folder on the server
+	# run tests
+	if have_virtualenv:
+		local('../bin/python -m botias.test')
+	else:
+		print red('Virtualenv not found, skipping tests')
+	# create a new source distribution as tarball
+	local('python setup.py sdist --formats=gztar', capture=False)
+	# figure out the release name and version
+	dist = local('python setup.py --fullname', capture=True).strip()
+	# upload the source tarball to the temporary folder on the server
+	try:
 		put('dist/%s.tar.gz' % dist, '/tmp/%s.tar.gz' % PACKAGE_NAME)
 		run('mkdir -p /tmp/%s' % PACKAGE_NAME)
 		with cd('/tmp/%s' % PACKAGE_NAME):
@@ -113,7 +122,7 @@ def deploy():
 			with cd('/tmp/%s/%s' % (PACKAGE_NAME, dist)):
 				run('%s/bin/python setup.py install' % VENV_PATH)
 		# and finally reload of the application
-		#run('supervisorctl restart %s' % PACKAGE_NAME)
+		run('supervisorctl restart %s' % PACKAGE_NAME)
 	finally:
 		# now that all is set up, delete the folder again
 		run('rm -rf /tmp/%s /tmp/%s.tar.gz' % (PACKAGE_NAME, PACKAGE_NAME))
