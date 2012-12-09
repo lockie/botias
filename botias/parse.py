@@ -173,9 +173,9 @@ def parse_file(filename, id):
 				rows.append({'id': id, 'data': data})
 			except Exception:
 				pass
-		return {'count': len(rows), 'rows': rows}
+		return {'type': 0, 'rows': rows}
 	else:
-		return {'count': 1, 'rows': [{'id': id, 'data': parse_employee(workbook, id)}]}
+		return {'type': 1, 'rows': [{'id': id, 'data': parse_employee(workbook, id)}]}
 
 def main():
 	import sys
