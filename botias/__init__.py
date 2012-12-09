@@ -256,6 +256,8 @@ def register():
 def login():
 	if current_user.is_authenticated():
 		flash(gettext('Already authenticated'), 'warning')
+		if request.referrer and 'login' in request.referrer:
+			return redirect(url_for('index'))
 		return redirect(request.referrer or url_for('index'))
 
 	# TODO : https
@@ -270,7 +272,9 @@ def login():
 			password=hashlib.sha224(password + app.secret_key).hexdigest()).first()
 		if user and login_user(user, remember=True):
 			session['logged_in'] = True
-			flash('Logged OK', 'success')
+			flash(gettext('Authentication successeful'), 'success')
+			if next_url and 'logout' in next_url:
+				return redirect(url_for('index'))
 			return redirect(next_url or url_for('index'))
 		else:
 			flash(gettext('Authentication failed. Check login and password.'), 'error')

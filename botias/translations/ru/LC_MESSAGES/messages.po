@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version:  git\n"
 "Report-Msgid-Bugs-To: awkravchuk@gmail.com\n"
-"POT-Creation-Date: 2012-12-09 20:33+0400\n"
+"POT-Creation-Date: 2012-12-10 01:02+0400\n"
 "PO-Revision-Date: 2012-10-16 18:49+0400\n"
 "Last-Translator: Andrew Kravchuk <awkravchuk@gmail.com>\n"
 "Language-Team: ru <LL@li.org>\n"
@@ -78,61 +78,65 @@ msgstr "Регистрация"
 msgid "Registration successeful"
 msgstr "Регистрация произведена успешно"
 
-#: botias/__init__.py:276
+#: botias/__init__.py:275
+msgid "Authentication successeful"
+msgstr "Вход в систему осуществлён успешно"
+
+#: botias/__init__.py:280
 msgid "Authentication failed. Check login and password."
 msgstr "Не удалось войти. Проверьте логин и пароль."
 
-#: botias/__init__.py:277 botias/templates/login.html:4
+#: botias/__init__.py:281 botias/templates/login.html:4
 #: botias/templates/login.html:14
 msgid "Login"
 msgstr "Вход"
 
-#: botias/__init__.py:285
+#: botias/__init__.py:289
 msgid "You have logged out"
 msgstr "Вы вышли"
 
-#: botias/__init__.py:290
+#: botias/__init__.py:294
 msgid "Please authorize to access this page"
 msgstr "Пожалуйста, авторизуйтесь для доступа к запрошенной странице"
 
-#: botias/__init__.py:299 botias/templates/layout.html:76
+#: botias/__init__.py:303 botias/templates/layout.html:76
 #: botias/templates/office.html:79
 msgid "My office"
 msgstr "Мой кабинет"
 
-#: botias/__init__.py:306
+#: botias/__init__.py:310
 msgid "Profile parameters saved"
 msgstr "Параметры профиля сохранены"
 
-#: botias/__init__.py:308
+#: botias/__init__.py:312
 msgid "Calculation parameters saved"
 msgstr "Параметры расчёта сохранены"
 
-#: botias/__init__.py:310
+#: botias/__init__.py:314
 msgid "Actuarial parameters saved"
 msgstr "Актуарные предположения сохранены"
 
-#: botias/__init__.py:319 botias/templates/layout.html:77
+#: botias/__init__.py:323 botias/templates/layout.html:77
 #: botias/templates/preferences.html:16
 msgid "Preferences"
 msgstr "Настройки"
 
-#: botias/__init__.py:325 botias/templates/layout.html:66
+#: botias/__init__.py:329 botias/templates/layout.html:66
 #: botias/templates/layout.html:101 botias/templates/tos.html:5
 msgid "Terms of service"
 msgstr "Условия использования"
 
-#: botias/__init__.py:329 botias/templates/about.html:5
+#: botias/__init__.py:333 botias/templates/about.html:5
 #: botias/templates/layout.html:62
 msgid "About service"
 msgstr "О сервисе"
 
-#: botias/__init__.py:335 botias/templates/docs.html:5
+#: botias/__init__.py:339 botias/templates/docs.html:5
 #: botias/templates/layout.html:65
 msgid "Documentation"
 msgstr "Документы"
 
-#: botias/__init__.py:339 botias/templates/faq.html:5
+#: botias/__init__.py:343 botias/templates/faq.html:5
 #: botias/templates/layout.html:64
 msgid "Frequently asked questions"
 msgstr "Вопросы и ответы"
@@ -457,7 +461,4 @@ msgstr "Обработка данных..."
 #: botias/templates/result.html:155
 msgid "Try again"
 msgstr "Повторить попытку"
-
-#~ msgid "Rainbow technologies LTD., 2012"
-#~ msgstr ""
 
