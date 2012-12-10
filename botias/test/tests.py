@@ -40,12 +40,13 @@ class BaseTestCase(AsyncTestCase, LogTrapTestCase):
 			UPLOAD_FOLDER='/tmp',
 			BACKEND_ADDRESS=''
 		)
-		from botias import db, User, rpc
-		if User.query.count() == 0:
-			import hashlib
-			db.session.add(User('Test', 'Test', True, '12345678', 'edu', 10,
-				TEST_MAIL, hashlib.sha224(TEST_PASSWORD+SECRET_KEY).hexdigest()))
-			db.session.commit()
+		from botias import database as db, User, rpc
+		if User.query.count() != 0:
+			User.query.delete()
+		import hashlib
+		db.session.add(User('Test', 'Test', True, '12345678', 'edu', 10,
+			TEST_MAIL, hashlib.sha224(TEST_PASSWORD+SECRET_KEY).hexdigest()))
+		db.session.commit()
 		if rpc.connection is None:
 			rpc.call = MagicMock(return_value=None)
 			rpc.result = MagicMock(return_value={'error': 'Just testing.'})

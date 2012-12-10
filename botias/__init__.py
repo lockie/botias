@@ -33,26 +33,27 @@ app = Flask(__name__)
 app.config.from_object(__name__)
 babel = Babel(app)
 Bootstrap(app)
-db = SQLAlchemy()
+database = SQLAlchemy()
 login_manager = LoginManager()
 login_manager.setup_app(app)
 login_manager.login_view = 'login'
 rpc = None
 
 def init_app(**kwargs):
+	global app, database, rpc
 	app.config.update(kwargs)
 	# init debug toolbar
 	app.config['DEBUG_TB_INTERCEPT_REDIRECTS'] = False
 	toolbar = DebugToolbarExtension(app)
 	# init db
-	db.init_app(app)
-	db.app = app
+	if database.app is None:
+		database.init_app(app)
+		database.app = app
 	# are we running in-memory DB?
 	if app.config['SQLALCHEMY_DATABASE_URI'] == 'sqlite://':
-		db.create_all()
-		db.session.commit()
+		database.create_all()
+		database.session.commit()
 	# init backend connection
-	global rpc
 	rpc = RpcClient(app.config['BACKEND_ADDRESS'])
 	return app
 
@@ -79,16 +80,17 @@ def get_timezone():
 
 # define User object
 
-class User(db.Model):
-	id = db.Column(db.Integer, primary_key=True)
-	name = db.Column(db.String(25))
-	surname = db.Column(db.String(35))
-	corporate = db.Column(db.Boolean())
-	code = db.Column(db.String(10))
-	purpose = db.Column(db.SmallInteger())
-	beneficiary = db.Column(db.Integer())
-	email = db.Column(db.String(80), unique=True)
-	password = db.Column(db.String(20))
+class User(database.Model):
+	__tablename__ = 'users'
+	id = database.Column(database.Integer, primary_key=True)
+	name = database.Column(database.String(25))
+	surname = database.Column(database.String(35))
+	corporate = database.Column(database.Boolean())
+	code = database.Column(database.String(10))
+	purpose = database.Column(database.SmallInteger())
+	beneficiary = database.Column(database.Integer())
+	email = database.Column(database.String(80), unique=True)
+	password = database.Column(database.String(56))
 
 	def __init__(self, name, surname, corporate, code, purpose, beneficiary, email, password):
 		self.name = name
@@ -112,6 +114,9 @@ class User(db.Model):
 
 	def is_authenticated(self):
 		return True
+
+	def __repr__(self):
+		return '<User %r %r, id %d>' % (self.name, self.surname, self.id)
 
 @login_manager.user_loader
 def load_user(user_id):
@@ -148,7 +153,7 @@ def process(): # to be called from AJAX
 			try:
 				data = parse_file(file_path, int(ident))
 			except Exception as e:
-				return jsonify(error=gettext(u'Error: %(error)s. Try fixing your file.', error=unicode(e.message)))
+				return jsonify(error=gettext(u'Error: %(error)s. Try fixing your file.', error=unicode(e.args[0])))
 
 			# TODO : find bug in mongodb BSON parser (or write our own)
 			# & pass BSON instead of JSON
@@ -227,7 +232,7 @@ def register():
 		if not corporate and len(code) != 10:
 			form.code.errors = [gettext('Individual code length should be 10')]
 			valid = False
-		if len(db.session.query(User).filter_by(email=email).all()) != 0:
+		if len(database.session.query(User).filter_by(email=email).all()) != 0:
 			form.email.errors = [gettext('The user with email %(email)s already exists', email=email)]
 			valid = False
 		if not valid:
@@ -246,8 +251,8 @@ def register():
 			hashlib.sha224(password + app.secret_key).hexdigest()
 		)
 		# TODO : send email
-		db.session.add(user)
-		db.session.commit()
+		database.session.add(user)
+		database.session.commit()
 		return render_template('registered.html', title=gettext('Registration successeful'), name=name, email=email, password=password)
 #		return render_template('registered.html', title=gettext('Registration successeful'), name=name, email=email)
 	return render_template('register.html', title=gettext('Register'), form=form)
