@@ -1,6 +1,8 @@
 #!/usr/bin/env python
 
 import os.path
+import string
+from random import choice
 import fabric
 from fabric.api import *
 from fabric.utils import abort
@@ -34,6 +36,24 @@ Its unnecessary for deploy though.' % env.user)
 		sudo('apt-get update')
 		run('yes | sudo apt-get install task-database-server python-dev\
 			python-virtualenv libsqlite3-dev libpq-dev supervisor')
+	# setup db, create dbuser
+	db_command = "select count(1) from pg_catalog.pg_database where datname = '%s'" % PACKAGE_NAME
+	if '0' in sudo('su postgres -c "psql -U postgres -t -c \\"%s\\""' % db_command,
+			shell=False):
+		sudo('su postgres -c "createdb -U postgres -w -E UTF8 -l ru_RU.UTF-8 -O postgres -T template0 %s"' %
+			PACKAGE_NAME)
+	else:
+		print yellow('Database already exists')
+	dbpassword = ''.join([choice(string.letters + string.digits) for i in range(12)])
+	db_command = "select count(1) from pg_roles where rolname='%s'" % env.user
+	if '0' in sudo('su postgres -c "psql -U postgres -t -c \\"%s\\""' % db_command,
+			shell=False):
+		sudo('su postgres -c "psql -c \\"create role %s with login password \'%s\'\\""'
+			% (env.user, dbpassword), shell=False)
+	else:
+		print yellow("Scrambling database user's password")
+		sudo('su postgres -c "psql -c \\"alter role %s with password \'%s\'\\""'
+			% (env.user, dbpassword), shell=False)
 	# setup virtualenv
 	sudo('mkdir -p %s' % VENV_PATH)
 	sudo('chown %s %s' % (env.user, VENV_PATH))
@@ -45,10 +65,11 @@ Its unnecessary for deploy though.' % env.user)
 	with open('/tmp/app.conf', 'w') as f:
 		f.write("""port=80
 secret="CHANGE ME TO SOMETHING SECURE PLEASE"
-db="sqlite://"
+# http://docs.sqlalchemy.org/en/rel_0_7/core/engines.html#postgresql
+db="postgresql+psycopg2://%s:%s@localhost/botias"
 backend="amqp://backend"
 logging="warning"
-""")
+""" % (env.user, dbpassword))
 	put('/tmp/app.conf', '%s/app.conf' % VENV_PATH, mode=0600)
 	local('rm /tmp/app.conf')
 	f = open('/tmp/%s.conf' % PACKAGE_NAME, 'w')
@@ -89,7 +110,9 @@ environment=PATH="%(venv)s/bin"
 	print green('Ready to deploy!')
 
 def deploy():
-	""" Create a python egg, install it on remote host & restart server"""
+	""" Create a python egg, install it on remote host, migrate DB
+	& restart server
+	"""
 	# ensure everything is in place
 	have_virtualenv = os.path.exists('../bin/python') and os.path.exists('../bin/pybabel')
 	local('ls .git &> /dev/null && git submodule update --init --recursive ; true')
@@ -123,6 +146,15 @@ def deploy():
 			# python interpreter
 			with cd('/tmp/%s/%s' % (PACKAGE_NAME, dist)):
 				run('%s/bin/python setup.py install' % VENV_PATH)
+		# migrate DB
+		db_command = "select count(1) from information_schema.tables where table_name = 'migrate_version'"
+		if '0' in run('psql %s -t -c "%s"'
+				% (PACKAGE_NAME, db_command), shell=False):
+			with cd(VENV_PATH):
+				run('%s/bin/python -m %s.db version_control'
+					% (VENV_PATH, PACKAGE_NAME))
+		with cd(VENV_PATH):
+			run('%s/bin/python -m %s.db upgrade' % (VENV_PATH, PACKAGE_NAME))
 		# and finally reload of the application
 		run('supervisorctl restart %s' % PACKAGE_NAME)
 	finally:

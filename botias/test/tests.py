@@ -257,3 +257,46 @@ class SubmitCase(BaseTestCase):
 			self.app.post('/_process', {'id': '0'}),
 			'Corrupted file slipped validation')
 
+
+class DbMigrationCase(BaseTestCase):
+	def __init__(self, *args, **kwargs):
+		BaseTestCase.__init__(self, *args, **kwargs)
+
+	db = '/tmp/test.db'
+
+	def cleanup(self):
+		import os, os.path
+		if os.path.exists(self.db):
+			os.remove(self.db)
+
+	def setUp(self):
+		BaseTestCase.setUp(self)
+		self.cleanup()
+
+	def test_migration_is_actual(self):
+		# create DB with latest migration
+		from migrate.versioning.api import version_control, upgrade
+		from botias.db import REPOSITORY
+		version_control('sqlite:///'+self.db, REPOSITORY)
+		upgrade('sqlite:///'+self.db, REPOSITORY)
+		from sqlalchemy import create_engine, MetaData
+		engine = create_engine('sqlite:///'+self.db)
+		metadata = MetaData(bind=engine)
+		metadata.reflect(engine)
+		# compare it with actual DB schema
+		from botias import database
+		from migrate.versioning.schemadiff import SchemaDiff
+		diff = SchemaDiff(database.metadata, metadata,
+			labelA='application', labelB='migration',
+			excludeTables=['migrate_version'])
+		self.assertFalse(diff, str(diff))
+
+	def test_migration(self):
+		from migrate.versioning.api import test
+		from botias.db import REPOSITORY
+		test('sqlite://', REPOSITORY)
+
+	def tearDown(self):
+		BaseTestCase.tearDown(self)
+		self.cleanup()
+

@@ -1,7 +1,6 @@
 *.pyc
 *.mo
 *.egg-info
-db
 RELEASE-VERSION
 MANIFEST
 dist

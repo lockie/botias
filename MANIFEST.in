@@ -4,6 +4,7 @@ include RELEASE-VERSION
 recursive-include botias/templates *
 recursive-include botias/static *
 recursive-include botias/translations *.mo
+recursive-include botias/db *
 global-exclude .git*
 global-exclude README*
 global-exclude *.pyc

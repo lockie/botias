@@ -34,6 +34,7 @@ setup(
 		"pysqlite==2.6.3",
 		"pytz==2012h",
 		"speaklater==1.3",
+		"sqlalchemy-migrate==0.7.2",
 		"tornado==2.4.1",
 		"wsgiref==0.1.2",
 		"xlrd==0.8.0",
