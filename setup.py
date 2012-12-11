@@ -30,6 +30,7 @@ setup(
 		"Werkzeug==0.8.3",
 		"bson==0.3.3",
 		"pika==0.9.8",
+		"psycopg2==2.4.5",
 		"pysqlite==2.6.3",
 		"pytz==2012h",
 		"speaklater==1.3",

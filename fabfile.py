@@ -10,6 +10,8 @@ from fabric.colors import *
 PACKAGE_NAME='botias'
 VENV_PATH='/var/www/'+PACKAGE_NAME
 fabric.state.output['stdout'] = False
+if env.user == env.local_user:
+	env.user = 'administrator'
 
 def bootstrap():
 	""" Prepare bare installation for running the server """
@@ -29,15 +31,15 @@ Its unnecessary for deploy though.' % env.user)
 		abort('Unknown OS in remote server')
 	# install required packages. update first
 	if OS['debian']:
-		run('sudo apt-get update')
+		sudo('apt-get update')
 		run('yes | sudo apt-get install task-database-server python-dev\
 			python-virtualenv libsqlite3-dev libpq-dev supervisor')
 	# setup virtualenv
-	run('sudo mkdir -p %s' % VENV_PATH)
-	run('sudo chown %s %s' % (env.user, VENV_PATH))
+	sudo('mkdir -p %s' % VENV_PATH)
+	sudo('chown %s %s' % (env.user, VENV_PATH))
 	with cd(os.path.dirname(VENV_PATH)):
 		app_dir = os.path.basename(VENV_PATH)
-		run('sudo rm -fr %s/*' % app_dir) # just in case
+		sudo('rm -fr %s/*' % app_dir) # just in case
 		run('virtualenv %s' % app_dir)
 	# create configs
 	with open('/tmp/app.conf', 'w') as f:
@@ -83,7 +85,7 @@ environment=PATH="%(venv)s/bin"
 	put('/tmp/supervisord.fixed.conf', '/etc/supervisor/supervisord.conf', use_sudo=True)
 	local('rm /tmp/supervisord.fixed.conf')
 	# restart supervisor in idle mode
-	run('sudo kill -HUP `cat /var/run/supervisord.pid`')
+	sudo('kill -HUP `cat /var/run/supervisord.pid`')
 	print green('Ready to deploy!')
 
 def deploy():
@@ -92,12 +94,12 @@ def deploy():
 	have_virtualenv = os.path.exists('../bin/python') and os.path.exists('../bin/pybabel')
 	local('ls .git &> /dev/null && git submodule update --init --recursive ; true')
 	if have_virtualenv:
-		local('../bin/pybabel compile -d botias/translations')
+		local('../bin/pybabel compile -d %s/translations' % PACKAGE_NAME)
 	else:
-		local('which pybabel &> /dev/null && pybabel compile -d botias/translations ; true')
+		local('which pybabel &> /dev/null && pybabel compile -d %s/translations ; true' % PACKAGE_NAME)
 	# run tests
 	if have_virtualenv:
-		local('../bin/python -m botias.test')
+		local('../bin/python -m %s.test' % PACKAGE_NAME)
 	else:
 		print red('Virtualenv not found, skipping tests')
 	# create a new source distribution as tarball
