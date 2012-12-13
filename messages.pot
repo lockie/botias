@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PROJECT VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2012-12-10 01:02+0400\n"
+"POT-Creation-Date: 2012-12-14 03:07+0400\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -17,125 +17,134 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "Generated-By: Babel 0.9.6\n"
 
-#: botias/__init__.py:140
+#: botias/__init__.py:162
 msgid "Error: no employee id given."
 msgstr ""
 
-#: botias/__init__.py:144
-msgid "Error: no file submitted! <a href=\"/office\">Submit</a> one."
+#: botias/__init__.py:165 botias/__init__.py:207
+msgid "Error: no file id given"
 msgstr ""
 
-#: botias/__init__.py:151
+#: botias/__init__.py:174
+msgid "No actual data"
+msgstr ""
+
+#: botias/__init__.py:176
 #, python-format
 msgid "Error: %(error)s. Try fixing your file."
 msgstr ""
 
-#: botias/__init__.py:173
+#: botias/__init__.py:198
 #, python-format
 msgid "Error: %(error)s. Contact administration."
 msgstr ""
 
-#: botias/__init__.py:180
+#: botias/__init__.py:204
 msgid "Error: no employee id given"
 msgstr ""
 
-#: botias/__init__.py:182
+#: botias/__init__.py:210
 msgid "Results"
 msgstr ""
 
-#: botias/__init__.py:202
+#: botias/__init__.py:225
 msgid "File uploaded successfully"
 msgstr ""
 
-#: botias/__init__.py:204
+#: botias/__init__.py:227
+#, python-format
+msgid "Error uploading file: %(error)s."
+msgstr ""
+
+#: botias/__init__.py:230
 msgid "Files of this type are not allowed to upload"
 msgstr ""
 
-#: botias/__init__.py:211 botias/__init__.py:258
+#: botias/__init__.py:237 botias/__init__.py:284
 msgid "Already authenticated"
 msgstr ""
 
-#: botias/__init__.py:225
+#: botias/__init__.py:251
 msgid "Corporate code length should be 8"
 msgstr ""
 
-#: botias/__init__.py:228
+#: botias/__init__.py:254
 msgid "Individual code length should be 10"
 msgstr ""
 
-#: botias/__init__.py:231
+#: botias/__init__.py:257
 #, python-format
 msgid "The user with email %(email)s already exists"
 msgstr ""
 
-#: botias/__init__.py:234 botias/__init__.py:253
+#: botias/__init__.py:260 botias/__init__.py:279
 #: botias/templates/layout.html:86 botias/templates/register.html:23
 msgid "Register"
 msgstr ""
 
-#: botias/__init__.py:251 botias/templates/registered.html:5
+#: botias/__init__.py:277 botias/templates/registered.html:5
 msgid "Registration successeful"
 msgstr ""
 
-#: botias/__init__.py:275
+#: botias/__init__.py:301
 msgid "Authentication successeful"
 msgstr ""
 
-#: botias/__init__.py:280
+#: botias/__init__.py:306
 msgid "Authentication failed. Check login and password."
 msgstr ""
 
-#: botias/__init__.py:281 botias/templates/login.html:4
+#: botias/__init__.py:307 botias/templates/login.html:4
 #: botias/templates/login.html:14
 msgid "Login"
 msgstr ""
 
-#: botias/__init__.py:289
+#: botias/__init__.py:315
 msgid "You have logged out"
 msgstr ""
 
-#: botias/__init__.py:294
+#: botias/__init__.py:320
 msgid "Please authorize to access this page"
 msgstr ""
 
-#: botias/__init__.py:303 botias/templates/layout.html:76
-#: botias/templates/office.html:79
+#: botias/__init__.py:329 botias/templates/layout.html:76
+#: botias/templates/office.html:81
 msgid "My office"
 msgstr ""
 
-#: botias/__init__.py:310
+#: botias/__init__.py:336
 msgid "Profile parameters saved"
 msgstr ""
 
-#: botias/__init__.py:312
+#: botias/__init__.py:338
 msgid "Calculation parameters saved"
 msgstr ""
 
-#: botias/__init__.py:314
+#: botias/__init__.py:340
 msgid "Actuarial parameters saved"
 msgstr ""
 
-#: botias/__init__.py:323 botias/templates/layout.html:77
+#: botias/__init__.py:349 botias/templates/layout.html:77
 #: botias/templates/preferences.html:16
 msgid "Preferences"
 msgstr ""
 
-#: botias/__init__.py:329 botias/templates/layout.html:66
+#: botias/__init__.py:355 botias/templates/layout.html:66
 #: botias/templates/layout.html:101 botias/templates/tos.html:5
 msgid "Terms of service"
 msgstr ""
 
-#: botias/__init__.py:333 botias/templates/about.html:5
+#: botias/__init__.py:359 botias/templates/about.html:5
 #: botias/templates/layout.html:62
 msgid "About service"
 msgstr ""
 
-#: botias/__init__.py:339 botias/templates/docs.html:5
+#: botias/__init__.py:365 botias/templates/docs.html:5
 #: botias/templates/layout.html:65
 msgid "Documentation"
 msgstr ""
 
-#: botias/__init__.py:343 botias/templates/faq.html:5
+#: botias/__init__.py:369 botias/templates/faq.html:5
 #: botias/templates/layout.html:64
 msgid "Frequently asked questions"
 msgstr ""
@@ -218,15 +227,15 @@ msgid "Corporate"
 msgstr ""
 
 #: botias/registerform.py:17
-msgid "Are you individual or corporate user"
+msgid "Are you corporate user"
 msgstr ""
 
 #: botias/registerform.py:22
-msgid "Purpose of calculation"
+msgid "Purpose"
 msgstr ""
 
 #: botias/registerform.py:23
-msgid "educational purposes"
+msgid "educational"
 msgstr ""
 
 #: botias/registerform.py:24
@@ -238,11 +247,11 @@ msgid "introduction of the issuer in exchange listing"
 msgstr ""
 
 #: botias/registerform.py:26
-msgid "IPO entry"
+msgid "IPO"
 msgstr ""
 
 #: botias/registerform.py:28
-msgid "Approx. beneficiary count"
+msgid "Approximate number of beneficiaries"
 msgstr ""
 
 #: botias/registerform.py:31 botias/templates/login.html:8
@@ -254,7 +263,7 @@ msgid "Invalid email address."
 msgstr ""
 
 #: botias/registerform.py:35
-msgid "We will send you your password to this email."
+msgid "Your password will be sent to this address."
 msgstr ""
 
 #: botias/rpcclient.py:54 botias/rpcclient.py:79
@@ -267,6 +276,43 @@ msgstr ""
 
 #: botias/rpcclient.py:83
 msgid "No request has been sent to server. Try again."
+msgstr ""
+
+#: botias/templates/functionality.htm:3
+msgid "Actuarial assessment of privileged pensions in Ukraine according to IAS-19"
+msgstr ""
+
+#: botias/templates/functionality.htm:5 botias/templates/office.html:84
+msgid ""
+"Our service gives you the possibility to calculate the obligations on "
+"payment of privileged pensions\n"
+"\tto workers employed at the workplace, defined by the list of № 1 and "
+"the list of № 2, and prepare a balance\n"
+"\tsheet that meets the requirements of International Financial Reporting "
+"Standard IAS-19 «employee benefits» criteria."
+msgstr ""
+
+#: botias/templates/functionality.htm:9
+msgid ""
+"After registering in our service, you can manually perform calculations "
+"and obtain reports\n"
+"\tfor two workers. Sample reports and tables of the results of "
+"calculations and actuarial assumptions are\n"
+"\tgiven in the <a href=\"/docs\">Documents</a> section."
+msgstr ""
+
+#: botias/templates/functionality.htm:13
+msgid ""
+"If you need the calculation and reporting for more than two workers, "
+"please read\n"
+"\t<a href=\"/tos\">Terms of service</a> section first."
+msgstr ""
+
+#: botias/templates/functionality.htm:16
+msgid ""
+"In the <a href=\"/faq\">FAQ</a> section you can get acquainted with "
+"algorithms used in calculations\n"
+"\tand the user manual."
 msgstr ""
 
 #: botias/templates/layout.html:45
@@ -306,63 +352,63 @@ msgstr ""
 msgid "Password"
 msgstr ""
 
-#: botias/templates/office.html:43
+#: botias/templates/office.html:44
 msgid "Enter employee id"
 msgstr ""
 
-#: botias/templates/office.html:49
+#: botias/templates/office.html:50
 msgid "Incorrect employee id"
 msgstr ""
 
-#: botias/templates/office.html:65
-msgid "Show text files"
-msgstr ""
-
 #: botias/templates/office.html:67
-msgid "Hide text files"
+msgid "Show test files"
 msgstr ""
 
-#: botias/templates/office.html:94
+#: botias/templates/office.html:69
+msgid "Hide test files"
+msgstr ""
+
+#: botias/templates/office.html:98
 msgid "No files uploaded."
 msgstr ""
 
-#: botias/templates/office.html:95
+#: botias/templates/office.html:99
 msgid "Download test file"
 msgstr ""
 
-#: botias/templates/office.html:100
+#: botias/templates/office.html:104
 msgid "Uploaded files"
 msgstr ""
 
-#: botias/templates/office.html:115
+#: botias/templates/office.html:119
 msgid "Download"
 msgstr ""
 
-#: botias/templates/office.html:116
+#: botias/templates/office.html:120
 msgid "Calculate funding plan for single employee"
 msgstr ""
 
-#: botias/templates/office.html:116
+#: botias/templates/office.html:120
 msgid "Calculate employee"
 msgstr ""
 
-#: botias/templates/office.html:117
+#: botias/templates/office.html:121
 msgid "Calculate overall funding plan"
 msgstr ""
 
-#: botias/templates/office.html:117
+#: botias/templates/office.html:121
 msgid "Calculate plan"
 msgstr ""
 
-#: botias/templates/office.html:124
+#: botias/templates/office.html:128
 msgid "Upload new file"
 msgstr ""
 
-#: botias/templates/office.html:126
+#: botias/templates/office.html:130
 msgid "Close"
 msgstr ""
 
-#: botias/templates/office.html:131
+#: botias/templates/office.html:135
 msgid "Submit"
 msgstr ""
 

@@ -64,9 +64,9 @@
 				e.preventDefault();
 				if($("#test-files-table").is(":visible"))
 				{
-					$("#test-files-header").text("{{ _('Show text files') }}");
+					$("#test-files-header").text("{{ _('Show test files') }}");
 				} else {
-					$("#test-files-header").text("{{ _('Hide text files') }}");
+					$("#test-files-header").text("{{ _('Hide test files') }}");
 				}
 				$("#test-files-table").toggle();
 			});
@@ -81,7 +81,9 @@
 	<h2>{{ _('My office') }}</h2>
 	<br /><br />
 
-	<div class='hero-unit'>Наш сервис предоставляет Вам возможность произвести расчет обязательств по выплате льготных пенсий работникам, занятым на рабочих местах, определенных списком № 1 и списком № 2, и сформировать балансовый отчет, удовлетворяющий требованиям Международного стандарта финансовой отчетности МСФО-19 «Выплаты работникам».</div>
+	<div class='hero-unit'>{{ _('Our service gives you the possibility to calculate the obligations on payment of privileged pensions
+	to workers employed at the workplace, defined by the list of № 1 and the list of № 2, and prepare a balance
+	sheet that meets the requirements of International Financial Reporting Standard IAS-19 «employee benefits» criteria.') }}</div>
 
 	<a id="test-files" class="link"><h3 id="test-files-header"></h3></a>
 	<table id="test-files-table" class="table table-striped" style="table-layout: fixed; vertical-align: middle;">
