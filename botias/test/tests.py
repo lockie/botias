@@ -218,8 +218,8 @@ class SubmitCase(BaseTestCase):
 		self.assertIn('success',
 			form.submit('/submit', upload_files=[('data', fn, data)]).follow(),
 			'File upload broken')
-		self.app.get('/result?id=0')
-		self.assertIs(self.app.post('/_process', {'id': '0'}).json[u'result'],
+		self.app.get('/result?id=0&file=2')
+		self.assertIs(self.app.post('/_process', {'id': '0', 'file': '2'}).json[u'result'],
 				None, 'POST _process URL handler broken')
 		self.assertEqual(self.app.get('/_process').json[u'error'],
 				'Just testing.', 'GET _process URL handler broken')
@@ -235,8 +235,8 @@ class SubmitCase(BaseTestCase):
 		self.assertIn('success',
 			form.submit('/submit', upload_files=[('data', fn, data)]).follow(),
 			'File upload broken')
-		self.app.get('/result?id=2')
-		self.assertIs(self.app.post('/_process', {'id': '0'}).json[u'result'],
+		self.app.get('/result?id=2&file=3')
+		self.assertIs(self.app.post('/_process', {'id': '0', 'file': '3'}).json[u'result'],
 				None, 'POST _process URL handler broken')
 		self.assertEquals(self.app.get('/_process').json[u'error'],
 				'Just testing.', 'GET _process URL handler broken')
@@ -252,9 +252,9 @@ class SubmitCase(BaseTestCase):
 			form.submit('/submit',
 				upload_files=[('data', '/test.xls', data)]).follow(),
 				'File upload broken')
-		self.app.get('/result?id=10')
+		self.app.get('/result?id=10&file=1')
 		self.assertIn('Try fixing your file',
-			self.app.post('/_process', {'id': '0'}),
+			self.app.post('/_process', {'id': '0', 'file': '1'}),
 			'Corrupted file slipped validation')
 
 

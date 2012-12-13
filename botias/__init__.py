@@ -2,7 +2,9 @@
 
 import os
 import os.path
+import ntpath
 import time
+from datetime import datetime
 import string
 from random import seed, choice
 import hashlib
@@ -78,7 +80,20 @@ def get_timezone():
 	if current_user is not None and not current_user.is_anonymous:
 		return current_user.timezone
 
-# define User object
+class SourceFile(database.Model):
+	__tablename__ = 'files'
+	id = database.Column(database.Integer, primary_key=True)
+	name = database.Column(database.String(255))
+	user_id = database.Column(database.Integer, database.ForeignKey('users.id'))
+	# TODO : account for timezone
+	date = database.Column(database.DateTime(timezone=True))
+	data = database.Column(database.LargeBinary())
+
+	def __init__(self, name, user_id, date, data):
+		self.name = name
+		self.user_id = user_id
+		self.date = date
+		self.data = data
 
 class User(database.Model):
 	__tablename__ = 'users'
@@ -91,6 +106,8 @@ class User(database.Model):
 	beneficiary = database.Column(database.Integer())
 	email = database.Column(database.String(80), unique=True)
 	password = database.Column(database.String(56))
+	files = database.relationship('SourceFile',
+		order_by='SourceFile.date')
 
 	def __init__(self, name, surname, corporate, code, purpose, beneficiary, email, password):
 		self.name = name
@@ -144,14 +161,17 @@ def process(): # to be called from AJAX
 			if 'id' not in request.form:
 				return jsonify(error=gettext('Error: no employee id given.'))
 			ident = request.form['id']
-			if not 'current_file' in session:
-				return jsonify(error=
-					gettext('Error: no file submitted! <a href="/office">Submit</a> one.'))
-			file_path = session['current_file']
+			if 'file' not in request.form:
+				return jsonify(error=gettext('Error: no file id given'))
+			file_id = request.form['file']
+			filedata = SourceFile.query.filter_by(id=file_id,
+				user_id=current_user.get_id()).one().data
 
 			data = {}
 			try:
-				data = parse_file(file_path, int(ident))
+				data = parse_file(filedata, int(ident))
+				if not data['rows']:
+					raise Exception(gettext('No actual data'))
 			except Exception as e:
 				return jsonify(error=gettext(u'Error: %(error)s. Try fixing your file.', error=unicode(e.args[0])))
 
@@ -177,14 +197,17 @@ def process(): # to be called from AJAX
 		e = str(sys.exc_info()[0].__name__)
 		return jsonify(error=gettext('Error: %(error)s. Contact administration.', error=e))
 
-
 @app.route('/result')
 @login_required
 def result():
 	if 'id' not in request.args:
 		flash(gettext('Error: no employee id given'), 'error')
 		return redirect(request.referrer or url_for('office'))
-	return render_template('result.html', id=request.args['id'], title=gettext('Results'))
+	if 'file' not in request.args:
+		flash(gettext('Error: no file id given'), 'error')
+		return redirect(request.referrer or url_for('office'))
+	return render_template('result.html', id=request.args['id'],
+		file=request.args['file'], title=gettext('Results'))
 
 @app.route('/submit', methods=['GET', 'POST'])
 @login_required
@@ -192,19 +215,17 @@ def submit():
 	if request.method == 'POST' and 'data' in request.files:
 		filename = request.files['data'].filename
 		if(allowed_file(filename)):
-			# remove previous file
 			try:
-				f = session['current_file'] 
-				if os.path.exists(f) and os.path.isfile(f):
-					os.remove(f)
-			except Exception:
-				pass
-
-			fn = str(current_user.get_id()) + '_' + str(time.time()) + '_' + str(uuid.uuid4()) + '_' + secure_filename(filename)
-			path = os.path.join(app.config['UPLOAD_FOLDER'], fn)
-			session['current_file'] = path
-			request.files['data'].save(path)
-			flash(gettext('File uploaded successfully'), 'success')
+				file = SourceFile(ntpath.basename(secure_filename(filename)),
+					current_user.get_id(),
+					datetime.now(),
+					request.files['data'].read())
+				database.session.add(file)
+				database.session.commit()
+				flash(gettext('File uploaded successfully'), 'success')
+			except Exception, e:
+				flash(gettext('Error uploading file: %(error)s.',
+					error=e.args[0]), 'error')
 		else:
 			flash(gettext('Files of this type are not allowed to upload'), 'error')
 	return redirect(url_for('office'))
@@ -303,8 +324,8 @@ def unauthorized():
 @login_required
 def office():
 	files = []
-	if 'current_file' in session:
-		files = [{'name': os.path.basename(session['current_file']).split('_')[-1]}]
+	for f in SourceFile.query.filter_by(user_id=current_user.get_id()):
+		files.append({'id': f.id, 'name': f.name})
 	return render_template('office.html', title=gettext('My office'), files=files)
 
 @app.route('/prefs', methods=['GET', 'POST'])

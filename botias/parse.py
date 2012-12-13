@@ -153,8 +153,8 @@ def parse_employee(workbook, id):
 		data.append(d)
 	return data
 
-def parse_file(filename, id):
-	workbook = xlrd.open_workbook(filename)
+def parse_file(file, id):
+	workbook = xlrd.open_workbook(file_contents=file)
 	if workbook.nsheets != 4:
 		raise RuntimeError(_(u'Invalid sheets count (%(count)d), must be 4', count=workbook.nsheets))
 

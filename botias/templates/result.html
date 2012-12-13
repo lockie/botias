@@ -140,7 +140,7 @@
 		$.ajax({
 			type: 'POST',
 			url: '/_process',
-			data: 'id={{ id }}',
+			data: 'id={{ id }}&file={{ file }}',
 			dataType: 'JSON',
 			error: displayError,
 			success: queryResult

@@ -38,8 +38,9 @@
 				$("#upload-link").show();
 				$("#upload-form").hide();
 			});
-			$("#calculate-single-link").click(function(e) {
+			$(".calculate-single-link").click(function(e) {
 				e.preventDefault();
+				f=$(this).attr('id');
 				bootbox.prompt("{{ _('Enter employee id') }}", "Cancel", "OK",
 					function(r) {
 						if(r)
@@ -49,14 +50,15 @@
 								bootbox.alert("{{ _('Incorrect employee id') }}");
 							} else
 							{
-								location.replace("result?id="+r);
+								location.replace("result?id="+r+"&file="+f);
 							}
 						}
 					}, "1");
 				});
-			$("#calculate-all-link").click(function(e) {
+			$(".calculate-all-link").click(function(e) {
 				e.preventDefault();
-				location.replace("result?id=0")
+				f=$(this).attr('id');
+				location.replace("result?id=0&file="+f)
 			});
 			$("#test-files").click(function(e) {
 				e.preventDefault();
@@ -112,9 +114,9 @@
 					<td style="width:50px;"><img src="/static/xls.png" /></td>
 					<td style="vertical-align: middle;"><a href="#">{{ file.name }}</a></td>
 					<td>
-						<a id="download-link" class="link"><i class="icon-download-alt"></i>{{ _('Download') }}</a><br />
-						<a id="calculate-single-link" class="link" title="{{ _('Calculate funding plan for single employee') }}"><i class="icon-user"></i>{{ _('Calculate employee') }}</a><br />
-						<a id="calculate-all-link" class="link" title="{{ _('Calculate overall funding plan') }}"><i class="icon-th-list"></i>{{ _('Calculate plan') }}</a><br />
+						<a id="{{ file.id }}" class="download-link link"><i class="icon-download-alt"></i>{{ _('Download') }}</a><br />
+						<a id="{{ file.id }}" class="calculate-single-link link" title="{{ _('Calculate funding plan for single employee') }}"><i class="icon-user"></i>{{ _('Calculate employee') }}</a><br />
+						<a id="{{ file.id }}" class="calculate-all-link link" title="{{ _('Calculate overall funding plan') }}"><i class="icon-th-list"></i>{{ _('Calculate plan') }}</a><br />
 					</td>
 				</tr>
 			{% endfor %}
