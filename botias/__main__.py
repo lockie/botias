@@ -56,6 +56,9 @@ if __name__ == '__main__':
 		MAX_CONTENT_LENGTH=options.maxsize,
 		BACKEND_ADDRESS=options.backend
 	)
+	if options.debug:
+		from werkzeug.debug import DebuggedApplication
+		app = DebuggedApplication(app, evalex=True)
 	http_server = HTTPServer(WSGIContainer(app))
 	logging.info("Starting Tornado web server on port %s" % options.port)
 	http_server.listen(options.port)
