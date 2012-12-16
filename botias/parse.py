@@ -50,14 +50,16 @@ def parse_employee(workbook, id):
 		elif row[1] == u'Ж' or row[1] == u'ж':
 			d.gender = 0
 		else:
-			raise RuntimeError(_(u'Invalid gender: %(gender)s', gender=str(row[1])))
+			raise RuntimeError(_(u'Invalid gender: %(gender)s', gender=unicode(row[1])))
 
 		# Birth date
 		#
-		(year, month, day, hr, mn, sc) = xlrd.xldate_as_tuple(row[2], workbook.datemode)
-		if year < MIN_BIRTH_YEAR or year > MAX_BIRTH_YEAR:
-			raise RuntimeError(_(u'Invalid birth date: %(day)d.%(month)d.%(year)d',
-				day=day, month=month, year=year))
+		try:
+			(year, month, day, hr, mn, sc) = xlrd.xldate_as_tuple(row[2], workbook.datemode)
+			if year < MIN_BIRTH_YEAR or year > MAX_BIRTH_YEAR:
+				raise Exception()
+		except:
+			raise RuntimeError(_(u'Invalid birth date'))
 		d.birth = dict(year=year, month=month, day=day)
 
 		# Salary
@@ -95,7 +97,10 @@ def parse_employee(workbook, id):
 		# List 1 begin
 		#
 		if type(row[6]) is float:
-			(year, month, day, hr, mn, sc) = xlrd.xldate_as_tuple(row[6], workbook.datemode)
+			try:
+				(year, month, day, hr, mn, sc) = xlrd.xldate_as_tuple(row[6], workbook.datemode)
+			except:
+				raise RuntimeError(_(u'Invalid list 1 start date'))
 			d.list1_begin = dict(year=year, month=month, day=day)
 		else:
 			d.list1_begin = dict(year=0, month=0, day=0)
@@ -103,7 +108,10 @@ def parse_employee(workbook, id):
 		# List 1 end
 		#
 		if type(row[7]) is float:
-			(year, month, day, hr, mn, sc) = xlrd.xldate_as_tuple(row[7], workbook.datemode)
+			try:
+				(year, month, day, hr, mn, sc) = xlrd.xldate_as_tuple(row[7], workbook.datemode)
+			except:
+				raise RuntimeError(_(u'Invalid list 1 stop date'))
 			d.list1_end = dict(year=year, month=month, day=day)
 		else:
 			d.list1_end = dict(year=0, month=0, day=0)
@@ -115,7 +123,10 @@ def parse_employee(workbook, id):
 		# List 2 begin
 		#
 		if type(row[9]) is float:
-			(year, month, day, hr, mn, sc) = xlrd.xldate_as_tuple(row[9], workbook.datemode)
+			try:
+				(year, month, day, hr, mn, sc) = xlrd.xldate_as_tuple(row[9], workbook.datemode)
+			except:
+				raise RuntimeError(_(u'Invalid list 2 start date'))
 			d.list2_begin = dict(year=year, month=month, day=day)
 		else:
 			d.list2_begin = dict(year=0, month=0, day=0)
@@ -123,7 +134,10 @@ def parse_employee(workbook, id):
 		# List 2 end
 		#
 		if type(row[10]) is float:
-			(year, month, day, hr, mn, sc) = xlrd.xldate_as_tuple(row[10], workbook.datemode)
+			try:
+				(year, month, day, hr, mn, sc) = xlrd.xldate_as_tuple(row[10], workbook.datemode)
+			except:
+				raise RuntimeError(_(u'Invalid list 2 stop date'))
 			d.list2_end = dict(year=year, month=month, day=day)
 		else:
 			d.list2_end = dict(year=0, month=0, day=0)
@@ -135,7 +149,10 @@ def parse_employee(workbook, id):
 		# Date of dismissal
 		#
 		if type(row[12]) is float:
-			(year, month, day, hr, mn, sc) = xlrd.xldate_as_tuple(row[12], workbook.datemode)
+			try:
+				(year, month, day, hr, mn, sc) = xlrd.xldate_as_tuple(row[12], workbook.datemode)
+			except:
+				raise RuntimeError(_(u'Invalid date of dismissal'))
 			d.date_end = dict(year=year, month=month, day=day)
 		else:
 			d.date_end = dict(year=0, month=0, day=0)
@@ -171,8 +188,8 @@ def parse_file(file, id):
 			try:
 				data = parse_employee(workbook, id)
 				rows.append({'id': id, 'data': data})
-			except Exception:
-				pass
+			except Exception as e:
+				rows.append({'id': id, 'error': unicode(e)})
 		return {'type': 0, 'rows': rows}
 	else:
 		return {'type': 1, 'rows': [{'id': id, 'data': parse_employee(workbook, id)}]}

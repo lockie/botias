@@ -356,6 +356,34 @@ def office():
 		files.append({'id': f.id, 'name': f.name})
 	return render_template('office.html', title=gettext('My office'), files=files)
 
+@app.route('/_errors')
+@login_required
+def errors():
+	if 'id' not in request.args:
+		return jsonify(error=gettext('Error: no file id given'))
+	file_id = request.args['id']
+	try:
+		filedata = SourceFile.query.filter_by(id=file_id,
+			user_id=current_user.get_id()).one().data
+	except NoResultFound:
+		return jsonify(error=gettext('Error: file not found'))
+	try:
+		data = parse_file(filedata, 0)
+		if not data['rows']:
+			raise Exception(gettext('Error: file is empty'))
+	except Exception as e:
+		return jsonify(error=gettext(u'Error: %(error)s. ',
+			error=unicode(e.args[0])))
+	result=[]
+	for row in data['rows']:
+		if 'data' in row:
+			res = 'OK'
+		else:
+			res = row['error']
+		result.append([row['id'], res])
+	result.sort(key=lambda x: int(x[0]))
+	return jsonify(result=result)
+
 @app.route('/download')
 @login_required
 def download():

@@ -3,6 +3,10 @@
 {% block head %}
 	{{ super() }}
 	<script type="text/javascript" src="/static/bootbox/bootbox.min.js"></script>
+	<script type="text/javascript" src="/static/jquery-handsontable/jquery.handsontable.js"></script>
+	<script type="text/javascript" src="/static/jquery-handsontable/lib/jQuery-contextMenu/jquery.contextMenu.js"></script>
+	<script type="text/javascript" src="/static/jquery-handsontable/lib/jQuery-contextMenu/jquery.ui.position.js"></script>
+	<link rel="stylesheet" media="screen" href="/static/jquery-handsontable/jquery.handsontable.css">
 	<style type="text/css">
 		.close {
 			font-size: 20px;
@@ -54,7 +58,7 @@
 							}
 						}
 					}, "1");
-				});
+			});
 			$(".calculate-all-link").click(function(e) {
 				e.preventDefault();
 				f=$(this).attr('id');
@@ -71,6 +75,51 @@
 				$("#test-files-table").toggle();
 			});
 			$('#test-files').trigger('click');
+			$('.view-errors-link').click(function(e) {
+				e.preventDefault();
+				var f=$(this).attr('id');
+				var placeholder = $("#errors-"+f);
+				if(placeholder.html() == '') {
+					$.ajax({
+						type: 'GET',
+						url: '/_errors',
+						data: 'id='+f,
+						dataType: 'JSON',
+						timeout: 1000,
+						success: function(data) {
+							if(data.result==null) {
+								placeholder.html(data.error);
+							} else {
+								var customRenderer = function (instance, td, row, col, prop, value) {
+									Handsontable.TextCell.renderer.apply(this, arguments);
+									var escaped = Handsontable.helper.stringify(value);
+									if (escaped.indexOf('OK') === -1) {
+										td.style.backgroundColor = 'red';
+									} else {
+										td.style.backgroundColor = 'green';
+									}
+								};
+								placeholder.handsontable({
+									data: data.result,
+									cells: function (row, col, prop) {
+										var cellProperties = {};
+										cellProperties.readOnly = true;
+										return cellProperties;
+									},
+									startRows: data.result.length,
+									startCols: 2,
+									colHeaders : ["{{ _('employee id') }}", "{{ _('status') }}"],
+									columns: [
+										{},
+										{type: {renderer: customRenderer}}
+									]
+								});
+							};
+						}
+					});
+				}
+				placeholder.toggle();
+			});
 		});
 	</script>
 {% endblock %}
@@ -114,7 +163,10 @@
 			{% for file in files %}
 				<tr>
 					<td style="width:50px;"><img src="/static/xls.png" /></td>
-					<td style="vertical-align: middle;"><a href="#">{{ file.name }}</a></td>
+					<td style="vertical-align: middle;">
+						<a id="{{ file.id }}" class="view-errors-link link" title="{{ _('View errors') }}">{{ file.name }}</a>
+						<div id="errors-{{ file.id }}" style="display:none;"></div>
+					</td>
 					<td>
 						<a href="/download?id={{ file.id }}"><i class="icon-download-alt"></i>{{ _('Download') }}</a><br />
 						<a id="{{ file.id }}" class="calculate-single-link link" title="{{ _('Calculate funding plan for single employee') }}"><i class="icon-user"></i>{{ _('Calculate employee') }}</a><br />
