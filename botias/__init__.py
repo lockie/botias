@@ -10,9 +10,10 @@ from random import seed, choice
 import hashlib
 import uuid
 from werkzeug import secure_filename
-from flask import Flask, render_template, request, flash, redirect, url_for, session, jsonify
+from flask import Flask, render_template, request, flash, redirect, url_for, session, jsonify, send_file
 from flask.ext.sqlalchemy import SQLAlchemy
 from sqlalchemy.types import TypeDecorator, String
+from sqlalchemy.orm.exc import NoResultFound
 from flask.ext.login import LoginManager, login_user, logout_user, login_required, current_user
 from flask.ext.bootstrap import Bootstrap
 from flask.ext.babel import Babel, gettext
@@ -354,6 +355,25 @@ def office():
 	for f in SourceFile.query.filter_by(user_id=current_user.get_id()):
 		files.append({'id': f.id, 'name': f.name})
 	return render_template('office.html', title=gettext('My office'), files=files)
+
+@app.route('/download')
+@login_required
+def download():
+	if 'id' not in request.args:
+		flash(gettext('Error: no file id given'), 'error')
+		return redirect(request.referrer or url_for('office'))
+	file_id = request.args['id']
+	try:
+		f = SourceFile.query.filter_by(id=file_id,
+			user_id=current_user.get_id()).one()
+		filedata = f.data
+		filename = f.name
+	except NoResultFound:
+		flash(gettext('Error: file not found'), 'error')
+		return redirect(request.referrer or url_for('office'))
+	from StringIO import StringIO
+	return send_file(StringIO(filedata), mimetype='application/vnd.ms-excel',
+		as_attachment=True, attachment_filename=filename)
 
 def validate_discount_rates(rates):
 	result = []

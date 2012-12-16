@@ -116,7 +116,7 @@
 					<td style="width:50px;"><img src="/static/xls.png" /></td>
 					<td style="vertical-align: middle;"><a href="#">{{ file.name }}</a></td>
 					<td>
-						<a id="{{ file.id }}" class="download-link link"><i class="icon-download-alt"></i>{{ _('Download') }}</a><br />
+						<a href="/download?id={{ file.id }}"><i class="icon-download-alt"></i>{{ _('Download') }}</a><br />
 						<a id="{{ file.id }}" class="calculate-single-link link" title="{{ _('Calculate funding plan for single employee') }}"><i class="icon-user"></i>{{ _('Calculate employee') }}</a><br />
 						<a id="{{ file.id }}" class="calculate-all-link link" title="{{ _('Calculate overall funding plan') }}"><i class="icon-th-list"></i>{{ _('Calculate plan') }}</a><br />
 					</td>
