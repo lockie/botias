@@ -98,6 +98,7 @@
 					} else {
 						$('#processing').hide();
 						if({{ id }}===0) {
+							var maxyear = Math.max.apply(null, data.result.headers);
 							$("#table1").handsontable('loadData', [data.result.headers].concat(data.result.t1));
 							$("#table2").handsontable('loadData', [data.result.headers].concat(data.result.t2));
 							$("#table3").handsontable('loadData', [data.result.headers].concat(data.result.t3));
@@ -106,7 +107,7 @@
 							$("#table6").handsontable('loadData', [data.result.headers].concat(data.result.t6));
 							$("#table7").handsontable('loadData', [data.result.headers].concat(data.result.t7));
 							$("#table8").handsontable('loadData', [data.result.headers].concat(data.result.t8));
-							$("#table9").handsontable('loadData', [[data.result.headers[0]+1]].concat(data.result.t9));
+							$("#table9").handsontable('loadData', [[maxyear]].concat(data.result.t9));
 							$("#tableA").handsontable('loadData', [data.result.headers].concat(data.result.tA));
 							$("#tableB").handsontable('loadData', [data.result.headers].concat(data.result.tB));
 							$("#tableC").handsontable('loadData', [data.result.headers].concat(data.result.tC));
@@ -120,6 +121,8 @@
 							$("#tableX").handsontable('loadData', [data.result.headers].concat(data.result.tX));
 							$("#tableY").handsontable('loadData', [data.result.headers].concat(data.result.tY));
 							$("#tableZ").handsontable('loadData', [data.result.headers].concat(data.result.tZ));
+							$("#maxyear").html(String(maxyear));
+							$("#income").html(String(data.result.income));
 							$('#result').show();
 						} else {
 							$("#tab1").handsontable('loadData', data.result.tab1);
@@ -396,7 +399,7 @@
 		"Средневзвешенная ожидаемая норма доходности"
 	]) }}
 	<blockquote>
-		Активы планов к 31/12/??? не формировались.
+		Активы планов к 31/12/<span id="maxyear"></span> не формировались.
 		<small>МСФО 19.120A(k)</small>
 	</blockquote>
 	<blockquote>
@@ -404,7 +407,7 @@
 		<small>МСФО 19.120A(l)</small>
 	</blockquote>
 	<blockquote>
-		Фактический доход по активам планов составил ??? тыс. грн. (??? год ─ ??? тыс. грн.).
+		Фактический доход по активам планов составил <span id="income"></span> тыс. грн..
 		<small>МСФО 19.120A(m)</small>
 	</blockquote>
 	<blockquote>
@@ -418,11 +421,6 @@
 		"Корректировки обязательств планов на основе опыта прошлых лет",
 		"Корректировки активов планов на основе опыта прошлых лет"
 	]) }}
-	<blockquote>
-		В следующем году Предприятие планирует внести в программы с установленными выплатами взносы в сумме ??? тыс. грн.
-		<small>МСФО 19.120A(q)</small>
-	</blockquote>
-
 
 
 	<!-- official --><br />
