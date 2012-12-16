@@ -198,7 +198,7 @@ def process(): # to be called from AJAX
 				return jsonify(error=gettext(u'Error: %(error)s. Try fixing your file.', error=unicode(e.args[0])))
 			data['discount_rates'] = current_user.discount_rates
 			data['income_growth']  = current_user.income_growth
-			data['pension_index '] = current_user.pension_index
+			data['pension_index'] = current_user.pension_index
 
 			# TODO : find bug in mongodb BSON parser (or write our own)
 			# & pass BSON instead of JSON
