@@ -51,8 +51,8 @@ def init_app(**kwargs):
 	if database.app is None:
 		database.init_app(app)
 		database.app = app
-	# are we running in-memory DB?
-	if app.config['SQLALCHEMY_DATABASE_URI'] == 'sqlite://':
+	# are we running sqlite?
+	if 'sqlite' in app.config['SQLALCHEMY_DATABASE_URI']:
 		database.create_all()
 		database.session.commit()
 	# init backend connection
