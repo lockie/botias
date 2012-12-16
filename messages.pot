@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PROJECT VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2012-12-16 10:09+0400\n"
+"POT-Creation-Date: 2012-12-16 10:50+0400\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -112,72 +112,72 @@ msgstr ""
 msgid "My office"
 msgstr ""
 
-#: botias/__init__.py:370
+#: botias/__init__.py:372
 msgid "Error: file not found"
 msgstr ""
 
-#: botias/__init__.py:379 botias/__init__.py:383
+#: botias/__init__.py:381 botias/__init__.py:385
 msgid "Incorrect data"
 msgstr ""
 
-#: botias/__init__.py:388
+#: botias/__init__.py:390
 #, python-format
 msgid "No year given for percentage %(per)s"
 msgstr ""
 
-#: botias/__init__.py:391
+#: botias/__init__.py:393
 #, python-format
 msgid "No percentage for year %(year)s"
 msgstr ""
 
-#: botias/__init__.py:396 botias/__init__.py:402 botias/parse.py:33
+#: botias/__init__.py:398 botias/__init__.py:404 botias/parse.py:33
 #, python-format
 msgid "Invalid year: %(year)s"
 msgstr ""
 
-#: botias/__init__.py:404
+#: botias/__init__.py:406
 #, python-format
 msgid "Duplicate year %(year)d"
 msgstr ""
 
-#: botias/__init__.py:410
+#: botias/__init__.py:412
 #, python-format
 msgid "Invalid discount rate: %(rate)s. Use dot to separate the fractional part."
 msgstr ""
 
-#: botias/__init__.py:435
+#: botias/__init__.py:437
 msgid "Profile parameters saved"
 msgstr ""
 
-#: botias/__init__.py:442
+#: botias/__init__.py:444
 msgid "Calculation parameters saved"
 msgstr ""
 
-#: botias/__init__.py:452
+#: botias/__init__.py:454
 msgid "Actuarial parameters saved"
 msgstr ""
 
-#: botias/__init__.py:455 botias/templates/layout.html:77
+#: botias/__init__.py:457 botias/templates/layout.html:77
 #: botias/templates/preferences.html:16
 msgid "Preferences"
 msgstr ""
 
-#: botias/__init__.py:461 botias/templates/layout.html:66
+#: botias/__init__.py:463 botias/templates/layout.html:66
 #: botias/templates/layout.html:101 botias/templates/tos.html:5
 msgid "Terms of service"
 msgstr ""
 
-#: botias/__init__.py:465 botias/templates/about.html:5
+#: botias/__init__.py:467 botias/templates/about.html:5
 #: botias/templates/layout.html:62
 msgid "About service"
 msgstr ""
 
-#: botias/__init__.py:471 botias/templates/docs.html:5
+#: botias/__init__.py:473 botias/templates/docs.html:5
 #: botias/templates/layout.html:65
 msgid "Documentation"
 msgstr ""
 
-#: botias/__init__.py:475 botias/templates/faq.html:5
+#: botias/__init__.py:477 botias/templates/faq.html:5
 #: botias/templates/layout.html:64
 msgid "Frequently asked questions"
 msgstr ""
