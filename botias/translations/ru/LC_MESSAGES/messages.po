@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version:  git\n"
 "Report-Msgid-Bugs-To: awkravchuk@gmail.com\n"
-"POT-Creation-Date: 2012-12-14 03:07+0400\n"
+"POT-Creation-Date: 2012-12-16 05:07+0400\n"
 "PO-Revision-Date: 2012-10-16 18:49+0400\n"
 "Last-Translator: Andrew Kravchuk <awkravchuk@gmail.com>\n"
 "Language-Team: ru <LL@li.org>\n"
@@ -18,134 +18,165 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "Generated-By: Babel 0.9.6\n"
 
-#: botias/__init__.py:162
+#: botias/__init__.py:183
 msgid "Error: no employee id given."
 msgstr "Ошибка: не указан № работника"
 
-#: botias/__init__.py:165 botias/__init__.py:207
+#: botias/__init__.py:186 botias/__init__.py:231
 msgid "Error: no file id given"
 msgstr "Ошибка: не указан файл"
 
-#: botias/__init__.py:174
+#: botias/__init__.py:195
 msgid "No actual data"
 msgstr "Файл не содержит актуальных данных"
 
-#: botias/__init__.py:176
+#: botias/__init__.py:197
 #, python-format
 msgid "Error: %(error)s. Try fixing your file."
 msgstr "Ошибка: %(error)s. Попробуйте другой файл."
 
-#: botias/__init__.py:198
+#: botias/__init__.py:222
 #, python-format
 msgid "Error: %(error)s. Contact administration."
 msgstr "Ошибка: %(error)s. Свяжитесь с администрацией."
 
-#: botias/__init__.py:204
+#: botias/__init__.py:228
 msgid "Error: no employee id given"
 msgstr "Ошибка: не указан № работника"
 
-#: botias/__init__.py:210
+#: botias/__init__.py:234
 msgid "Results"
 msgstr "Результаты"
 
-#: botias/__init__.py:225
+#: botias/__init__.py:249
 msgid "File uploaded successfully"
 msgstr "Файл загружен на сервер"
 
-#: botias/__init__.py:227
+#: botias/__init__.py:251
 #, python-format
 msgid "Error uploading file: %(error)s."
 msgstr "Ошибка загрузки файла: %(error)s."
 
-#: botias/__init__.py:230
+#: botias/__init__.py:254
 msgid "Files of this type are not allowed to upload"
 msgstr "Файлы предоставленного типа не разрешены для загрузки"
 
-#: botias/__init__.py:237 botias/__init__.py:284
+#: botias/__init__.py:261 botias/__init__.py:311
 msgid "Already authenticated"
 msgstr "Вы уже вошли"
 
-#: botias/__init__.py:251
+#: botias/__init__.py:275
 msgid "Corporate code length should be 8"
 msgstr "Длина кода ОКПО - 8 цифр."
 
-#: botias/__init__.py:254
+#: botias/__init__.py:278
 msgid "Individual code length should be 10"
 msgstr "Длина кода ИНН - 10 цифр."
 
-#: botias/__init__.py:257
+#: botias/__init__.py:281
 #, python-format
 msgid "The user with email %(email)s already exists"
 msgstr "Пользователь с почтовым адресом %(email)s уже зарегистрирован"
 
-#: botias/__init__.py:260 botias/__init__.py:279
+#: botias/__init__.py:284 botias/__init__.py:306
 #: botias/templates/layout.html:86 botias/templates/register.html:23
 msgid "Register"
 msgstr "Регистрация"
 
-#: botias/__init__.py:277 botias/templates/registered.html:5
+#: botias/__init__.py:304 botias/templates/registered.html:5
 msgid "Registration successeful"
 msgstr "Регистрация произведена успешно"
 
-#: botias/__init__.py:301
+#: botias/__init__.py:328
 msgid "Authentication successeful"
 msgstr "Вход в систему осуществлён успешно"
 
-#: botias/__init__.py:306
+#: botias/__init__.py:333
 msgid "Authentication failed. Check login and password."
 msgstr "Не удалось войти. Проверьте логин и пароль."
 
-#: botias/__init__.py:307 botias/templates/login.html:4
+#: botias/__init__.py:334 botias/templates/login.html:4
 #: botias/templates/login.html:14
 msgid "Login"
 msgstr "Вход"
 
-#: botias/__init__.py:315
+#: botias/__init__.py:342
 msgid "You have logged out"
 msgstr "Вы вышли"
 
-#: botias/__init__.py:320
+#: botias/__init__.py:347
 msgid "Please authorize to access this page"
 msgstr "Пожалуйста, авторизуйтесь для доступа к запрошенной странице"
 
-#: botias/__init__.py:329 botias/templates/layout.html:76
+#: botias/__init__.py:356 botias/templates/layout.html:76
 #: botias/templates/office.html:81
 msgid "My office"
 msgstr "Мой кабинет"
 
-#: botias/__init__.py:336
+#: botias/__init__.py:361 botias/__init__.py:365
+msgid "Incorrect data"
+msgstr "Некорректные данные"
+
+#: botias/__init__.py:370
+#, python-format
+msgid "No year given for percentage %(per)s"
+msgstr "Не задан год для ставки %(per)s"
+
+#: botias/__init__.py:373
+#, python-format
+msgid "No percentage for year %(year)s"
+msgstr "Не задана ставка для года %(year)s"
+
+#: botias/__init__.py:378 botias/__init__.py:384 botias/parse.py:33
+#, python-format
+msgid "Invalid year: %(year)s"
+msgstr "Некорректный год: %(year)s"
+
+#: botias/__init__.py:386
+#, python-format
+msgid "Duplicate year %(year)d"
+msgstr "Дублирующийся год %(year)d"
+
+#: botias/__init__.py:392
+#, python-format
+msgid "Invalid discount rate: %(rate)s. Use dot to separate the fractional part."
+msgstr ""
+"Некорректная ставка: %(rate)s. Используйте точку в качестве десятичного "
+"разделителя."
+
+#: botias/__init__.py:417
 msgid "Profile parameters saved"
 msgstr "Параметры профиля сохранены"
 
-#: botias/__init__.py:338
+#: botias/__init__.py:424
 msgid "Calculation parameters saved"
 msgstr "Параметры расчёта сохранены"
 
-#: botias/__init__.py:340
+#: botias/__init__.py:434
 msgid "Actuarial parameters saved"
 msgstr "Актуарные предположения сохранены"
 
-#: botias/__init__.py:349 botias/templates/layout.html:77
+#: botias/__init__.py:437 botias/templates/layout.html:77
 #: botias/templates/preferences.html:16
 msgid "Preferences"
 msgstr "Настройки"
 
-#: botias/__init__.py:355 botias/templates/layout.html:66
+#: botias/__init__.py:443 botias/templates/layout.html:66
 #: botias/templates/layout.html:101 botias/templates/tos.html:5
 msgid "Terms of service"
 msgstr "Условия использования"
 
-#: botias/__init__.py:359 botias/templates/about.html:5
+#: botias/__init__.py:447 botias/templates/about.html:5
 #: botias/templates/layout.html:62
 msgid "About service"
 msgstr "О сервисе"
 
-#: botias/__init__.py:365 botias/templates/docs.html:5
+#: botias/__init__.py:453 botias/templates/docs.html:5
 #: botias/templates/layout.html:65
 msgid "Documentation"
 msgstr "Документы"
 
-#: botias/__init__.py:369 botias/templates/faq.html:5
+#: botias/__init__.py:457 botias/templates/faq.html:5
 #: botias/templates/layout.html:64
 msgid "Frequently asked questions"
 msgstr "Вопросы и ответы"
@@ -154,11 +185,6 @@ msgstr "Вопросы и ответы"
 #, python-format
 msgid "Invalid year in sheet name: \"%(name)s\""
 msgstr "Некорректный год в названии листа: \"%(name)s\""
-
-#: botias/parse.py:33
-#, python-format
-msgid "Invalid year: %(year)s"
-msgstr "Некорректный год: %(year)s"
 
 #: botias/parse.py:44
 #, python-format
@@ -219,7 +245,13 @@ msgstr "Это поле обязательно для заполнения."
 msgid "Annual income growth rate"
 msgstr "Ежегодный рост заработка"
 
-#: botias/preferencesform.py:26
+#: botias/preferencesform.py:25 botias/preferencesform.py:28
+msgid "This field is required. Use dot to separate the fractional part."
+msgstr ""
+"Это поле обязательно для заполнения. Используйте точку в качестве "
+"десятичного разделителя."
+
+#: botias/preferencesform.py:27
 msgid "Annual pension indexation rate"
 msgstr "Ежегодная индексация пенсий"
 
@@ -448,13 +480,29 @@ msgid "Actuarial assumptions"
 msgstr "Актуарные предположения"
 
 #: botias/templates/preferences.html:31 botias/templates/preferences.html:43
-#: botias/templates/preferences.html:55
+#: botias/templates/preferences.html:64
 msgid "Save changes"
 msgstr "Сохранить изменения"
 
 #: botias/templates/preferences.html:50
 msgid "Discount rates"
 msgstr "Ставки дисконтирования"
+
+#: botias/templates/preferences.html:89
+msgid "year"
+msgstr "год"
+
+#: botias/templates/preferences.html:89
+msgid "discount rate"
+msgstr "ставка дисконтирования"
+
+#: botias/templates/preferences.html:92
+msgid "Insert row"
+msgstr "Вставить строку"
+
+#: botias/templates/preferences.html:94
+msgid "Remove row"
+msgstr "Удалить строку"
 
 #: botias/templates/register.html:8
 msgid "Corporate code"

@@ -12,6 +12,7 @@ import uuid
 from werkzeug import secure_filename
 from flask import Flask, render_template, request, flash, redirect, url_for, session, jsonify
 from flask.ext.sqlalchemy import SQLAlchemy
+from sqlalchemy.types import TypeDecorator, String
 from flask.ext.login import LoginManager, login_user, logout_user, login_required, current_user
 from flask.ext.bootstrap import Bootstrap
 from flask.ext.babel import Babel, gettext
@@ -95,6 +96,19 @@ class SourceFile(database.Model):
 		self.date = date
 		self.data = data
 
+class JSONData(TypeDecorator):
+	impl = String
+
+	def process_bind_param(self, value, dialect):
+		if value is not None:
+			value = json.dumps(value)
+		return value
+
+	def process_result_value(self, value, dialect):
+		if value is not None:
+			value = json.loads(value)
+		return value
+
 class User(database.Model):
 	__tablename__ = 'users'
 	id = database.Column(database.Integer, primary_key=True)
@@ -108,8 +122,12 @@ class User(database.Model):
 	password = database.Column(database.String(56))
 	files = database.relationship('SourceFile',
 		order_by='SourceFile.date')
+	income_growth = database.Column(database.Float())
+	pension_index = database.Column(database.Float())
+	discount_rates = database.Column(JSONData())
 
-	def __init__(self, name, surname, corporate, code, purpose, beneficiary, email, password):
+	def __init__(self, name, surname, corporate, code, purpose, beneficiary,
+			email, password, income, pension, disrates):
 		self.name = name
 		self.surname = surname
 		self.corporate = corporate
@@ -118,6 +136,9 @@ class User(database.Model):
 		self.beneficiary = int(beneficiary)
 		self.email = email
 		self.password = password
+		self.income_growth = income
+		self.pension_index = pension
+		self.discount_rates = disrates
 		self.locale = "ru"
 
 	def is_active(self):
@@ -174,6 +195,9 @@ def process(): # to be called from AJAX
 					raise Exception(gettext('No actual data'))
 			except Exception as e:
 				return jsonify(error=gettext(u'Error: %(error)s. Try fixing your file.', error=unicode(e.args[0])))
+			data['discount_rates'] = current_user.discount_rates
+			data['income_growth']  = current_user.income_growth
+			data['pension_index '] = current_user.pension_index
 
 			# TODO : find bug in mongodb BSON parser (or write our own)
 			# & pass BSON instead of JSON
@@ -269,7 +293,10 @@ def register():
 			purpose,
 			beneficiary,
 			email,
-			hashlib.sha224(password + app.secret_key).hexdigest()
+			hashlib.sha224(password + app.secret_key).hexdigest(),
+			0, # TODO : defaults
+			0,
+			[[None, None]]
 		)
 		# TODO : send email
 		database.session.add(user)
@@ -328,24 +355,85 @@ def office():
 		files.append({'id': f.id, 'name': f.name})
 	return render_template('office.html', title=gettext('My office'), files=files)
 
+def validate_discount_rates(rates):
+	result = []
+	if type(rates) is not list:
+		raise RuntimeError(gettext('Incorrect data')) # being paranoid today
+	years = set()
+	for rate in rates:
+		if type(rate) is not list or len(rate) != 2:
+			raise RuntimeError(gettext('Incorrect data'))
+		if rate[0] is None and rate[1] is None:
+			continue
+		if rate[0] is None:
+			raise RuntimeError(gettext(u'No year given for percentage %(per)s',
+				per=str(rate[1])))
+		if rate[1] is None:
+			raise RuntimeError(gettext(u'No percentage for year %(year)s',
+				year=str(rate[0])))
+		try:
+			year = int(rate[0])
+		except ValueError:
+			raise RuntimeError(gettext(u'Invalid year: %(year)s',
+				year=str(rate[0])))
+		percentage = str(rate[1]).replace('%', '')
+		from parse import MIN_YEAR
+		from datetime import datetime
+		if year < MIN_YEAR or year > datetime.now().year+2:
+			raise RuntimeError(gettext(u'Invalid year: %(year)s',
+				year=str(year)))
+		if year in years:
+			raise RuntimeError(gettext('Duplicate year %(year)d',
+				year=year))
+		years.add(year)
+		try:
+			percentage = float(percentage)
+		except ValueError:
+			raise RuntimeError(gettext(
+				u'Invalid discount rate: %(rate)s. '
+				u'Use dot to separate the fractional part.',
+				rate=rate[1]))
+		result.append([year, percentage])
+	return result
+
 @app.route('/prefs', methods=['GET', 'POST'])
 @login_required
 def preferences():
-	action = request.args.get('act')
-	if action == 'profile':
-		flash(gettext('Profile parameters saved'), 'success')
-	elif action == 'calc':
-		flash(gettext('Calculation parameters saved'), 'success')
-	elif action == 'actuarial':
-		flash(gettext('Actuarial parameters saved'), 'success')
-
-	profile_form = ProfileForm()
-	calc_form = CalcForm()
-	actuarial_form = ActuarialForm()
-	profile_form.name.default = current_user.name
-	profile_form.surname.default = current_user.surname
-	# TODO : non-fake, actual data
-	actuarial_form.discount_rates = [ [2010, "15,00%"], [2011, "14,00%"], [2012, "13,00%"] ]
+	profile_form = ProfileForm(name=current_user.name,
+		surname=current_user.surname, formdata=None)
+	calc_form = CalcForm(income=current_user.income_growth,
+		pension=current_user.pension_index, formdata=None)
+	actuarial_form = ActuarialForm(
+		discount_rates=current_user.discount_rates or [[None, None]],
+		formdata=None)
+	if request.method == 'POST':
+		action = request.args.get('act')
+		if action == 'profile':
+			profile_form = ProfileForm(request.form)
+			if profile_form.validate():
+				current_user.name = request.form['name']
+				current_user.surname = request.form['surname']
+				database.session.commit()
+				flash(gettext('Profile parameters saved'), 'success')
+		elif action == 'calc':
+			calc_form = CalcForm(request.form)
+			if calc_form.validate():
+				current_user.income_growth = request.form['income']
+				current_user.pension_index = request.form['pension']
+				database.session.commit()
+				flash(gettext('Calculation parameters saved'), 'success')
+		elif action == 'actuarial':
+			actuarial_form = ActuarialForm(request.form)
+			if actuarial_form.validate():
+				try:
+					actuarial_form.discount_rates.data = json.loads(
+						request.form['discount_rates'])
+					current_user.discount_rates = validate_discount_rates(
+						actuarial_form.discount_rates.data)
+					database.session.commit()
+					flash(gettext('Actuarial parameters saved'), 'success')
+				except Exception, e:
+					actuarial_form.discount_rates.errors = [e.args[0]]
 	return render_template('preferences.html', title=gettext('Preferences'),
 		profile_form=profile_form, calc_form=calc_form, actuarial_form=actuarial_form)
 

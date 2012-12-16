@@ -1,6 +1,6 @@
 #!/usr/bin/env python
 
-from flask_wtf import Form, TextField, DecimalField, PasswordField, validators
+from flask_wtf import Form, TextField, DecimalField, PasswordField, HiddenField, validators
 from flask.ext.babel import lazy_gettext as _
 
 
@@ -22,15 +22,18 @@ class ProfileForm(Form):
 
 class CalcForm(Form):
 	income = DecimalField(_('Annual income growth rate'),
-		[validators.Required()])
+		[validators.Required(_(
+'This field is required. Use dot to separate the fractional part.'))])
 	pension = DecimalField(_('Annual pension indexation rate'),
-		[validators.Required()])
+		[validators.Required(_(
+'This field is required. Use dot to separate the fractional part.'))])
 
 	def __init__(self, *args, **kwargs):
 		Form.__init__(self, *args, **kwargs)
 
 
 class ActuarialForm(Form):
+	discount_rates = HiddenField()
 
 	def __init__(self, *args, **kwargs):
 		Form.__init__(self, *args, **kwargs)
