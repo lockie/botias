@@ -6,6 +6,19 @@
     {{ super() }}
 
 	<style type="text/css">
+		#wrap {
+			min-height: 100%;
+		}
+		#main {
+			overflow:auto;
+			padding-bottom:75px;
+		}
+		.footer {
+			position: fixed;
+			bottom: 0px;
+			left: 0;
+			right: 0;
+		}
 		ul.nav li.dropdown:hover ul.dropdown-menu {
 			display: block;
 		}
@@ -26,9 +39,6 @@
 			overflow: visible;
 			padding-top: 0;
 			padding-bottom: 0;
-		}
-		.navbar-fixed-bottom {
-			margin-bottom: -10px; /* umad, bro */
 		}
 	</style>
 
@@ -93,7 +103,14 @@
   </div><!--./navbar-inner-->
 </div><!--./navbar-->
 
-<footer class="navbar navbar-fixed-bottom">
+<div id="wrap">
+	<div id="main" class="container clear-top">
+		{% block content %}
+		{% endblock %}
+	</div>
+</div>
+
+<footer class="navbar navbar-fixed-bottom footer">
 	<div class="navbar-inner">
 		<div class="container">
 			<p>

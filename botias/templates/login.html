@@ -1,5 +1,5 @@
 {% extends "layout.html" %}
-{% block body %}
+{% block content %}
 <div class="container"><div class="login-form">
   <h2>{{ _('Login') }}</h2>
   <form action="{{ url_for('login', next=next) }}" method="post">
@@ -17,5 +17,4 @@
     </fieldset>
   </form>
 </div></div>
-{{ super() }}
 {% endblock %}
