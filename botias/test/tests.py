@@ -277,10 +277,11 @@ class DbMigrationCase(BaseTestCase):
 		# create DB with latest migration
 		from migrate.versioning.api import version_control, upgrade
 		from botias.db import REPOSITORY
-		version_control('sqlite:///'+self.db, REPOSITORY)
-		upgrade('sqlite:///'+self.db, REPOSITORY)
+		dbname = 'sqlite:///'+self.db
+		version_control(dbname, REPOSITORY)
+		upgrade(dbname, REPOSITORY)
 		from sqlalchemy import create_engine, MetaData
-		engine = create_engine('sqlite:///'+self.db)
+		engine = create_engine(dbname)
 		metadata = MetaData(bind=engine)
 		metadata.reflect(engine)
 		# compare it with actual DB schema
@@ -292,9 +293,12 @@ class DbMigrationCase(BaseTestCase):
 		self.assertFalse(diff, str(diff))
 
 	def test_migration(self):
-		from migrate.versioning.api import test
+		from migrate.versioning.api import version_control, version, upgrade, test
 		from botias.db import REPOSITORY
-		test('sqlite://', REPOSITORY)
+		dbname = 'sqlite:///'+self.db
+		version_control(dbname, REPOSITORY)
+		upgrade(dbname, REPOSITORY, version=version(REPOSITORY)-1)
+		test(dbname, REPOSITORY)
 
 	def tearDown(self):
 		BaseTestCase.tearDown(self)
