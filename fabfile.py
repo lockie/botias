@@ -114,16 +114,17 @@ def deploy():
 	& restart server
 	"""
 	# ensure everything is in place
-	have_virtualenv = os.path.exists('../bin/python') and os.path.exists('../bin/pybabel')
+	have_virtualenv = os.path.exists('../bin/python')
 	local('ls .git &> /dev/null && git submodule update --init --recursive ; true')
 	if have_virtualenv:
+		local('../bin/python setup.py develop')
+		local('../bin/pip install WebTest mock BeautifulSoup')
 		local('../bin/pybabel compile -d %s/translations' % PACKAGE_NAME)
+		fabric.state.output['stdout'] = True
+		local('../bin/python -m %s.test' % PACKAGE_NAME)
+		fabric.state.output['stdout'] = False
 	else:
 		local('which pybabel &> /dev/null && pybabel compile -d %s/translations ; true' % PACKAGE_NAME)
-	# run tests
-	if have_virtualenv:
-		local('../bin/python -m %s.test' % PACKAGE_NAME)
-	else:
 		print red('Virtualenv not found, skipping tests')
 	# create a new source distribution as tarball
 	local('python setup.py sdist --formats=gztar', capture=False)
