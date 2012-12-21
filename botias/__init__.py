@@ -402,7 +402,7 @@ def register():
 			return render_template('register.html', title=gettext('Register'),
 				form=form, name=name, surname=surname, corporate=corporate,
 				code=code, purpose=purpose, beneficiary=beneficiary, email=email)
-		seed(code)
+		seed(app.secret_key+code+email+str(datetime.now()))
 		password = ''.join([choice(string.letters + string.digits) for i in range(8)])
 		user = User(name=name,
 			surname=surname,
