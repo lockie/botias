@@ -44,9 +44,11 @@ class BaseTestCase(AsyncTestCase, LogTrapTestCase):
 		if User.query.count() != 0:
 			User.query.delete()
 		import hashlib
-		db.session.add(User('Test', 'Test', True, '12345678', 'edu', 10,
+		user = User('Test', 'Test', True, '12345678', 'edu', 10,
 			TEST_MAIL, hashlib.sha224(TEST_PASSWORD+SECRET_KEY).hexdigest(),
-			0, 0, [[None, None]]))
+			0, 0, [[None, None]])
+		user.locale = "en"
+		db.session.add(user)
 		db.session.commit()
 		if rpc.connection is None:
 			rpc.call = MagicMock(return_value=None)

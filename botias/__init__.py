@@ -71,7 +71,7 @@ def get_version(s):
 @babel.localeselector
 def get_locale():
 	# if a user is logged in, use the locale from the user settings
-	if current_user is not None and not current_user.is_anonymous:
+	if current_user is not None and not current_user.is_anonymous():
 		return current_user.locale
 	# otherwise try to guess the language from the user accept
 	# header the browser transmits. The best match wins.
@@ -79,7 +79,7 @@ def get_locale():
 
 @babel.timezoneselector
 def get_timezone():
-	if current_user is not None and not current_user.is_anonymous:
+	if current_user is not None and not current_user.is_anonymous():
 		return current_user.timezone
 
 class SourceFile(database.Model):
@@ -126,6 +126,7 @@ class User(database.Model):
 	income_growth = database.Column(database.Float())
 	pension_index = database.Column(database.Float())
 	discount_rates = database.Column(JSONData())
+	locale = database.Column(database.String(2))
 
 	def __init__(self, name, surname, corporate, code, purpose, beneficiary,
 			email, password, income, pension, disrates):
