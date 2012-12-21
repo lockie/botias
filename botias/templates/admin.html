@@ -1,0 +1,26 @@
+{% extends 'admin/master.html' %}
+
+{% block brand %}
+	<a href="/">
+		{{ super() }}
+	</a>
+{% endblock %}
+
+{% block body %}
+<table class="table table-striped">
+		<tr class="info">
+			<td>{{ _('Version') }}</td>
+			<td>{{ version }}</td>
+		</tr>
+		<tr class="info">
+			<td>{{ _('Database version') }}</td>
+			<td>{{ dbversion }}</td>
+		</tr>
+		<tr {% if rpc %} class="success" {% else %} class="error"{% endif %}>
+			<td>{{ _('Backend connection') }}</td>
+			<td>{% if rpc %} {{ _('Connected to ') + rpc.params.host }} {% else %} {{ _('No connection') }} {% endif %}</td>
+		</tr>
+	</table>
+
+{% endblock %}
+

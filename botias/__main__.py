@@ -44,6 +44,11 @@ if __name__ == '__main__':
 		help="Backend hostname/ipaddr or AMQP URI",
 		metavar="ADDR",
 		type=str)
+	define("admin",
+		default="botias@pac.kiev.ua",
+		help="Default administrator email (login and password too)",
+		metavar="LOGIN",
+		type=str)
 	if os.path.exists("app.conf"):
 		parse_config_file("app.conf")
 	parse_command_line()
@@ -54,7 +59,8 @@ if __name__ == '__main__':
 		SQLALCHEMY_DATABASE_URI=options.db,
 		UPLOAD_FOLDER=options.upload,
 		MAX_CONTENT_LENGTH=options.maxsize,
-		BACKEND_ADDRESS=options.backend
+		BACKEND_ADDRESS=options.backend,
+		DEFAULT_ADMIN=options.admin
 	)
 	if options.debug:
 		from werkzeug.debug import DebuggedApplication

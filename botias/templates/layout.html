@@ -82,6 +82,9 @@
           {% if current_user.is_authenticated() %}
           <li class="dropdown"><a href="#">{{ _('Welcome, %(name)s', name=current_user.name) }} <b class="caret"></b></a>
             <ul class="dropdown-menu">
+              {% if current_user.is_admin() %}
+                <li><a href="/admin"><i class="icon-list-alt"></i> {{ _('Administration') }}</a></li>
+              {% endif %}
               <li><a href="/office"><i class="icon-home"></i> {{ _('My office') }}</a></li>
               <li><a href="/prefs"><i class="icon-cog"></i> {{ _('Preferences') }}</a></li>
               <li class="divider"></li>

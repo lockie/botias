@@ -38,16 +38,17 @@ class BaseTestCase(AsyncTestCase, LogTrapTestCase):
 			SECRET_KEY=SECRET_KEY,
 			SQLALCHEMY_DATABASE_URI='sqlite://',
 			UPLOAD_FOLDER='/tmp',
-			BACKEND_ADDRESS=''
+			BACKEND_ADDRESS='',
+			DEFAULT_ADMIN='botias@pac.kiev.ua'
 		)
 		from botias import database as db, User, rpc
 		if User.query.count() != 0:
 			User.query.delete()
 		import hashlib
-		user = User('Test', 'Test', True, '12345678', 'edu', 10,
-			TEST_MAIL, hashlib.sha224(TEST_PASSWORD+SECRET_KEY).hexdigest(),
-			0, 0, [[None, None]])
-		user.locale = "en"
+		user = User(name='Test', surname='Test', locale='en',
+			corporate=True, code='12345678', purpose='edu', beneficiary=10,
+			email=TEST_MAIL,
+			password=hashlib.sha224(TEST_PASSWORD+SECRET_KEY).hexdigest())
 		db.session.add(user)
 		db.session.commit()
 		if rpc.connection is None:
@@ -306,4 +307,64 @@ class DbMigrationCase(BaseTestCase):
 	def tearDown(self):
 		BaseTestCase.tearDown(self)
 		self.cleanup()
+
+
+class AdminCase(BaseTestCase):
+	def __init__(self, *args, **kwargs):
+		BaseTestCase.__init__(self, *args, **kwargs)
+
+	admin_email = 'admin'+TEST_MAIL
+
+	def setUp(self):
+		BaseTestCase.setUp(self)
+		from botias import database as db, User, rpc
+		import hashlib
+		admin = User(name='Test', surname='Test', locale='en',
+			email=self.admin_email,
+			password=hashlib.sha224(TEST_PASSWORD+SECRET_KEY).hexdigest(),
+			admin=True)
+		db.session.add(admin)
+		db.session.commit()
+
+	def test_admin(self):
+		self.login(email=self.admin_email)
+		admin_page = self.app.get('/admin/')
+		import pkg_resources
+		self.assertEqual(pkg_resources.require("Botias")[0].version,
+			admin_page.html.findAll('td')[1].string,
+			'Incorrect version at admin page')
+
+		users_page = self.app.get('/admin/userview/')
+		self.assertEquals('Test',
+			users_page.html.findAll('tr')[1].findAll('td')[3].string,
+			'No test user in user administration page')
+
+	def test_admin_edit(self):
+		self.login(email=self.admin_email)
+		form = self.app.get('/admin/userview/edit/?id=1').form
+		test = 'rawr!'
+		form['name'] = test
+		self.assertNotIn(test, form.submit().follow(), 'User name is editable')
+
+		form = self.app.get('/admin/userview/edit/?id=1').form
+		form['admin'] = True
+		self.assertIn('icon-ok',
+			str(form.submit().follow().html.findAll('tr')[1].findAll('td')[-1]),
+			'Admin flag is not editable')
+
+	def test_admin_security(self):
+		self.assertIn('Forbidden',
+			self.app.get('/admin/', expect_errors=True),
+			'Admin page accessible by anonymous')
+		self.assertIn('Forbidden',
+			self.app.get('/admin/userview/', expect_errors=True),
+			'Admin users page accessible by anonymous')
+
+		self.login()
+		self.assertIn('Forbidden',
+			self.app.get('/admin/', expect_errors=True),
+			'Admin page accessible by regular user')
+		self.assertIn('Forbidden',
+			self.app.get('/admin/userview/', expect_errors=True),
+			'Admin users page accessible by regular user')
 

@@ -18,6 +18,7 @@ setup(
 	install_requires=[
 		"Babel==0.9.6",
 		"Flask==0.9",
+		"Flask-Admin==1.0.3",
 		"Flask-Babel==0.8",
 		"Flask-Bootstrap==2.0.4-3",
 		"Flask-DebugToolbar==0.7.1",
@@ -39,6 +40,8 @@ setup(
 		"wsgiref==0.1.2",
 		"xlrd==0.8.0",
 	],
-
+	dependency_links=[
+		"https://github.com/mrjoes/flask-babel/tarball/master#egg=Flask-Babel-0.8"
+	]
 )
 
