@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PROJECT VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2012-12-22 00:45+0400\n"
+"POT-Creation-Date: 2012-12-22 01:48+0400\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -51,200 +51,211 @@ msgid "E-mail"
 msgstr ""
 
 #: botias/__init__.py:88
-msgid "Admin"
+msgid "Limit"
 msgstr ""
 
 #: botias/__init__.py:89
+msgid "Admin"
+msgstr ""
+
+#: botias/__init__.py:90
 msgid "Blocked"
 msgstr ""
 
-#: botias/__init__.py:128 botias/templates/layout.html:54
+#: botias/__init__.py:129 botias/templates/layout.html:54
 msgid "Botias"
 msgstr ""
 
-#: botias/__init__.py:129 botias/templates/layout.html:86
+#: botias/__init__.py:130 botias/templates/layout.html:86
 msgid "Administration"
 msgstr ""
 
-#: botias/__init__.py:149
+#: botias/__init__.py:150
 msgid "Users"
 msgstr ""
 
-#: botias/__init__.py:292
+#: botias/__init__.py:295
 msgid "Error: no employee id given."
 msgstr ""
 
-#: botias/__init__.py:295 botias/__init__.py:340 botias/__init__.py:474
-#: botias/__init__.py:502
+#: botias/__init__.py:298 botias/__init__.py:349 botias/__init__.py:483
+#: botias/__init__.py:511
 msgid "Error: no file id given"
 msgstr ""
 
-#: botias/__init__.py:304
+#: botias/__init__.py:307
 msgid "No actual data"
 msgstr ""
 
-#: botias/__init__.py:306
+#: botias/__init__.py:309
 #, python-format
 msgid "Error: %(error)s. Try fixing your file."
 msgstr ""
 
-#: botias/__init__.py:331
+#: botias/__init__.py:315
+#, python-format
+msgid ""
+"Error: number of worker records in file (%(num)d) exceeds the permitted "
+"limit (%(limit)d)."
+msgstr ""
+
+#: botias/__init__.py:340
 #, python-format
 msgid "Error: %(error)s. Contact administration."
 msgstr ""
 
-#: botias/__init__.py:337
+#: botias/__init__.py:346
 msgid "Error: no employee id given"
 msgstr ""
 
-#: botias/__init__.py:343
+#: botias/__init__.py:352
 msgid "Results"
 msgstr ""
 
-#: botias/__init__.py:358
+#: botias/__init__.py:367
 msgid "File uploaded successfully"
 msgstr ""
 
-#: botias/__init__.py:360
+#: botias/__init__.py:369
 #, python-format
 msgid "Error uploading file: %(error)s."
 msgstr ""
 
-#: botias/__init__.py:363
+#: botias/__init__.py:372
 msgid "Files of this type are not allowed to upload"
 msgstr ""
 
-#: botias/__init__.py:370 botias/__init__.py:420
+#: botias/__init__.py:379 botias/__init__.py:429
 msgid "Already authenticated"
 msgstr ""
 
-#: botias/__init__.py:384
+#: botias/__init__.py:393
 msgid "Corporate code length should be 8"
 msgstr ""
 
-#: botias/__init__.py:387
+#: botias/__init__.py:396
 msgid "Individual code length should be 10"
 msgstr ""
 
-#: botias/__init__.py:390
+#: botias/__init__.py:399
 #, python-format
 msgid "The user with email %(email)s already exists"
 msgstr ""
 
-#: botias/__init__.py:393 botias/__init__.py:415
+#: botias/__init__.py:402 botias/__init__.py:424
 #: botias/templates/layout.html:98 botias/templates/register.html:23
 msgid "Register"
 msgstr ""
 
-#: botias/__init__.py:413 botias/templates/registered.html:5
+#: botias/__init__.py:422 botias/templates/registered.html:5
 msgid "Registration successeful"
 msgstr ""
 
-#: botias/__init__.py:436
+#: botias/__init__.py:445
 msgid "Your account have been blocked by administrator."
 msgstr ""
 
-#: botias/__init__.py:440
+#: botias/__init__.py:449
 msgid "Authentication successeful"
 msgstr ""
 
-#: botias/__init__.py:445
+#: botias/__init__.py:454
 msgid "Authentication failed. Check login and password."
 msgstr ""
 
-#: botias/__init__.py:446 botias/templates/login.html:4
+#: botias/__init__.py:455 botias/templates/login.html:4
 #: botias/templates/login.html:14
 msgid "Login"
 msgstr ""
 
-#: botias/__init__.py:454
+#: botias/__init__.py:463
 msgid "You have logged out"
 msgstr ""
 
-#: botias/__init__.py:459
+#: botias/__init__.py:468
 msgid "Please authorize to access this page"
 msgstr ""
 
-#: botias/__init__.py:468 botias/templates/layout.html:88
+#: botias/__init__.py:477 botias/templates/layout.html:88
 #: botias/templates/office.html:130
 msgid "My office"
 msgstr ""
 
-#: botias/__init__.py:480 botias/__init__.py:511
+#: botias/__init__.py:489 botias/__init__.py:520
 msgid "Error: file not found"
 msgstr ""
 
-#: botias/__init__.py:484
+#: botias/__init__.py:493
 msgid "Error: file is empty"
 msgstr ""
 
-#: botias/__init__.py:487
+#: botias/__init__.py:496
 #, python-format
 msgid "Error: %(error)s. "
 msgstr ""
 
-#: botias/__init__.py:520 botias/__init__.py:524
+#: botias/__init__.py:529 botias/__init__.py:533
 msgid "Incorrect data"
 msgstr ""
 
-#: botias/__init__.py:529
+#: botias/__init__.py:538
 #, python-format
 msgid "No year given for percentage %(per)s"
 msgstr ""
 
-#: botias/__init__.py:532
+#: botias/__init__.py:541
 #, python-format
 msgid "No percentage for year %(year)s"
 msgstr ""
 
-#: botias/__init__.py:537 botias/__init__.py:543 botias/parse.py:33
+#: botias/__init__.py:546 botias/__init__.py:552 botias/parse.py:33
 #, python-format
 msgid "Invalid year: %(year)s"
 msgstr ""
 
-#: botias/__init__.py:545
+#: botias/__init__.py:554
 #, python-format
 msgid "Duplicate year %(year)d"
 msgstr ""
 
-#: botias/__init__.py:551
+#: botias/__init__.py:560
 #, python-format
 msgid "Invalid discount rate: %(rate)s. Use dot to separate the fractional part."
 msgstr ""
 
-#: botias/__init__.py:576
+#: botias/__init__.py:585
 msgid "Profile parameters saved"
 msgstr ""
 
-#: botias/__init__.py:583
+#: botias/__init__.py:592
 msgid "Calculation parameters saved"
 msgstr ""
 
-#: botias/__init__.py:593
+#: botias/__init__.py:602
 msgid "Actuarial parameters saved"
 msgstr ""
 
-#: botias/__init__.py:596 botias/templates/layout.html:89
+#: botias/__init__.py:605 botias/templates/layout.html:89
 #: botias/templates/preferences.html:16
 msgid "Preferences"
 msgstr ""
 
-#: botias/__init__.py:602 botias/templates/layout.html:75
+#: botias/__init__.py:611 botias/templates/layout.html:75
 #: botias/templates/layout.html:120 botias/templates/tos.html:5
 msgid "Terms of service"
 msgstr ""
 
-#: botias/__init__.py:606 botias/templates/about.html:5
+#: botias/__init__.py:615 botias/templates/about.html:5
 #: botias/templates/layout.html:71
 msgid "About service"
 msgstr ""
 
-#: botias/__init__.py:612 botias/templates/docs.html:5
+#: botias/__init__.py:621 botias/templates/docs.html:5
 #: botias/templates/layout.html:74
 msgid "Documentation"
 msgstr ""
 
-#: botias/__init__.py:616 botias/templates/faq.html:5
+#: botias/__init__.py:625 botias/templates/faq.html:5
 #: botias/templates/layout.html:73
 msgid "Frequently asked questions"
 msgstr ""

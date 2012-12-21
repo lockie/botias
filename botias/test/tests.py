@@ -49,6 +49,7 @@ class BaseTestCase(AsyncTestCase, LogTrapTestCase):
 			corporate=True, code='12345678', purpose='edu', beneficiary=10,
 			email=TEST_MAIL,
 			password=hashlib.sha224(TEST_PASSWORD+SECRET_KEY).hexdigest())
+		user.limit = 500
 		db.session.add(user)
 		db.session.commit()
 		if rpc.connection is None:
@@ -380,4 +381,31 @@ class AdminCase(BaseTestCase):
 		form['password'] = TEST_PASSWORD
 		self.assertIn('blocked', form.submit().follow().follow(),
 			'Blocked user is able to login')
+
+	def test_limit(self):
+		self.login(email=self.admin_email)
+		form = self.app.get('/admin/userview/edit/?id=1').form
+		form['limit'] = 10
+		form.submit()
+
+		self.app.get('/logout')
+		self.login()
+		form = self.app.get('/office').form
+		fn = join(dirname(realpath(__file__)), 'file1.xls')
+		file = open(fn)
+		data = file.read()
+		file.close()
+		self.assertIn('success',
+			form.submit('/submit', upload_files=[('data', fn, data)]).follow(),
+			'File upload broken')
+		self.app.get('/result?id=0&file=1')
+		self.assertIn('exceeds the permitted limit',
+			self.app.post('/_process', {'id': '0', 'file': '1'}).json[u'error'],
+			'User is able to exceed permitted record limit')
+
+	def tearDown(self):
+		BaseTestCase.tearDown(self)
+		# clear stale files
+		from botias import SourceFile
+		SourceFile.query.filter_by(user_id=1).delete()
 

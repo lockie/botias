@@ -77,7 +77,7 @@ class UsersView(ModelView):
 	can_create = False
 	searchable_columns = ['name', 'surname', 'code', 'email']
 	list_columns = ('name', 'surname', 'corporate', 'code',
-		'purpose', 'beneficiary', 'email', 'admin', 'blocked')
+		'purpose', 'beneficiary', 'email', 'limit', 'admin', 'blocked')
 	rename_columns = dict(name=_('Name'),
 		surname=_('Surname'),
 		corporate=_('Corporate'),
@@ -85,10 +85,11 @@ class UsersView(ModelView):
 		purpose=_('Purpose'),
 		beneficiary=_('Beneficiary cnt.'),
 		email=_('E-mail'),
+		limit=_('Limit'),
 		admin=_('Admin'),
 		blocked=_('Blocked')
 	)
-	form_columns = ('name', 'surname', 'code', 'email', 'admin', 'blocked')
+	form_columns = ('name', 'surname', 'code', 'email', 'limit', 'admin', 'blocked')
 
 	def __init__(self, session, name):
 		ModelView.__init__(self, User, session, name=name)
@@ -219,6 +220,7 @@ class User(database.Model):
 	corporate = database.Column(database.Boolean())
 	code = database.Column(database.String(10))
 	purpose = database.Column(database.SmallInteger())
+	limit = database.Column(database.Integer())
 	beneficiary = database.Column(database.Integer())
 	email = database.Column(database.String(80), unique=True)
 	password = database.Column(database.String(56))
@@ -239,6 +241,7 @@ class User(database.Model):
 		self.corporate = corporate
 		self.code = code
 		self.purpose = purpose
+		self.limit = 2
 		self.beneficiary = int(beneficiary)
 		self.email = email
 		self.password = password
@@ -304,6 +307,12 @@ def process(): # to be called from AJAX
 					raise Exception(gettext('No actual data'))
 			except Exception as e:
 				return jsonify(error=gettext(u'Error: %(error)s. Try fixing your file.', error=unicode(e.args[0])))
+			if not current_user.is_admin() and \
+					len(data['rows']) > current_user.limit:
+				return jsonify(error=gettext(
+					'Error: number of worker records in file (%(num)d) exceeds '
+					'the permitted limit (%(limit)d).',
+					num=len(data['rows']), limit=current_user.limit))
 			data['discount_rates'] = current_user.discount_rates
 			data['income_growth']  = current_user.income_growth
 			data['pension_index'] = current_user.pension_index
