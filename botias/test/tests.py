@@ -349,7 +349,7 @@ class AdminCase(BaseTestCase):
 		form = self.app.get('/admin/userview/edit/?id=1').form
 		form['admin'] = True
 		self.assertIn('icon-ok',
-			str(form.submit().follow().html.findAll('tr')[1].findAll('td')[-1]),
+			str(form.submit().follow().html.findAll('tr')[1].findAll('td')[-2]),
 			'Admin flag is not editable')
 
 	def test_admin_security(self):
@@ -367,4 +367,17 @@ class AdminCase(BaseTestCase):
 		self.assertIn('Forbidden',
 			self.app.get('/admin/userview/', expect_errors=True),
 			'Admin users page accessible by regular user')
+
+	def test_blocking(self):
+		self.login(email=self.admin_email)
+		form = self.app.get('/admin/userview/edit/?id=1').form
+		form['blocked'] = True
+		form.submit()
+
+		self.app.get('/logout')
+		form = self.app.get('/login').form
+		form['email'] = TEST_MAIL
+		form['password'] = TEST_PASSWORD
+		self.assertIn('blocked', form.submit().follow().follow(),
+			'Blocked user is able to login')
 

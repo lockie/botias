@@ -77,16 +77,18 @@ class UsersView(ModelView):
 	can_create = False
 	searchable_columns = ['name', 'surname', 'code', 'email']
 	list_columns = ('name', 'surname', 'corporate', 'code',
-		'purpose', 'beneficiary', 'email', 'admin')
+		'purpose', 'beneficiary', 'email', 'admin', 'blocked')
 	rename_columns = dict(name=_('Name'),
 		surname=_('Surname'),
 		corporate=_('Corporate'),
 		code=_('Code'),
 		purpose=_('Purpose'),
 		beneficiary=_('Beneficiary cnt.'),
-		email=_('E-mail')
+		email=_('E-mail'),
+		admin=_('Admin'),
+		blocked=_('Blocked')
 	)
-	form_columns = ('name', 'surname', 'code', 'email', 'admin')
+	form_columns = ('name', 'surname', 'code', 'email', 'admin', 'blocked')
 
 	def __init__(self, session, name):
 		ModelView.__init__(self, User, session, name=name)
@@ -210,6 +212,7 @@ class JSONData(TypeDecorator):
 class User(database.Model):
 	__tablename__ = 'users'
 	id = database.Column(database.Integer, primary_key=True)
+	blocked = database.Column(database.Boolean())
 	admin = database.Column(database.Boolean())
 	name = database.Column(database.String(25))
 	surname = database.Column(database.String(35))
@@ -229,6 +232,7 @@ class User(database.Model):
 	def __init__(self, email, password, name, surname='', locale='ru',
 			corporate=False, code='', purpose=0, beneficiary=0,
 			income=0, pension=0, disrates=[[None, None]], admin=False):
+		self.blocked = False
 		self.admin = admin
 		self.name = name
 		self.surname = surname
@@ -244,7 +248,7 @@ class User(database.Model):
 		self.locale = locale
 
 	def is_active(self):
-		return True
+		return not self.blocked
 
 	def get_id(self):
 		return self.id
@@ -428,6 +432,9 @@ def login():
 		user = User.query.filter_by(email=email,
 			# sha224(password + salt)
 			password=hashlib.sha224(password + app.secret_key).hexdigest()).first()
+		if user and not user.is_active():
+			flash(gettext('Your account have been blocked by administrator.'), 'warning')
+			return redirect(next_url or url_for('index'))
 		if user and login_user(user, remember=True):
 			session['logged_in'] = True
 			flash(gettext('Authentication successeful'), 'success')
