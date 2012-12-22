@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version:  git\n"
 "Report-Msgid-Bugs-To: awkravchuk@gmail.com\n"
-"POT-Creation-Date: 2012-12-22 04:27+0400\n"
+"POT-Creation-Date: 2012-12-22 05:03+0400\n"
 "PO-Revision-Date: 2012-10-16 18:49+0400\n"
 "Last-Translator: Andrew Kravchuk <awkravchuk@gmail.com>\n"
 "Language-Team: ru <LL@li.org>\n"
@@ -71,41 +71,41 @@ msgstr "Год"
 msgid "Rate"
 msgstr "Ставка дисконтирования"
 
-#: botias/__init__.py:147 botias/templates/layout.html:54
+#: botias/__init__.py:146 botias/templates/layout.html:54
 msgid "Botias"
 msgstr "Ботиас"
 
-#: botias/__init__.py:148 botias/templates/layout.html:86
+#: botias/__init__.py:147 botias/templates/layout.html:86
 msgid "Administration"
 msgstr "Администрирование"
 
-#: botias/__init__.py:168
+#: botias/__init__.py:167
 msgid "Users"
 msgstr "Пользователи"
 
-#: botias/__init__.py:169
+#: botias/__init__.py:168
 msgid "Default discount rates"
 msgstr "Ставки дисконтирования по умолчанию"
 
-#: botias/__init__.py:329
+#: botias/__init__.py:328
 msgid "Error: no employee id given."
 msgstr "Ошибка: не указан № работника"
 
-#: botias/__init__.py:332 botias/__init__.py:383 botias/__init__.py:517
-#: botias/__init__.py:545
+#: botias/__init__.py:331 botias/__init__.py:382 botias/__init__.py:516
+#: botias/__init__.py:544
 msgid "Error: no file id given"
 msgstr "Ошибка: не указан файл"
 
-#: botias/__init__.py:341
+#: botias/__init__.py:340
 msgid "No actual data"
 msgstr "Файл не содержит актуальных данных"
 
-#: botias/__init__.py:343
+#: botias/__init__.py:342
 #, python-format
 msgid "Error: %(error)s. Try fixing your file."
 msgstr "Ошибка: %(error)s. Попробуйте другой файл."
 
-#: botias/__init__.py:349
+#: botias/__init__.py:348
 #, python-format
 msgid ""
 "Error: number of worker records in file (%(num)d) exceeds the permitted "
@@ -114,165 +114,165 @@ msgstr ""
 "Ошибка: количество записей о работниках в файле (%(num)d) превышает \n"
 "разрешённый лимит (%(limit)d)."
 
-#: botias/__init__.py:374
+#: botias/__init__.py:373
 #, python-format
 msgid "Error: %(error)s. Contact administration."
 msgstr "Ошибка: %(error)s. Свяжитесь с администрацией."
 
-#: botias/__init__.py:380
+#: botias/__init__.py:379
 msgid "Error: no employee id given"
 msgstr "Ошибка: не указан № работника"
 
-#: botias/__init__.py:386
+#: botias/__init__.py:385
 msgid "Results"
 msgstr "Результаты"
 
-#: botias/__init__.py:401
+#: botias/__init__.py:400
 msgid "File uploaded successfully"
 msgstr "Файл загружен на сервер"
 
-#: botias/__init__.py:403
+#: botias/__init__.py:402
 #, python-format
 msgid "Error uploading file: %(error)s."
 msgstr "Ошибка загрузки файла: %(error)s."
 
-#: botias/__init__.py:406
+#: botias/__init__.py:405
 msgid "Files of this type are not allowed to upload"
 msgstr "Файлы предоставленного типа не разрешены для загрузки"
 
-#: botias/__init__.py:413 botias/__init__.py:463
+#: botias/__init__.py:412 botias/__init__.py:462
 msgid "Already authenticated"
 msgstr "Вы уже вошли"
 
-#: botias/__init__.py:427
+#: botias/__init__.py:426
 msgid "Corporate code length should be 8"
 msgstr "Длина кода ОКПО - 8 цифр."
 
-#: botias/__init__.py:430
+#: botias/__init__.py:429
 msgid "Individual code length should be 10"
 msgstr "Длина кода ИНН - 10 цифр."
 
-#: botias/__init__.py:433
+#: botias/__init__.py:432
 #, python-format
 msgid "The user with email %(email)s already exists"
 msgstr "Пользователь с почтовым адресом %(email)s уже зарегистрирован"
 
-#: botias/__init__.py:436 botias/__init__.py:458
+#: botias/__init__.py:435 botias/__init__.py:457
 #: botias/templates/layout.html:98 botias/templates/register.html:23
 msgid "Register"
 msgstr "Регистрация"
 
-#: botias/__init__.py:456 botias/templates/registered.html:5
+#: botias/__init__.py:455 botias/templates/registered.html:5
 msgid "Registration successeful"
 msgstr "Регистрация произведена успешно"
 
-#: botias/__init__.py:479
+#: botias/__init__.py:478
 msgid "Your account have been blocked by administrator."
 msgstr "Ваша учётная запись была заблокирована администратором."
 
-#: botias/__init__.py:483
+#: botias/__init__.py:482
 msgid "Authentication successeful"
 msgstr "Вход в систему осуществлён успешно"
 
-#: botias/__init__.py:488
+#: botias/__init__.py:487
 msgid "Authentication failed. Check login and password."
 msgstr "Не удалось войти. Проверьте логин и пароль."
 
-#: botias/__init__.py:489 botias/templates/login.html:4
+#: botias/__init__.py:488 botias/templates/login.html:4
 #: botias/templates/login.html:14
 msgid "Login"
 msgstr "Вход"
 
-#: botias/__init__.py:497
+#: botias/__init__.py:496
 msgid "You have logged out"
 msgstr "Вы вышли"
 
-#: botias/__init__.py:502
+#: botias/__init__.py:501
 msgid "Please authorize to access this page"
 msgstr "Пожалуйста, авторизуйтесь для доступа к запрошенной странице"
 
-#: botias/__init__.py:511 botias/templates/layout.html:88
-#: botias/templates/office.html:130
+#: botias/__init__.py:510 botias/templates/layout.html:88
+#: botias/templates/office.html:152
 msgid "My office"
 msgstr "Мой кабинет"
 
-#: botias/__init__.py:523 botias/__init__.py:554
+#: botias/__init__.py:522 botias/__init__.py:553
 msgid "Error: file not found"
 msgstr "Ошибка: указанный файл не найден"
 
-#: botias/__init__.py:527
+#: botias/__init__.py:526
 msgid "Error: file is empty"
 msgstr "Ошибка: файл пуст"
 
-#: botias/__init__.py:530
+#: botias/__init__.py:529
 #, python-format
 msgid "Error: %(error)s. "
 msgstr "Ошибка: %(error)s."
 
-#: botias/__init__.py:563 botias/__init__.py:567
+#: botias/__init__.py:562 botias/__init__.py:566
 msgid "Incorrect data"
 msgstr "Некорректные данные"
 
-#: botias/__init__.py:572
+#: botias/__init__.py:571
 #, python-format
 msgid "No year given for percentage %(per)s"
 msgstr "Не задан год для ставки %(per)s"
 
-#: botias/__init__.py:575
+#: botias/__init__.py:574
 #, python-format
 msgid "No percentage for year %(year)s"
 msgstr "Не задана ставка для года %(year)s"
 
-#: botias/__init__.py:580 botias/__init__.py:586 botias/parse.py:33
+#: botias/__init__.py:579 botias/__init__.py:585 botias/parse.py:33
 #, python-format
 msgid "Invalid year: %(year)s"
 msgstr "Некорректный год: %(year)s"
 
-#: botias/__init__.py:588
+#: botias/__init__.py:587
 #, python-format
 msgid "Duplicate year %(year)d"
 msgstr "Дублирующийся год %(year)d"
 
-#: botias/__init__.py:594
+#: botias/__init__.py:593
 #, python-format
 msgid "Invalid discount rate: %(rate)s. Use dot to separate the fractional part."
 msgstr ""
 "Некорректная ставка: %(rate)s. Используйте точку в качестве десятичного "
 "разделителя."
 
-#: botias/__init__.py:619
+#: botias/__init__.py:618
 msgid "Profile parameters saved"
 msgstr "Параметры профиля сохранены"
 
-#: botias/__init__.py:626
+#: botias/__init__.py:625
 msgid "Calculation parameters saved"
 msgstr "Параметры расчёта сохранены"
 
-#: botias/__init__.py:636
+#: botias/__init__.py:635
 msgid "Actuarial parameters saved"
 msgstr "Актуарные предположения сохранены"
 
-#: botias/__init__.py:639 botias/templates/layout.html:89
+#: botias/__init__.py:638 botias/templates/layout.html:89
 #: botias/templates/preferences.html:16
 msgid "Preferences"
 msgstr "Настройки"
 
-#: botias/__init__.py:645 botias/templates/layout.html:75
+#: botias/__init__.py:644 botias/templates/layout.html:75
 #: botias/templates/layout.html:120 botias/templates/tos.html:5
 msgid "Terms of service"
 msgstr "Условия использования"
 
-#: botias/__init__.py:649 botias/templates/about.html:5
+#: botias/__init__.py:648 botias/templates/about.html:5
 #: botias/templates/layout.html:71
 msgid "About service"
 msgstr "О сервисе"
 
-#: botias/__init__.py:655 botias/templates/docs.html:5
+#: botias/__init__.py:654 botias/templates/docs.html:5
 #: botias/templates/layout.html:74
 msgid "Documentation"
 msgstr "Документы"
 
-#: botias/__init__.py:659 botias/templates/faq.html:5
+#: botias/__init__.py:658 botias/templates/faq.html:5
 #: botias/templates/layout.html:73
 msgid "Frequently asked questions"
 msgstr "Вопросы и ответы"
@@ -365,9 +365,8 @@ msgstr "Ежегодная индексация пенсий"
 #: botias/registerform.py:17
 msgid "Are you corporate user"
 msgstr ""
-"Снимите флажок, если вы - физическое лицо.<br />\"\n"
-"\"Если вы действуете от имени юридического лица, оставьте флажок "
-"отмеченным."
+"Снимите флажок, если вы - физическое лицо.<br />\n"
+"Если вы действуете от имени юридического лица, оставьте флажок отмеченным."
 
 #: botias/registerform.py:23
 msgid "educational"
@@ -435,7 +434,7 @@ msgstr "Утеряно"
 msgid "Actuarial assessment of privileged pensions in Ukraine according to IAS-19"
 msgstr "Актуарная оценка льготных пенсий в Украине по МСФО-19"
 
-#: botias/templates/functionality.htm:5 botias/templates/office.html:133
+#: botias/templates/functionality.htm:5 botias/templates/office.html:155
 msgid ""
 "Our service gives you the possibility to calculate the obligations on "
 "payment of privileged pensions\n"
@@ -534,59 +533,91 @@ msgstr "Показать тестовые файлы"
 msgid "Hide test files"
 msgstr "Скрыть тестовые файлы"
 
-#: botias/templates/office.html:111
+#: botias/templates/office.html:95 botias/templates/result.html:64
+msgid "Connection error. Contact administration."
+msgstr "Ошибка соединения. Свяжитесь с администрацией."
+
+#: botias/templates/office.html:97 botias/templates/result.html:66
+msgid "Page not found. Contact administration"
+msgstr "Страница не найдена. Свяжитесь с администрацией."
+
+#: botias/templates/office.html:99 botias/templates/result.html:68
+msgid "Internal server error. Contact administration."
+msgstr "Внутренняя ошибка сервера. Свяжитесь с администрацией."
+
+#: botias/templates/office.html:101 botias/templates/result.html:70
+msgid "Incorrect server response. Contact administration."
+msgstr "Сервер некорректно ответил на запрос. Свяжитесь с администрацией."
+
+#: botias/templates/office.html:103 botias/templates/result.html:72
+msgid "Response timed out. Contact administration."
+msgstr "Превышен интервал ожидания для запроса. Свяжитесь с администрацией."
+
+#: botias/templates/office.html:105 botias/templates/result.html:74
+msgid "AJAX request aborted."
+msgstr "AJAX-запрос отменён."
+
+#: botias/templates/office.html:107 botias/templates/result.html:76
+msgid "Unknown error: "
+msgstr "Неизвестная ошибка: "
+
+#: botias/templates/office.html:107 botias/templates/result.html:76
+msgid "Contact administration."
+msgstr "Свяжитесь с администрацией."
+
+#: botias/templates/office.html:133
 msgid "employee id"
 msgstr "№ работника"
 
-#: botias/templates/office.html:111
+#: botias/templates/office.html:133
 msgid "status"
 msgstr "статус"
 
-#: botias/templates/office.html:147
+#: botias/templates/office.html:169
 msgid "No files uploaded."
 msgstr "Файлы не загружены."
 
-#: botias/templates/office.html:148
+#: botias/templates/office.html:170
 msgid "Download test file"
 msgstr "Скачать тестовый файл"
 
-#: botias/templates/office.html:153
+#: botias/templates/office.html:175
 msgid "Uploaded files"
 msgstr "Загруженные файлы"
 
-#: botias/templates/office.html:167
+#: botias/templates/office.html:189
 msgid "View errors"
 msgstr "Просмотреть ошибки"
 
-#: botias/templates/office.html:171
+#: botias/templates/office.html:193
 msgid "Download"
 msgstr "Скачать"
 
-#: botias/templates/office.html:172
+#: botias/templates/office.html:194
 msgid "Calculate funding plan for single employee"
 msgstr "Рассчитать план финансирования для одного работника"
 
-#: botias/templates/office.html:172
+#: botias/templates/office.html:194
 msgid "Calculate employee"
 msgstr "Рассчитать работника"
 
-#: botias/templates/office.html:173
+#: botias/templates/office.html:195
 msgid "Calculate overall funding plan"
 msgstr "Рассчитать общий отчёт"
 
-#: botias/templates/office.html:173
+#: botias/templates/office.html:195
 msgid "Calculate plan"
 msgstr "Рассчитать общий отчёт"
 
-#: botias/templates/office.html:180
+#: botias/templates/office.html:202
 msgid "Upload new file"
 msgstr "Загрузить новый файл"
 
-#: botias/templates/office.html:182
+#: botias/templates/office.html:204
 msgid "Close"
 msgstr "Закрыть"
 
-#: botias/templates/office.html:187
+#: botias/templates/office.html:209
 msgid "Submit"
 msgstr "Отправить"
 
@@ -656,38 +687,6 @@ msgid ""
 msgstr ""
 "Спасибо, %(name)s! Ваш пароль %(password)s , используйте его для входа с "
 "вашим адресом e-mail %(email)s"
-
-#: botias/templates/result.html:64
-msgid "Connection error. Contact administration."
-msgstr "Ошибка соединения. Свяжитесь с администрацией."
-
-#: botias/templates/result.html:66
-msgid "Page not found. Contact administration"
-msgstr "Страница не найдена. Свяжитесь с администрацией."
-
-#: botias/templates/result.html:68
-msgid "Internal server error. Contact administration."
-msgstr "Внутренняя ошибка сервера. Свяжитесь с администрацией."
-
-#: botias/templates/result.html:70
-msgid "Incorrect server response. Contact administration."
-msgstr "Сервер некорректно ответил на запрос. Свяжитесь с администрацией."
-
-#: botias/templates/result.html:72
-msgid "Response timed out. Contact administration."
-msgstr "Превышен интервал ожидания для запроса. Свяжитесь с администрацией."
-
-#: botias/templates/result.html:74
-msgid "AJAX request aborted."
-msgstr "AJAX-запрос отменён."
-
-#: botias/templates/result.html:76
-msgid "Unknown error: "
-msgstr "Неизвестная ошибка: "
-
-#: botias/templates/result.html:76
-msgid "Contact administration."
-msgstr "Свяжитесь с администрацией."
 
 #: botias/templates/result.html:154
 msgid "Processing data..."
