@@ -29,11 +29,6 @@ if __name__ == '__main__':
 		help="Database URI (SQLAlchemy format)",
 		metavar="URI",
 		type=str)
-	define("upload",
-		default="/tmp",
-		help="Upload folder for user files",
-		metavar="PATH",
-		type=str)
 	define("maxsize",
 		default=50000000,
 		help="Maximum allowed upload file size, bytes",
@@ -62,7 +57,6 @@ if __name__ == '__main__':
 		DEBUG=options.debug,
 		SECRET_KEY=options.secret,
 		SQLALCHEMY_DATABASE_URI=options.db,
-		UPLOAD_FOLDER=options.upload,
 		MAX_CONTENT_LENGTH=options.maxsize,
 		BACKEND_ADDRESS=options.backend,
 		BACKEND_TIMEOUT=options.timeout,
