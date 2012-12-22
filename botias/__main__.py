@@ -44,6 +44,11 @@ if __name__ == '__main__':
 		help="Backend hostname/ipaddr or AMQP URI",
 		metavar="ADDR",
 		type=str)
+	define("timeout",
+		default=10,
+		help="Timeout for backend connection",
+		metavar="SECONDS",
+		type=int)
 	define("admin",
 		default="botias@pac.kiev.ua",
 		help="Default administrator email (login and password too)",
@@ -60,6 +65,7 @@ if __name__ == '__main__':
 		UPLOAD_FOLDER=options.upload,
 		MAX_CONTENT_LENGTH=options.maxsize,
 		BACKEND_ADDRESS=options.backend,
+		BACKEND_TIMEOUT=options.timeout,
 		DEFAULT_ADMIN=options.admin
 	)
 	if options.debug:

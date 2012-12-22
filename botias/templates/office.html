@@ -85,7 +85,29 @@
 						url: '/_errors',
 						data: 'id='+f,
 						dataType: 'JSON',
-						timeout: 1000,
+						timeout: 30000,
+						error: function(jqXHR, exception) {
+							// TODO : taken from result.html, deduplicate code
+							var err = "";
+							if (jqXHR.status === -1) {
+								err = jqXHR.responseText;
+							} else if (jqXHR.status === 0) {
+								err = "{{ _('Connection error. Contact administration.') }}";
+							} else if (jqXHR.status == 404) {
+								err = "{{ _('Page not found. Contact administration') }}";
+							} else if (jqXHR.status == 500) {
+								err = "{{ _('Internal server error. Contact administration.') }}"
+							} else if (exception === 'parsererror') {
+								err = "{{ _('Incorrect server response. Contact administration.') }}"
+							} else if (exception === 'timeout') {
+								err = "{{ _('Response timed out. Contact administration.') }}";
+							} else if (exception === 'abort') {
+								err = "{{ _('AJAX request aborted.') }}";
+							} else {
+								err = "{{ _('Unknown error: ') }}" + jqXHR.responseText + "{{ _('Contact administration.') }}";
+							}
+							placeholder.html(err);
+						},
 						success: function(data) {
 							if(data.result==null) {
 								placeholder.html(data.error);

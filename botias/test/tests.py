@@ -39,6 +39,7 @@ class BaseTestCase(AsyncTestCase, LogTrapTestCase):
 			SQLALCHEMY_DATABASE_URI='sqlite://',
 			UPLOAD_FOLDER='/tmp',
 			BACKEND_ADDRESS='',
+			BACKEND_TIMEOUT=0,
 			DEFAULT_ADMIN='botias@pac.kiev.ua'
 		)
 		from botias import database as db, User, rpc

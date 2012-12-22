@@ -176,7 +176,7 @@ def init_app(**kwargs):
 			database.session.add(default_admin)
 			database.session.commit()
 	# init backend connection
-	rpc = RpcClient(app.config['BACKEND_ADDRESS'])
+	rpc = RpcClient(app.config['BACKEND_ADDRESS'], app.config['BACKEND_TIMEOUT'])
 	return app
 
 # version

@@ -76,7 +76,7 @@ logging="warning"
 	f.write("""# -*- conf -*-
 [program:%(package)s]
 command=%(venv)s/bin/python -m %(package)s
-startsecs=10
+startsecs=20
 autorestart=true
 stopasgroup=true
 redirect_stderr=true
