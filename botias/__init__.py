@@ -72,8 +72,8 @@ class AdminView(AdminIndexView):
 
 # user administration
 class UsersView(ModelView):
-	list_template = 'users.html'
-	edit_template = 'users_edit.html'
+	list_template = 'admin_list.html'
+	edit_template = 'admin_edit.html'
 	can_create = False
 	searchable_columns = ['name', 'surname', 'code', 'email']
 	list_columns = ('name', 'surname', 'corporate', 'code',
@@ -92,7 +92,7 @@ class UsersView(ModelView):
 	form_columns = ('name', 'surname', 'code', 'email', 'limit', 'admin', 'blocked')
 
 	def __init__(self, session, name):
-		ModelView.__init__(self, User, session, name=name)
+		ModelView.__init__(self, User, session, name=name, endpoint='users')
 
 	def is_accessible(self):
 		return not current_user.is_anonymous() and current_user.is_admin()
@@ -126,6 +126,23 @@ class UsersView(ModelView):
 		del form.email
 		return ModelView.update_model(self, form, model)
 
+# defaults administration
+class DefaultDiscountRatesView(ModelView):
+	list_template = 'admin_list.html'
+	edit_template = 'admin_edit.html'
+	rename_columns = dict(year=_('Year'),
+		rate=_('Rate'))
+
+	def __init__(self, session, name):
+		ModelView.__init__(self, DefaultDiscountRates, session, name=name, endpoint='discount_rates')
+
+	def is_accessible(self):
+		return not current_user.is_anonymous() and current_user.is_admin()
+
+	def _handle_view(self, name, **kwargs):
+		if not self.is_accessible():
+			return abort(403)
+
 admin = Admin(name=_('Botias'),
 	index_view=AdminView(_('Administration')))
 
@@ -148,6 +165,7 @@ def init_app(**kwargs):
 		admin.init_app(app)
 		admin.locale_selector(get_locale)
 		admin.add_view(UsersView(database.session, name=_('Users')))
+		admin.add_view(DefaultDiscountRatesView(database.session, name=_('Default discount rates')))
 		if database.session.query(User).filter_by(
 				email=app.config['DEFAULT_ADMIN']).count() == 0:
 			default_admin = User(app.config['DEFAULT_ADMIN'],
@@ -181,6 +199,21 @@ def get_locale():
 def get_timezone():
 	if current_user is not None and not current_user.is_anonymous():
 		return current_user.timezone
+
+class DefaultDiscountRates(database.Model):
+	__tablename__ = 'default_discount_rates'
+	id = database.Column(database.Integer(), primary_key=True)
+	year = database.Column(database.Integer(), unique=True)
+	rate = database.Column(database.Float())
+
+	@staticmethod
+	def value():
+		res = []
+		for disrate in DefaultDiscountRates.query.all():
+			res.append([disrate.year, disrate.rate])
+		if not res:
+			res = [[None, None]]
+		return res
 
 class SourceFile(database.Model):
 	__tablename__ = 'files'
@@ -412,9 +445,9 @@ def register():
 			beneficiary=beneficiary,
 			email=email,
 			password=hashlib.sha224(password + app.secret_key).hexdigest(),
-			income=0, # TODO : defaults
-			pension=0,
-			disrates=[[None, None]]
+			income=0.15, # TODO : editable defaults for income & pension
+			pension=0.15,
+			disrates=DefaultDiscountRates.value()
 		)
 		# TODO : send email
 		database.session.add(user)

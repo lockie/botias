@@ -58,6 +58,22 @@ class BaseTestCase(AsyncTestCase, LogTrapTestCase):
 		#self.app = flaskr.app.test_client()
 		self.app = TestApp(app)
 
+	def register(self, email, name=u'Иван', surname=u'Иванов',
+			code='1234567890', purpose='edu', beneficiary='10'):
+		resp = self.app.post('/register', dict({
+			'name': name,
+			'surname': surname,
+			'code': code,
+			'purpose': purpose,
+			'beneficiary': beneficiary,
+			'email': email},
+			**self.get_csrf_token('/register')))
+		self.assertIn('Registration successeful', resp.body,
+			'Registration failed')
+		passw = resp.html.find('p', {'class': 'lead text-success'}
+			).contents[2].split(' ')[6][:-1]
+		return passw
+
 	def get_csrf_token(self, url):
 		resp = self.app.get(url)
 		csrf_token = resp.html.form.find('input', {'id': 'csrf_token'})['value']
@@ -141,22 +157,6 @@ class RegisterCase(BaseTestCase):
 	"""
 	def __init__(self, *args, **kwargs):
 		BaseTestCase.__init__(self, *args, **kwargs)
-
-	def register(self, email, name=u'Иван', surname=u'Иванов',
-			code='1234567890', purpose='edu', beneficiary='10'):
-		resp = self.app.post('/register', dict({
-			'name': name,
-			'surname': surname,
-			'code': code,
-			'purpose': purpose,
-			'beneficiary': beneficiary,
-			'email': email},
-			**self.get_csrf_token('/register')))
-		self.assertIn('Registration successeful', resp.body,
-			'Registration failed')
-		passw = resp.html.find('p', {'class': 'lead text-success'}
-			).contents[2].split(' ')[6][:-1]
-		return passw
 
 	def test_register(self):
 		email = 'test2@axiomlogic.ru'
@@ -335,19 +335,19 @@ class AdminCase(BaseTestCase):
 			admin_page.html.findAll('td')[1].string,
 			'Incorrect version at admin page')
 
-		users_page = self.app.get('/admin/userview/')
+		users_page = self.app.get('/admin/users/')
 		self.assertEquals('Test',
 			users_page.html.findAll('tr')[1].findAll('td')[3].string,
 			'No test user in user administration page')
 
 	def test_admin_edit(self):
 		self.login(email=self.admin_email)
-		form = self.app.get('/admin/userview/edit/?id=1').form
+		form = self.app.get('/admin/users/edit/?id=1').form
 		test = 'rawr!'
 		form['name'] = test
 		self.assertNotIn(test, form.submit().follow(), 'User name is editable')
 
-		form = self.app.get('/admin/userview/edit/?id=1').form
+		form = self.app.get('/admin/users/edit/?id=1').form
 		form['admin'] = True
 		self.assertIn('icon-ok',
 			str(form.submit().follow().html.findAll('tr')[1].findAll('td')[-2]),
@@ -358,20 +358,26 @@ class AdminCase(BaseTestCase):
 			self.app.get('/admin/', expect_errors=True),
 			'Admin page accessible by anonymous')
 		self.assertIn('Forbidden',
-			self.app.get('/admin/userview/', expect_errors=True),
+			self.app.get('/admin/users/', expect_errors=True),
 			'Admin users page accessible by anonymous')
+		self.assertIn('Forbidden',
+			self.app.get('/admin/discount_rates/', expect_errors=True),
+			'Admin defaults page accessible by anonymous')
 
 		self.login()
 		self.assertIn('Forbidden',
 			self.app.get('/admin/', expect_errors=True),
 			'Admin page accessible by regular user')
 		self.assertIn('Forbidden',
-			self.app.get('/admin/userview/', expect_errors=True),
+			self.app.get('/admin/users/', expect_errors=True),
 			'Admin users page accessible by regular user')
+		self.assertIn('Forbidden',
+			self.app.get('/admin/discount_rates/', expect_errors=True),
+			'Admin defaults page accessible by regular user')
 
 	def test_blocking(self):
 		self.login(email=self.admin_email)
-		form = self.app.get('/admin/userview/edit/?id=1').form
+		form = self.app.get('/admin/users/edit/?id=1').form
 		form['blocked'] = True
 		form.submit()
 
@@ -384,7 +390,7 @@ class AdminCase(BaseTestCase):
 
 	def test_limit(self):
 		self.login(email=self.admin_email)
-		form = self.app.get('/admin/userview/edit/?id=1').form
+		form = self.app.get('/admin/users/edit/?id=1').form
 		form['limit'] = 10
 		form.submit()
 
@@ -402,6 +408,20 @@ class AdminCase(BaseTestCase):
 		self.assertIn('exceeds the permitted limit',
 			self.app.post('/_process', {'id': '0', 'file': '1'}).json[u'error'],
 			'User is able to exceed permitted record limit')
+
+	def test_defaults(self):
+		self.login(email=self.admin_email)
+		form = self.app.get('/admin/discount_rates/new/').form
+		form['year'] = 2012
+		unique_rate = '666'
+		form['rate'] = unique_rate
+		form.submit()
+
+		self.app.get('/logout')
+		mail = 'nomail@mail.ru'
+		self.login(mail, self.register(mail))
+		self.assertIn(unique_rate, self.app.get('/prefs'),
+			'Default discount rate isnt applied to newly registered user')
 
 	def tearDown(self):
 		BaseTestCase.tearDown(self)
