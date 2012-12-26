@@ -75,6 +75,17 @@ class BaseTestCase(AsyncTestCase, LogTrapTestCase):
 			).contents[2].split(' ')[6][:-1]
 		return passw
 
+	def submit(self, filename='file1.xls'):
+		self.login()
+		form = self.app.get('/office').form
+		fn = join(dirname(realpath(__file__)), filename)
+		file = open(fn)
+		data = file.read()
+		file.close()
+		self.assertIn('success',
+			form.submit('/submit', upload_files=[('data', fn, data)]).follow(),
+			'File upload broken')
+
 	def get_csrf_token(self, url):
 		resp = self.app.get(url)
 		csrf_token = resp.html.form.find('input', {'id': 'csrf_token'})['value']
@@ -215,15 +226,7 @@ class SubmitCase(BaseTestCase):
 	def test_submit(self):
 		""" Check file submission and whole protocol
 		"""
-		self.login()
-		form = self.app.get('/office').form
-		fn = join(dirname(realpath(__file__)), 'file1.xls')
-		file = open(fn)
-		data = file.read()
-		file.close()
-		self.assertIn('success',
-			form.submit('/submit', upload_files=[('data', fn, data)]).follow(),
-			'File upload broken')
+		self.submit()
 		self.app.get('/result?id=0&file=2')
 		self.assertIs(self.app.post('/_process', {'id': '0', 'file': '2'}).json[u'result'],
 				None, 'POST _process URL handler broken')
@@ -232,15 +235,7 @@ class SubmitCase(BaseTestCase):
 		# TODO : test some actual BSON got from mock?
 
 	def test_submit_single(self):
-		self.login()
-		form = self.app.get('/office').form
-		fn = join(dirname(realpath(__file__)), 'file2.xls')
-		file = open(fn)
-		data = file.read()
-		file.close()
-		self.assertIn('success',
-			form.submit('/submit', upload_files=[('data', fn, data)]).follow(),
-			'File upload broken')
+		self.submit('file2.xls')
 		self.app.get('/result?id=2&file=3')
 		self.assertIs(self.app.post('/_process', {'id': '0', 'file': '3'}).json[u'result'],
 				None, 'POST _process URL handler broken')
@@ -429,4 +424,15 @@ class AdminCase(BaseTestCase):
 		# clear stale files
 		from botias import SourceFile
 		SourceFile.query.filter_by(user_id=1).delete()
+
+
+class RemoveCase(BaseTestCase):
+	def __init__(self, *args, **kwargs):
+		BaseTestCase.__init__(self, *args, **kwargs)
+
+	def test_remove(self):
+		self.submit()
+		self.app.get('/remove?id=1')
+		self.assertEqual(len(self.app.get('/office').html.findAll(
+			'i', 'icon-remove-circle')), 0, 'Unable to remove uploaded file')
 

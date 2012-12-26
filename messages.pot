@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PROJECT VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2012-12-26 15:16+0400\n"
+"POT-Creation-Date: 2012-12-26 15:33+0400\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -92,7 +92,7 @@ msgid "Error: no employee id given."
 msgstr ""
 
 #: botias/__init__.py:331 botias/__init__.py:382 botias/__init__.py:516
-#: botias/__init__.py:544
+#: botias/__init__.py:544 botias/__init__.py:564
 msgid "Error: no file id given"
 msgstr ""
 
@@ -194,7 +194,7 @@ msgstr ""
 msgid "My office"
 msgstr ""
 
-#: botias/__init__.py:522 botias/__init__.py:553
+#: botias/__init__.py:522 botias/__init__.py:551 botias/__init__.py:573
 msgid "Error: file not found"
 msgstr ""
 
@@ -207,68 +207,73 @@ msgstr ""
 msgid "Error: %(error)s. "
 msgstr ""
 
-#: botias/__init__.py:562 botias/__init__.py:566
+#: botias/__init__.py:556
+#, python-format
+msgid "File \"%(name)s\" was successefully removed."
+msgstr ""
+
+#: botias/__init__.py:582 botias/__init__.py:586
 msgid "Incorrect data"
 msgstr ""
 
-#: botias/__init__.py:571
+#: botias/__init__.py:591
 #, python-format
 msgid "No year given for percentage %(per)s"
 msgstr ""
 
-#: botias/__init__.py:574
+#: botias/__init__.py:594
 #, python-format
 msgid "No percentage for year %(year)s"
 msgstr ""
 
-#: botias/__init__.py:579 botias/__init__.py:585 botias/parse.py:33
+#: botias/__init__.py:599 botias/__init__.py:605 botias/parse.py:33
 #, python-format
 msgid "Invalid year: %(year)s"
 msgstr ""
 
-#: botias/__init__.py:587
+#: botias/__init__.py:607
 #, python-format
 msgid "Duplicate year %(year)d"
 msgstr ""
 
-#: botias/__init__.py:593
+#: botias/__init__.py:613
 #, python-format
 msgid "Invalid discount rate: %(rate)s. Use dot to separate the fractional part."
 msgstr ""
 
-#: botias/__init__.py:618
+#: botias/__init__.py:638
 msgid "Profile parameters saved"
 msgstr ""
 
-#: botias/__init__.py:625
+#: botias/__init__.py:645
 msgid "Calculation parameters saved"
 msgstr ""
 
-#: botias/__init__.py:635
+#: botias/__init__.py:655
 msgid "Actuarial parameters saved"
 msgstr ""
 
-#: botias/__init__.py:638 botias/templates/layout.html:89
+#: botias/__init__.py:658 botias/templates/layout.html:89
 #: botias/templates/preferences.html:16
 msgid "Preferences"
 msgstr ""
 
-#: botias/__init__.py:644 botias/templates/layout.html:75
+#: botias/__init__.py:664 botias/templates/layout.html:75
 #: botias/templates/layout.html:120 botias/templates/tos.html:5
 msgid "Terms of service"
 msgstr ""
 
-#: botias/__init__.py:648 botias/templates/about.html:5
+#: botias/__init__.py:668 botias/templates/about.html:5
 #: botias/templates/layout.html:71
 msgid "About service"
 msgstr ""
 
-#: botias/__init__.py:654 botias/templates/docs.html:5
+#: botias/__init__.py:674 botias/templates/docs.html:5
 #: botias/templates/layout.html:74
 msgid "Documentation"
 msgstr ""
 
-#: botias/__init__.py:658 botias/templates/faq.html:5
+#: botias/__init__.py:678 botias/templates/faq.html:5
 #: botias/templates/layout.html:73
 msgid "Frequently asked questions"
 msgstr ""
@@ -567,34 +572,38 @@ msgid "View errors"
 msgstr ""
 
 #: botias/templates/office.html:193
+msgid "Remove"
+msgstr ""
+
+#: botias/templates/office.html:194
 msgid "Download"
 msgstr ""
 
-#: botias/templates/office.html:194
+#: botias/templates/office.html:195
 msgid "Calculate funding plan for single employee"
 msgstr ""
 
-#: botias/templates/office.html:194
+#: botias/templates/office.html:195
 msgid "Calculate employee"
 msgstr ""
 
-#: botias/templates/office.html:195
+#: botias/templates/office.html:196
 msgid "Calculate overall funding plan"
 msgstr ""
 
-#: botias/templates/office.html:195
+#: botias/templates/office.html:196
 msgid "Calculate plan"
 msgstr ""
 
-#: botias/templates/office.html:202
+#: botias/templates/office.html:203
 msgid "Upload new file"
 msgstr ""
 
-#: botias/templates/office.html:204
+#: botias/templates/office.html:205
 msgid "Close"
 msgstr ""
 
-#: botias/templates/office.html:209
+#: botias/templates/office.html:210
 msgid "Submit"
 msgstr ""
 

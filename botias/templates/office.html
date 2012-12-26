@@ -190,6 +190,7 @@
 						<div id="errors-{{ file.id }}" style="display:none;"></div>
 					</td>
 					<td>
+						<a href="/remove?id={{ file.id }}"><i class="icon-remove-circle"></i>{{ _('Remove') }}</a><br />
 						<a href="/download?id={{ file.id }}"><i class="icon-download-alt"></i>{{ _('Download') }}</a><br />
 						<a id="{{ file.id }}" class="calculate-single-link link" title="{{ _('Calculate funding plan for single employee') }}"><i class="icon-user"></i>{{ _('Calculate employee') }}</a><br />
 						<a id="{{ file.id }}" class="calculate-all-link link" title="{{ _('Calculate overall funding plan') }}"><i class="icon-th-list"></i>{{ _('Calculate plan') }}</a><br />

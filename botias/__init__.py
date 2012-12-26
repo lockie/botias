@@ -537,6 +537,26 @@ def errors():
 	result.sort(key=lambda x: int(x[0]))
 	return jsonify(result=result)
 
+@app.route('/remove') # TODO : it should be POST request (like many others)
+@login_required
+def remove():
+	if 'id' not in request.args:
+		flash(gettext('Error: no file id given'), 'error')
+		return redirect(request.referrer or url_for('office'))
+	file_id = request.args['id']
+	try:
+		f = SourceFile.query.filter_by(id=file_id,
+			user_id=current_user.get_id()).one()
+	except NoResultFound:
+		flash(gettext('Error: file not found'), 'error')
+		return redirect(request.referrer or url_for('office'))
+	name = f.name
+	database.session.delete(f)
+	database.session.commit()
+	flash(gettext('File "%(name)s" was successefully removed.', name=name),
+		'information')
+	return redirect(request.referrer or url_for('office'))
+
 @app.route('/download')
 @login_required
 def download():
